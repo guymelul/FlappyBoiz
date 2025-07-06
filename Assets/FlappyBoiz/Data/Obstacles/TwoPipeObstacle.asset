@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7f4b5774a3440347a7bdfd0724c6ee3, type: 3}
+  m_Name: TwoPipeObstacle
+  m_EditorClassIdentifier: 
+  offsetBoundTop: 1.75
+  offsetBoundBottom: -1.65
+  gapDistanceTop: 1.2
+  gapDistanceBottom: 1.1
+  prefab: {fileID: 8324208185179134995, guid: cb1206ac659f5d847941fefeb07a754e, type: 3}
+  variants:
+  - {fileID: 7846913420333100558, guid: ce17279e3ab9ae643a966484da78f5d0, type: 3}
+  - {fileID: 8771769723171269550, guid: ce17279e3ab9ae643a966484da78f5d0, type: 3}
+  - {fileID: 7181103012753707441, guid: ce17279e3ab9ae643a966484da78f5d0, type: 3}
+  - {fileID: 4330263833946956143, guid: ce17279e3ab9ae643a966484da78f5d0, type: 3}
+  - {fileID: 269233392811628974, guid: ce17279e3ab9ae643a966484da78f5d0, type: 3}
+  - {fileID: 5423469771280619862, guid: ce17279e3ab9ae643a966484da78f5d0, type: 3}

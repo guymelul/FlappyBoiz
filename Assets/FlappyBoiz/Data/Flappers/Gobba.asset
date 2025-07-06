@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d249f7eac2b4f439aa13916391d5553, type: 3}
+  m_Name: Gobba
+  m_EditorClassIdentifier: 
+  <Price>k__BackingField: 25
+  <Preview>k__BackingField: {fileID: -6443027457685418727, guid: 7c303bc2f5663ec4b8f59f276930273e, type: 3}
+  <AnimatorOverride>k__BackingField: {fileID: 0}

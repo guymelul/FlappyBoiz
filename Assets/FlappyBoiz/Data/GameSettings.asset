@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0998c8112ef54371b33033f61a419ead, type: 3}
+  m_Name: GameSettings
+  m_EditorClassIdentifier: 
+  <ConversionRate>k__BackingField: 0.6
+  <Themes>k__BackingField:
+  - {fileID: 11400000, guid: ba6b106fcdb172d4f819b159c4b30597, type: 2}
+  <Flappers>k__BackingField:
+  - {fileID: 11400000, guid: 963fd062a949ebc4b94d536990ddf474, type: 2}
+  - {fileID: 11400000, guid: ef8bf50eddf72914e950cb6e2569ba40, type: 2}
+  - {fileID: 11400000, guid: cc54f812b1699e34eb2034f289c95f1c, type: 2}
+  <Cosmetics>k__BackingField:
+  - {fileID: 11400000, guid: 673384ce584a2c74b8792d9db99c5887, type: 2}
+  - {fileID: 11400000, guid: 4b0ef61455c44c74a810b39c07695659, type: 2}
+  - {fileID: 11400000, guid: 22abd581e8f5a80438ee18586acb07ea, type: 2}
+  - {fileID: 11400000, guid: d74adc39bc48bb5479ec064971a5c73d, type: 2}
+  <FlapperUnlocks>k__BackingField: {fileID: 11400000, guid: 222086aa6e01b7444bd8d2beda1cbee6, type: 2}
+  <ThemeUnlocks>k__BackingField: {fileID: 11400000, guid: 16541dd917b19d84081992cf3107d030, type: 2}
+  <CosmeticUnlocks>k__BackingField: {fileID: 11400000, guid: 4f4fca943aa17e64ebe5c62fb2a21452, type: 2}
+  <HighScore>k__BackingField: {fileID: 11400000, guid: 77d969a51739e3146aa273afc960912f, type: 2}
+  <Coins>k__BackingField: {fileID: 11400000, guid: ef6fbb8bc4314457184f8dc176e5e2c8, type: 2}
+  <CoinsEarned>k__BackingField: {fileID: 11400000, guid: 48a385253621f1043a8febfddf5bde34, type: 2}
+  <EquippedTheme>k__BackingField: {fileID: 11400000, guid: f33baa97e81a4bd4fa3f179889168bbb, type: 2}
+  <EquippedFlapper>k__BackingField: {fileID: 11400000, guid: 9a7ada86e3c41af46986e55b9689d0ac, type: 2}
+  <EquippedCosmetic>k__BackingField: {fileID: 11400000, guid: feaf98f155dd35144bc07f5197a15553, type: 2}
+  <Score>k__BackingField: {fileID: 11400000, guid: 1ac2cbe7ad65e184aae287dcec136550, type: 2}
+  <SFXVolume>k__BackingField: {fileID: 11400000, guid: 082087c6b7fe7344481b5fac29a99446, type: 2}
+  <BGMVolume>k__BackingField: {fileID: 11400000, guid: aa9c3deaca94c1c40b1aca3e2400df2f, type: 2}

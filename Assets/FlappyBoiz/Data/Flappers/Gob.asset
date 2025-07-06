@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d249f7eac2b4f439aa13916391d5553, type: 3}
+  m_Name: Gob
+  m_EditorClassIdentifier: 
+  <Price>k__BackingField: 0
+  <Preview>k__BackingField: {fileID: -4598324145191619580, guid: 37608e759269d874a8a3c44105135eb7, type: 3}
+  <AnimatorOverride>k__BackingField: {fileID: 0}

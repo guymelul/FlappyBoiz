@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eafa089569f4381a13d33cc38562034, type: 3}
+  m_Name: DefaultSFX
+  m_EditorClassIdentifier: 
+  <Die>k__BackingField: {fileID: 8300000, guid: 664693ad74b761243bcaaafdeba3e9ab, type: 3}
+  <Hit>k__BackingField: {fileID: 8300000, guid: 7c9f3da1394c1ba4b9d2233a395462e2, type: 3}
+  <Point>k__BackingField: {fileID: 8300000, guid: 37c8f376d8480af4ca54632d7a057181, type: 3}
+  <WingFlap>k__BackingField: {fileID: 8300000, guid: 6a035d5d19b649f45a71ab4fb3f8871b, type: 3}
+  <BgmPlaying>k__BackingField: {fileID: 8300000, guid: 70a9b5d00465b554691573f812a710ac, type: 3}
+  <BgmMenu>k__BackingField: {fileID: 8300000, guid: 2b71091266254fc4ba2062e46ecea682, type: 3}
+  <UISelect>k__BackingField: {fileID: 8300000, guid: 66d3be095bd18cb49a39c01d36bf9283, type: 3}
+  <UIUnavailable>k__BackingField: {fileID: 8300000, guid: 2f3218b6d9a432e4ba193b029ef98db5, type: 3}
