@@ -7,6 +7,9 @@ namespace FlappyBoiz.Scripts.Core
     {
         protected override void Configure(IContainerBuilder builder)
         {
+            // Register core services
+            
+            // Login sequence in scene or here?
         }
     }
 }
