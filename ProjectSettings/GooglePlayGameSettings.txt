@@ -1,5 +1,5 @@
-lastUpgrade=20000
-proj.pluginVersion=2.0.0
+lastUpgrade=20100
+proj.pluginVersion=2.1.0
 proj.AppId=77419019145
 and.BundleId=io.hamartefstudio.flappyboiz
 proj.classDir=Assets%5cScripts
