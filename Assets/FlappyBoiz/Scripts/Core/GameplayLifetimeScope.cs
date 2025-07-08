@@ -1,4 +1,5 @@
-﻿using VContainer;
+﻿using FlappyBoiz.Scripts.Managers;
+using VContainer;
 using VContainer.Unity;
 
 namespace FlappyBoiz.Scripts.Core
@@ -7,6 +8,7 @@ namespace FlappyBoiz.Scripts.Core
     {
         protected override void Configure(IContainerBuilder builder)
         {
+            builder.RegisterEntryPoint<GameplayManager>(Lifetime.Scoped).AsSelf();
         }
     }
 }

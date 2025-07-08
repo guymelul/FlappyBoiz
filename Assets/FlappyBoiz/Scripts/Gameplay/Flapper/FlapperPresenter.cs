@@ -1,13 +1,14 @@
 using System.Collections;
 using FlappyBoiz.Scripts.Data;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace FlappyBoiz.Scripts.Gameplay.Flapper
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(FlapperMotion))]
+    [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(AudioSource))]
     public class FlapperPresenter : MonoBehaviour
     {
         private static readonly int Reset = Animator.StringToHash("Reset");
@@ -18,10 +19,8 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
 
         private AudioSource m_audio;
         private FlapperMotion m_flapperMotion;
-        private InputAction m_action;
         private SpriteRenderer m_flapperSprite;
         private SpriteRenderer m_cosmeticSprite;
-        private EventSystem m_eventSystem;
 
         //[Header("Event")]
         // [SerializeField]
@@ -67,17 +66,12 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
             m_flapperMotion = GetComponent<FlapperMotion>();
 
             m_defaultAnimatorController = m_animator.runtimeAnimatorController;
-            m_action = InputSystem.actions.FindActionMap("Player").FindAction("Action");
         }
 
-        private void Start()
+        // TODO: I should move this to other place?
+        public void OnFlap(InputAction.CallbackContext context)
         {
-            m_eventSystem = EventSystem.current;
-        }
-
-        private void Update()
-        {
-            if (!m_action.WasPressedThisFrame() || m_eventSystem.IsPointerOverGameObject()) return;
+            if (!context.performed) return;
 
             m_flapperMotion.PerformAction();
         }

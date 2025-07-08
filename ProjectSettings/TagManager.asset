@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Obstacle
+  - Collectable
+  - Recycler
   layers:
   - Default
   - TransparentFX
@@ -43,6 +46,12 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Actors
+    uniqueID: 2606639841
+    locked: 0
+  - name: Foreground
+    uniqueID: 4135108295
     locked: 0
   m_RenderingLayers:
   - Default
