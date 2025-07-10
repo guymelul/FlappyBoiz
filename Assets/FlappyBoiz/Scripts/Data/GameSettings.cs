@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 
@@ -59,7 +58,7 @@ namespace FlappyBoiz.Scripts.Data
         #endregion
 
         public FlapperData Flapper => Flappers[EquippedFlapper.Value];
-        
+
         public CosmeticData FlapperCosmetic => Cosmetics[EquippedCosmetic.Value];
 
         public ThemeData Theme => Themes[EquippedTheme.Value];
@@ -74,7 +73,6 @@ namespace FlappyBoiz.Scripts.Data
         {
             SFXVolume.SetValue(PlayerPrefs.GetFloat(SfxVolume, 0.25f), true);
             BGMVolume.SetValue(PlayerPrefs.GetFloat(BgmVolume, 0.5f), true);
-            // TODO: set by time of day
             DarkModeEnabled = false;
         }
 
