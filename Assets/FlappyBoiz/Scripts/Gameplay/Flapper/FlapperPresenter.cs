@@ -1,5 +1,4 @@
 using System.Collections;
-using FlappyBoiz.Scripts.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,9 +28,9 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
         // [SerializeField]
         // private StringEvent gameEvent;
 
-        [Header("Settings")]
-        [SerializeField]
-        private GameSettings gameSettings;
+        // [Header("Settings")]
+        // [SerializeField]
+        // private GameSettings gameSettings;
 
         [Header("Rotation")]
         [Range(0, 90)]
@@ -55,7 +54,7 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
         [SerializeField]
         private float hitStopDuration;
 
-        private SoundPackData Sfx => gameSettings.SoundPack;
+        // private SoundPackData Sfx => gameSettings.SoundPack;
 
         private void Awake()
         {
@@ -101,9 +100,9 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
             //onGameStateChanged.Register(OnGameStateChange);
             m_flapperMotion.OnJump += OnFlapperJump;
             m_flapperMotion.OnHit += OnFlapperHit;
-            gameSettings.SFXVolume.Changed.Register(OnSfxVolumeChanged);
-            gameSettings.EquippedFlapper.Changed.Register(OnFlapperChanged);
-            gameSettings.EquippedCosmetic.Changed.Register(OnCosmeticChanged);
+            // gameSettings.SFXVolume.Changed.Register(OnSfxVolumeChanged);
+            // gameSettings.EquippedFlapper.Changed.Register(OnFlapperChanged);
+            // gameSettings.EquippedCosmetic.Changed.Register(OnCosmeticChanged);
         }
 
         private void OnDisable()
@@ -111,9 +110,9 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
             //onGameStateChanged.Unregister(OnGameStateChange);
             m_flapperMotion.OnJump -= OnFlapperJump;
             m_flapperMotion.OnHit -= OnFlapperHit;
-            gameSettings.SFXVolume.Changed.Unregister(OnSfxVolumeChanged);
-            gameSettings.EquippedFlapper.Changed.Unregister(OnFlapperChanged);
-            gameSettings.EquippedCosmetic.Changed.Unregister(OnCosmeticChanged);
+            // gameSettings.SFXVolume.Changed.Unregister(OnSfxVolumeChanged);
+            // gameSettings.EquippedFlapper.Changed.Unregister(OnFlapperChanged);
+            // gameSettings.EquippedCosmetic.Changed.Unregister(OnCosmeticChanged);
         }
 
         // private void OnGameStateChange(string state)
@@ -148,17 +147,17 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
 
         private void OnFlapperChanged(int index)
         {
-            m_animator.runtimeAnimatorController = gameSettings.Flapper.AnimatorOverride
-                ? gameSettings.Flapper.AnimatorOverride
-                : m_defaultAnimatorController;
-
-            m_flapperSprite.sprite = gameSettings.Flapper.Preview;
+            // m_animator.runtimeAnimatorController = gameSettings.Flapper.AnimatorOverride
+            //     ? gameSettings.Flapper.AnimatorOverride
+            //     : m_defaultAnimatorController;
+            //
+            // m_flapperSprite.sprite = gameSettings.Flapper.Preview;
             m_animator.SetTrigger(Reset);
         }
 
         private void OnCosmeticChanged(int index)
         {
-            m_cosmeticSprite.sprite = gameSettings.FlapperCosmetic ? gameSettings.FlapperCosmetic.Sprite : null;
+            //m_cosmeticSprite.sprite = gameSettings.FlapperCosmetic ? gameSettings.FlapperCosmetic.Sprite : null;
         }
 
         private void OnSfxVolumeChanged(float value) => m_audio.volume = value;
@@ -168,11 +167,11 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
             Rotation = jumpRotation;
 
             m_animator.SetTrigger(AnimKeyFlapWings);
-
-            if (Sfx.WingFlap)
-            {
-                m_audio.PlayOneShot(Sfx.WingFlap);
-            }
+            
+            // if (Sfx.WingFlap)
+            // {
+            //     m_audio.PlayOneShot(Sfx.WingFlap);
+            // }
         }
 
         private void OnFlapperHit() => StartCoroutine(FlapperDeathCoroutine());
@@ -183,10 +182,10 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
             m_flapperMotion.ToggleBirdSimulated(active: false);
 
             // Hit stop
-            if (Sfx.Hit)
-            {
-                m_audio.PlayOneShot(Sfx.Hit);
-            }
+            // if (Sfx.Hit)
+            // {
+            //     m_audio.PlayOneShot(Sfx.Hit);
+            // }
 
             yield return FlapperDeathSequence(m_flapperMotion);
 
@@ -205,10 +204,10 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
             flapperMotion.ForceMultiplier = 2.0f;
             flapperMotion.Moveable = true;
 
-            if (Sfx.Die)
-            {
-                m_audio.PlayOneShot(Sfx.Die);
-            }
+            // if (Sfx.Die)
+            // {
+            //     m_audio.PlayOneShot(Sfx.Die);
+            // }
 
             yield return new WaitForSecondsRealtime(freeFallDuration);
         }

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityAtoms.BaseAtoms;
 using UnityEngine;
 
 namespace FlappyBoiz.Scripts.Gameplay.Obstacle
@@ -9,17 +8,17 @@ namespace FlappyBoiz.Scripts.Gameplay.Obstacle
         #region Serialized Fields
 
         [Header("Events and Variables")]
-        [SerializeField]
-        private GameObjectEvent obstacleCanRecycleEvent;
-
-        [SerializeField]
-        private StringEvent gameStateChanged;
-
-        [SerializeField]
-        private IntReference score;
-
-        [SerializeField]
-        private FloatReference obstacleSpeed;
+        // [SerializeField]
+        // private GameObjectEvent obstacleCanRecycleEvent;
+        //
+        // [SerializeField]
+        // private StringEvent gameStateChanged;
+        //
+        // [SerializeField]
+        // private IntReference score;
+        //
+        // [SerializeField]
+        // private FloatReference obstacleSpeed;
 
         [SerializeField]
         private ObstacleCollection obstacleCollection;
@@ -72,13 +71,13 @@ namespace FlappyBoiz.Scripts.Gameplay.Obstacle
         private void OnEnable()
         {
             //gameStateChanged?.Register(OnGameStateChanged);
-            obstacleCanRecycleEvent.Register(OnObstacleCanRecycle);
+            //obstacleCanRecycleEvent.Register(OnObstacleCanRecycle);
         }
 
         private void OnDisable()
         {
             //gameStateChanged?.Unregister(OnGameStateChanged);
-            obstacleCanRecycleEvent.Unregister(OnObstacleCanRecycle);
+            //obstacleCanRecycleEvent.Unregister(OnObstacleCanRecycle);
         }
         
         // TODO: fix
@@ -124,9 +123,9 @@ namespace FlappyBoiz.Scripts.Gameplay.Obstacle
             SpawnNextObstacle();
         }
 
-        private float MaxVariation => Mathf.Clamp01(difficultyCurve.Evaluate(score.Value / (float)maxScoreThreshold));
+        private float MaxVariation => 0;// Mathf.Clamp01(difficultyCurve.Evaluate(score.Value / (float)maxScoreThreshold));
 
-        private float Difficulty => Mathf.Clamp01(score.Value / (float)(maxScoreThreshold * 2));
+        private float Difficulty => 0;// Mathf.Clamp01(score.Value / (float)(maxScoreThreshold * 2));
 
         // TODO: another curve for variation
         private float NextVariation() => Random.Range(0.0f, 1.0f) * MaxVariation;
