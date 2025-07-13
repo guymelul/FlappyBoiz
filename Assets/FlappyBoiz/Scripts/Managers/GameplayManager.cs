@@ -1,14 +1,17 @@
-﻿using System;
+﻿using FlappyBoiz.Scripts.Events;
+using MessagePipe;
 using UnityEngine;
 using UnityHFSM;
+using VContainer;
 using VContainer.Unity;
 
 namespace FlappyBoiz.Scripts.Managers
 {
     public class GameplayManager : IPostStartable, IFixedTickable, ITickable
     {
-        public event Action OnGamePaused;
-        public event Action OnGameResumed;
+        [Inject] public IPublisher<GamePausedEvent> OnGamePaused { get; set; }
+
+        [Inject] public IPublisher<GameResumedEvent> OnGameResumed { get; set; }
 
         private StateMachine m_fsm;
 
@@ -36,13 +39,13 @@ namespace FlappyBoiz.Scripts.Managers
             m_fsm = new StateMachine();
 
             // States
+            m_fsm.AddState(name: GameStates.Playing);
+            m_fsm.AddState(name: GameStates.Ready);
             m_fsm.AddState(
                 name: GameStates.Paused,
                 onEnter: _ => { Time.timeScale = 0; },
                 onExit: _ => { Time.timeScale = 1; }
             );
-
-            m_fsm.AddState(name: GameStates.Playing);
 
             m_fsm.AddTriggerTransition("PlayerReady", new Transition(GameStates.Ready, GameStates.Playing));
             m_fsm.AddTriggerTransition("Pause", new Transition(GameStates.Playing, GameStates.Paused));
@@ -60,23 +63,17 @@ namespace FlappyBoiz.Scripts.Managers
             switch (newState.name)
             {
                 case GameStates.Paused:
-                    OnGamePaused?.Invoke();
+                    OnGamePaused.Publish(GamePausedEvent.Empty);
 
                     break;
                 case GameStates.Playing:
-                    OnGameResumed?.Invoke();
+                    OnGameResumed.Publish(GameResumedEvent.Empty);
 
                     break;
             }
         }
 
         #region States
-
-        public void PauseGame() => m_fsm.Trigger("Pause");
-
-        public void ResumeGame() => m_fsm.Trigger("Resume");
-
-        public void PlayerReady() => m_fsm.Trigger("PlayerReady");
 
         private static class GameStates
         {

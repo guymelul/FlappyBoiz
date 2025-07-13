@@ -1,15 +1,15 @@
-﻿using VContainer;
+﻿using MessagePipe;
+using VContainer;
 using VContainer.Unity;
 
 namespace FlappyBoiz.Scripts.Core
 {
-    public class GameLifetimeScope : LifetimeScope
+    public class RootLifetimeScope : LifetimeScope
     {
         protected override void Configure(IContainerBuilder builder)
         {
-            // Register core services
+            builder.RegisterMessagePipe();
             
-            // Login sequence in scene or here?
         }
     }
 }

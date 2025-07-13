@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace FlappyBoiz.Scripts.Gameplay.Flapper
 {
@@ -8,7 +7,7 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
     [RequireComponent(typeof(FlapperMotion))]
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(AudioSource))]
-    public class FlapperPresenter : MonoBehaviour
+    public class FlapperView : MonoBehaviour
     {
         private static readonly int Reset = Animator.StringToHash("Reset");
         private static readonly int AnimKeyFlapWings = Animator.StringToHash("FlapWings");
@@ -67,14 +66,6 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
             m_defaultAnimatorController = m_animator.runtimeAnimatorController;
         }
 
-        // TODO: I should move this to other place?
-        public void OnFlap(InputAction.CallbackContext context)
-        {
-            if (!context.performed) return;
-
-            m_flapperMotion.PerformAction();
-        }
-
         private void FixedUpdate()
         {
             ApplyRotation();
@@ -91,7 +82,7 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
             Rotation = Mathf.MoveTowards(
                 Rotation,
                 m_flapperMotion.Velocity.y < 0 ? fallMaxRotation : 0,
-                fallRotationSpeed * m_flapperMotion.ForceMultiplier * Time.deltaTime
+                fallRotationSpeed * Time.deltaTime
             );
         }
 
@@ -167,7 +158,7 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
             Rotation = jumpRotation;
 
             m_animator.SetTrigger(AnimKeyFlapWings);
-            
+
             // if (Sfx.WingFlap)
             // {
             //     m_audio.PlayOneShot(Sfx.WingFlap);
@@ -200,9 +191,8 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
             yield return new WaitForSecondsRealtime(hitStopDuration);
 
             Time.timeScale = 1;
-
-            flapperMotion.ForceMultiplier = 2.0f;
-            flapperMotion.Moveable = true;
+            
+            // TODO: flapperMotion.CanMove = true;
 
             // if (Sfx.Die)
             // {
