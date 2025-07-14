@@ -9,7 +9,6 @@ namespace FlappyBoiz.Scripts.Core
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterMessagePipe();
-            
         }
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38af149e1ee048fc8abe16735e17803a, type: 3}
   m_Name: DefaultFlapperSettings
   m_EditorClassIdentifier: 
-  <MaxFallSpeed>k__BackingField: 5
-  <FallAcceleration>k__BackingField: 1
-  <FlapPower>k__BackingField: 5
+  <MaxFallSpeed>k__BackingField: 10
+  <FallAcceleration>k__BackingField: 4
+  <FlapPower>k__BackingField: 3
   <FlapCooldown>k__BackingField: 0.15

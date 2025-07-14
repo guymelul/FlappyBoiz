@@ -1,4 +1,6 @@
 ﻿using FlappyBoiz.Scripts.Data;
+using FlappyBoiz.Scripts.Events;
+using MessagePipe;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -7,12 +9,12 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
 {
     public class FlapperLogic : IStartable, ITickable, IFixedTickable
     {
-        [Inject] private FlapperMotion FlapperMotion { get; set; }
+        [Inject] private FlapperView FlapperView { get; set; }
         [Inject] private FlapperSettings FlapperSettings { get; set; }
+        [Inject] private ISubscriber<FlapperPrimaryActionRequest> FlapperPrimaryActionRequest { get; set; }
 
-        public float FlapTimer { get; private set; }
-        public int FlapsBuffered { get; private set; }
-        public bool CanFlap { get; private set; }
+        private float FlapTimer { get; set; }
+        private int FlapsBuffered { get; set; }
         private float FlapCooldown => FlapperSettings.FlapCooldown;
         private float FallAcceleration => FlapperSettings.FallAcceleration;
         private float MaxFallSpeed => FlapperSettings.MaxFallSpeed;
@@ -22,42 +24,33 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
         {
             FlapTimer = 0;
             FlapsBuffered = 0;
-            CanFlap = true;
+
+            FlapperPrimaryActionRequest.Subscribe(DoFlap);
         }
 
-        public void DoFlap()
-        {
-            if (!CanFlap) return;
-
-            FlapsBuffered++;
-        }
+        private void DoFlap(FlapperPrimaryActionRequest ev) => FlapsBuffered++;
 
         public void Tick()
         {
-            if (CanFlap && FlapTimer > 0)
-            {
-                FlapTimer -= Time.deltaTime;
-            }
+            if (FlapTimer <= 0) return;
+            FlapTimer -= Time.deltaTime;
         }
 
         public void FixedTick()
         {
             ApplyFlap();
 
-            float verticalDelta = -FallAcceleration * Time.deltaTime;
-            FlapperMotion.Move(verticalDelta, MaxFallSpeed);
+            FlapperView.Move(-FallAcceleration * Time.fixedDeltaTime, MaxFallSpeed);
         }
 
         private void ApplyFlap()
         {
-            if (!CanFlap) return;
-
             if (FlapsBuffered <= 0 || !(FlapTimer <= 0)) return;
 
             FlapTimer = FlapCooldown;
             FlapsBuffered--;
 
-            FlapperMotion.Flap(FlapPower);
+            FlapperView.Flap(FlapPower);
         }
     }
 }

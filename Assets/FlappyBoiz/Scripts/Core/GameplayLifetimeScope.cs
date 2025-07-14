@@ -9,16 +9,15 @@ namespace FlappyBoiz.Scripts.Core
 {
     public class GameplayLifetimeScope : LifetimeScope
     {
-        [SerializeField]
-        private FlapperSettings  m_flapperSettings;
-        
+        [SerializeField] private FlapperSettings m_flapperSettings;
+
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterEntryPoint<GameplayManager>(Lifetime.Scoped).AsSelf();
-            
+
             builder.RegisterEntryPoint<FlapperLogic>(Lifetime.Scoped).AsSelf();
-            
-            builder.RegisterComponentInHierarchy<FlapperMotion>();
+
+            builder.RegisterComponentInHierarchy<FlapperView>();
 
             builder.RegisterInstance(m_flapperSettings);
         }
