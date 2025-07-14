@@ -3,4 +3,8 @@
     public class FlapperPrimaryActionRequest : BaseEmptyEvent<FlapperPrimaryActionRequest>
     {
     }
+    
+    public class FlapperCollisionEvent : BaseEmptyEvent<FlapperCollisionEvent>
+    {
+    }
 }
