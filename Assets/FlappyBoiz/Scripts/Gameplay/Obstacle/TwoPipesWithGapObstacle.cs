@@ -7,9 +7,9 @@ namespace FlappyBoiz.Scripts.Gameplay.Obstacle
     [CreateAssetMenu(menuName = "FlappyBoiz/Obstacles/TwoPipesWithGap")]
     public class TwoPipesWithGapObstacle : BaseObstacle
     {
-        [Header("Offset")] [SerializeField] private float offsetBoundTop = 1.75f;
+        [Header("Offset")] [SerializeField] private float offsetBoundTop = 2f;
 
-        [SerializeField] private float offsetBoundBottom = -1.65f;
+        [SerializeField] private float offsetBoundBottom = -1.25f;
 
         [Header("Gap Distance")] [SerializeField]
         private float gapDistanceTop = 1.2f;

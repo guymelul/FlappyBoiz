@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5534406607307319649}
   - component: {fileID: 5665279554129168412}
   - component: {fileID: 3215366233430854110}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: ObstacleRecycler
   m_TagString: Recycler
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -91,4 +91,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 333e27a609a4dee47a77084f1b58e0ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleCanRecycleEvent: {fileID: 11400000, guid: bc5f653296e0e5b4492d11c20d6317a6, type: 2}

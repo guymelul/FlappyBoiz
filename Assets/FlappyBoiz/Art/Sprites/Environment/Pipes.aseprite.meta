@@ -1,0 +1,457 @@
+fileFormatVersion: 2
+guid: ce17279e3ab9ae643a966484da78f5d0
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 0
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 1
+    layerImportMode: 0
+    defaultPivotSpace: 1
+    defaultPivotAlignment: 2
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 1
+    spritePadding: 0
+    generateModelPrefab: 0
+    generateAnimationClips: 0
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 1
+    layerImportMode: 0
+    defaultPivotSpace: 1
+    defaultPivotAlignment: 2
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 1
+    spritePadding: 0
+    generateModelPrefab: 0
+    generateAnimationClips: 0
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 638730732182520141
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: Pipe_Red
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 2
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 63
+      y: 1
+      width: 59
+      height: 298
+    spriteID: 19e4c730cf7f2234f8f60d74a509beda
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 63, y: 1}
+  - name: Pipe_Blue
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 2
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 124
+      y: 1
+      width: 59
+      height: 298
+    spriteID: 393cb8fded6b93a448ba2e1335a4e874
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 124, y: 1}
+  - name: Pipe_Purple
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 2
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 1
+      y: 1
+      width: 60
+      height: 298
+    spriteID: d5658d1a3639ecf4084a5e5211ba27c5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 1, y: 1}
+  - name: Pipe_Yellow
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 2
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 185
+      y: 1
+      width: 59
+      height: 298
+    spriteID: 6437333f6b185ca40b56e595a6c4d174
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 185, y: 1}
+  - name: Pipe_Green
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 2
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 246
+      y: 1
+      width: 59
+      height: 298
+    spriteID: b3e91c5029872fa478bdd17a45b69fc7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 246, y: 1}
+  - name: Pipe_White
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 2
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 307
+      y: 1
+      width: 59
+      height: 298
+    spriteID: ec5694617231d7c43ba935071b6c5a5e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 307, y: 1}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    uuid:
+      value0: 2599027130
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -1695940166
+    name: Pipe_Red
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Pipe_Red
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 15
+        y: 4
+        width: 59
+        height: 298
+      spriteId: 19e4c730cf7f2234f8f60d74a509beda
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 1
+    uuid:
+      value0: 499407657
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 499407657
+    name: Pipe_Blue
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Pipe_Blue
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 80
+        y: 4
+        width: 59
+        height: 298
+      spriteId: 393cb8fded6b93a448ba2e1335a4e874
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 2
+    uuid:
+      value0: 1519353597
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 1519353597
+    name: Pipe_Purple
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Pipe_Purple
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 146
+        y: 4
+        width: 60
+        height: 298
+      spriteId: d5658d1a3639ecf4084a5e5211ba27c5
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 3
+    uuid:
+      value0: 232769507
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 232769507
+    name: Pipe_Yellow
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Pipe_Yellow
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 212
+        y: 4
+        width: 59
+        height: 298
+      spriteId: 6437333f6b185ca40b56e595a6c4d174
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 4
+    uuid:
+      value0: 2404306918
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -1890660378
+    name: Pipe_Green
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Pipe_Green
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 280
+        y: 4
+        width: 59
+        height: 298
+      spriteId: b3e91c5029872fa478bdd17a45b69fc7
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 5
+    uuid:
+      value0: 630130496
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 630130496
+    name: Pipe_White
+    layerFlags: 19
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Pipe_White
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 354
+        y: 4
+        width: 59
+        height: 298
+      spriteId: ec5694617231d7c43ba935071b6c5a5e
+    linkedCells: []
+    parentIndex: -1
+  platformSettings:
+  - name: Default
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Android
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: iPhone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  generatePhysicsShape: 0
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 420, y: 352}
+  previousTextureSize: {x: 512, y: 512}

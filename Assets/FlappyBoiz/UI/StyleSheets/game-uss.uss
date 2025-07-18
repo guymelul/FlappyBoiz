@@ -53,3 +53,8 @@ Button.menu_item:hover {
     border-left-width: 3px;
     -unity-font-definition: resource('Fonts/PressStart2P-Regular');
 }
+
+.ui-screen {
+    flex-grow: 1;
+    display: none;
+}

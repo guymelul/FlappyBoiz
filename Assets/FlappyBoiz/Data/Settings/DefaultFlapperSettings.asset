@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxFallSpeed>k__BackingField: 10
   <FallAcceleration>k__BackingField: 5
-  <FlapPower>k__BackingField: 3
+  <FlapPower>k__BackingField: 2.4
   <FlapCooldown>k__BackingField: 0.25
   <JumpRotation>k__BackingField: 35
   <AirborneTargetRotation>k__BackingField: 5

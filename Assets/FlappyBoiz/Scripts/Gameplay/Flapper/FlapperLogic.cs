@@ -1,5 +1,6 @@
-﻿using FlappyBoiz.Scripts.Data;
+﻿using FlappyBoiz.Scripts.Core;
 using FlappyBoiz.Scripts.Events;
+using FlappyBoiz.Scripts.ScriptableObjects;
 using MessagePipe;
 using UnityEngine;
 using VContainer;
@@ -7,7 +8,7 @@ using VContainer.Unity;
 
 namespace FlappyBoiz.Scripts.Gameplay.Flapper
 {
-    public class FlapperLogic : IStartable, ITickable, IFixedTickable
+    public class FlapperLogic : GameplayStateAware, IStartable, ITickable, IFixedTickable
     {
         [Inject] private FlapperView FlapperView { get; set; }
         [Inject] private FlapperSettings FlapperSettings { get; set; }
@@ -23,22 +24,24 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
             FlapTimer = 0;
             FlapsBuffered = 0;
 
-            FlapperPrimaryActionRequestSub.Subscribe(DoFlap);
+            FlapperPrimaryActionRequestSub.Subscribe(_ => FlapsBuffered++);
             FlapperCollisionEventSub.Subscribe(OnCollision);
         }
 
         public void Tick()
         {
-            if (FlapTimer <= 0) return;
+            if (!IsGameStarted || FlapTimer <= 0) return;
+
             FlapTimer -= Time.deltaTime;
         }
 
         public void FixedTick()
         {
+            if (!IsGameStarted) return;
+
+            FlapperView.FixedTick();
             ApplyFlap();
         }
-        
-        private void DoFlap(FlapperPrimaryActionRequest ev) => FlapsBuffered++;
 
         private void ApplyFlap()
         {

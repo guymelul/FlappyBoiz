@@ -8,16 +8,17 @@ TagManager:
   - Collectable
   - Recycler
   - Ground
+  - FocusFirst
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Flapper
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Obstacle
+  - Collectable
+  - Spawner
   - 
   - 
   - 
@@ -50,6 +51,9 @@ TagManager:
     locked: 0
   - name: Actors
     uniqueID: 2606639841
+    locked: 0
+  - name: Obstacles
+    uniqueID: 80310545
     locked: 0
   - name: Foreground
     uniqueID: 4135108295

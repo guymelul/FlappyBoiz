@@ -7,4 +7,8 @@
     public class GameResumedEvent : BaseEmptyEvent<GameResumedEvent>
     {
     }
+    
+    public class GameStartedEvent : BaseEmptyEvent<GameStartedEvent>
+    {
+    }
 }

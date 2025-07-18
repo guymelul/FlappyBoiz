@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f4b5774a3440347a7bdfd0724c6ee3, type: 3}
   m_Name: TwoPipeObstacle
   m_EditorClassIdentifier: 
-  offsetBoundTop: 1.75
-  offsetBoundBottom: -1.65
+  offsetBoundTop: 2
+  offsetBoundBottom: -1.3
   gapDistanceTop: 1.2
   gapDistanceBottom: 1.1
   prefab: {fileID: 8324208185179134995, guid: cb1206ac659f5d847941fefeb07a754e, type: 3}

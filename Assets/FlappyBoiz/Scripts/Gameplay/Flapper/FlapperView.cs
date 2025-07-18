@@ -1,6 +1,5 @@
-using System.Collections;
-using FlappyBoiz.Scripts.Data;
 using FlappyBoiz.Scripts.Events;
+using FlappyBoiz.Scripts.ScriptableObjects;
 using MessagePipe;
 using UnityEngine;
 using VContainer;
@@ -39,12 +38,23 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
         {
             m_animator = GetComponent<Animator>();
             m_rigidbody = GetComponent<Rigidbody2D>();
+        }
 
+        private void Start()
+        {
             m_rigidbody.linearVelocity = Vector2.zero;
             m_rigidbody.angularVelocity = 0;
         }
 
-        private void FixedUpdate()
+        public void Flap()
+        {
+            m_rigidbody.linearVelocityY = FlapPower;
+            Rotation = JumpRotation;
+
+            m_animator.SetTrigger(AnimKeyFlapWings);
+        }
+
+        public void FixedTick()
         {
             ApplyRotation();
             ApplyGravity();
@@ -57,14 +67,6 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
                 Velocity.y < 0 ? FallMaxRotation : AirborneTargetRotation,
                 FallRotationSpeed * Time.deltaTime
             );
-        }
-
-        public void Flap()
-        {
-            m_rigidbody.linearVelocityY = FlapPower;
-            Rotation = JumpRotation;
-
-            m_animator.SetTrigger(AnimKeyFlapWings);
         }
 
         private void ApplyGravity()
