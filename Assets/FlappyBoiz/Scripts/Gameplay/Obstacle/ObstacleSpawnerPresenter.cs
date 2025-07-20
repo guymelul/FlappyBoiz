@@ -1,5 +1,5 @@
-﻿using FlappyBoiz.Scripts.Core;
-using FlappyBoiz.Scripts.ScriptableObjects;
+﻿using FlappyBoiz.Scripts.Events;
+using FlappyBoiz.Scripts.Gameplay.ScriptableObjects;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -26,9 +26,14 @@ namespace FlappyBoiz.Scripts.Gameplay.Obstacle
             SpawnTimer = 0;
         }
 
+        protected override void OnGameEnded(GameEndedEvent ev)
+        {
+            ObstacleSpawnerView.Clear();
+        }
+
         public void FixedTick()
         {
-            if (!IsGameStarted) return;
+            if (!IsGameRunning) return;
 
             if (SpawnTimer > 0)
             {

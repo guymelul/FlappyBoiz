@@ -7,8 +7,16 @@
     public class GameResumedEvent : BaseEmptyEvent<GameResumedEvent>
     {
     }
-    
+
     public class GameStartedEvent : BaseEmptyEvent<GameStartedEvent>
+    {
+    }
+
+    public class GamePauseCommand : BaseEmptyEvent<GamePauseCommand>
+    {
+    }
+    
+    public class GameEndedEvent : BaseEmptyEvent<GameEndedEvent>
     {
     }
 }

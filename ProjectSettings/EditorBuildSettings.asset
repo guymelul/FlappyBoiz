@@ -9,5 +9,6 @@ EditorBuildSettings:
     path: Assets/FlappyBoiz/Scenes/Gameplay.unity
     guid: 968490fcbec4ff743a4b1ef454fc40b0
   m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: a738e9db426ded146a9d502bde9d1107, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

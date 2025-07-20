@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using FlappyBoiz.Scripts.ScriptableObjects;
+using FlappyBoiz.Scripts.Gameplay.ScriptableObjects;
 using UnityEngine;
 using VContainer;
 
@@ -26,7 +26,7 @@ namespace FlappyBoiz.Scripts.Gameplay.Obstacle
                     new ObstaclePool<BaseObstacle>(
                         obstaclePrototype,
                         transform,
-                        onDestroy: Destroy,
+                        onDestroy: OnPoolDestroy,
                         maxSize: 4
                     )
                 ).ToList();
@@ -34,6 +34,13 @@ namespace FlappyBoiz.Scripts.Gameplay.Obstacle
 
         public void SpawnObstacle(float variation, float difficulty)
         {
+            if (m_obstaclePools.Count <= 0)
+            {
+                Debug.LogError("No obstacles to spawn");
+
+                return;
+            }
+
             // Pick random obstacle (pool)
             int objectPoolIdx = Random.Range(0, m_obstaclePools.Count - 1);
             var randObstaclePool = m_obstaclePools[objectPoolIdx];
@@ -44,29 +51,46 @@ namespace FlappyBoiz.Scripts.Gameplay.Obstacle
             // Init and reset position
             var motion = obstacleGameObject.GetComponent<ObstacleMotion>();
             obstacleGameObject.transform.localPosition = Vector3.zero;
+            
             motion.Init(
                 poolID: objectPoolIdx,
                 speed: ObstacleSpawnerSettings.ObstacleVelocity,
                 direction: movementDirection,
-                onRelease: OnObstacleRelease
+                onRelease: OnObstacleRecycle
             );
 
             LastSpawnOutOfArea = false;
         }
-        
-        private void OnObstacleRelease(ObstacleMotion obstacle)
+
+        private void OnObstacleRecycle(ObstacleMotion obstacle)
         {
+            if (m_obstaclePools.Count <= 0)
+            {
+                OnPoolDestroy(obstacle.gameObject);
+
+                return;
+            }
+
             m_obstaclePools[obstacle.PoolID].Release(obstacle.gameObject);
         }
-        
+
+        private static void OnPoolDestroy(GameObject go)
+        {
+            Destroy(go, 5.0f);
+        }
+
         private void OnTriggerExit2D(Collider2D other) => LastSpawnOutOfArea = true;
 
-        private void OnDestroy()
+        private void OnDestroy() => Clear();
+
+        public void Clear()
         {
             foreach (var obstaclePool in m_obstaclePools)
             {
                 obstaclePool.Clear();
             }
+
+            m_obstaclePools.Clear();
         }
     }
 }

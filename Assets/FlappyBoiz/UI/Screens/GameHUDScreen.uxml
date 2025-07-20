@@ -1,6 +1,0 @@
-<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/FlappyBoiz/UI/StyleSheets/game-uss.uss?fileID=7433441132597879392&amp;guid=e7c6e2a1d07472143af781a48453412a&amp;type=3#game-uss" />
-    <ui:VisualElement name="PauseContainer" style="flex-grow: 0; align-self: flex-end; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
-        <ui:Button name="Pause" enable-rich-text="false" emoji-fallback-support="false" icon-image="project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=5866165431930342980&amp;guid=00a25ce7002498846921856cf88e1354&amp;type=3#Remove@2x" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" focusable="false" style="width: 42px; height: 48px; margin-top: 16px; margin-right: 16px; margin-bottom: 16px; margin-left: 16px; padding-top: 8px; padding-right: 4px; padding-bottom: 8px; padding-left: 4px;" />
-    </ui:VisualElement>
-</ui:UXML>

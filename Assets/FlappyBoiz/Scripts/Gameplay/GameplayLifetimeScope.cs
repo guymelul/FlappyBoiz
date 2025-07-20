@@ -1,0 +1,55 @@
+﻿using FlappyBoiz.Scripts.Gameplay.Flapper;
+using FlappyBoiz.Scripts.Gameplay.Managers;
+using FlappyBoiz.Scripts.Gameplay.Obstacle;
+using FlappyBoiz.Scripts.Gameplay.ScriptableObjects;
+using FlappyBoiz.Scripts.Gameplay.UI.Controllers;
+using FlappyBoiz.Scripts.Gameplay.UI.Screens;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using VContainer;
+using VContainer.Unity;
+
+namespace FlappyBoiz.Scripts.Gameplay
+{
+    public class GameplayLifetimeScope : LifetimeScope
+    {
+        [SerializeField]
+        private FlapperSettings flapperSettings;
+
+        [SerializeField]
+        private ObstacleSpawnerSettings obstacleSpawnerSettings;
+
+        protected override void Configure(IContainerBuilder builder)
+        {
+            // Instances
+            builder.RegisterInstance(flapperSettings);
+            builder.RegisterInstance(obstacleSpawnerSettings);
+
+            // Managers
+            builder.RegisterEntryPoint<GameplayManager>(Lifetime.Scoped).AsSelf();
+            builder.RegisterComponentInHierarchy<GameplayInputManager>();
+            builder.RegisterEntryPoint<GameSessionManager>(Lifetime.Scoped).AsSelf();
+
+            // Presenter/Logic
+            builder.RegisterEntryPoint<FlapperLogic>(Lifetime.Scoped).AsSelf();
+            builder.RegisterEntryPoint<ObstacleSpawnerPresenter>(Lifetime.Scoped).AsSelf();
+
+            // UI Controllers
+            builder.RegisterEntryPoint<GameplayUIController>(Lifetime.Scoped).AsSelf();
+            builder.RegisterEntryPoint<ReadyController>(Lifetime.Scoped).AsSelf();
+            builder.RegisterEntryPoint<PauseDialogController>(Lifetime.Scoped).AsSelf();
+            builder.RegisterEntryPoint<GameOverController>(Lifetime.Scoped).AsSelf();
+            builder.RegisterEntryPoint<HUDController>(Lifetime.Scoped).AsSelf();
+
+            // View
+            builder.RegisterComponentInHierarchy<FlapperView>();
+            builder.RegisterComponentInHierarchy<ObstacleSpawnerView>();
+
+            // UI Screens
+            builder.RegisterComponentInHierarchy<ReadyScreen>();
+            builder.RegisterComponentInHierarchy<HUDScreen>();
+            builder.RegisterComponentInHierarchy<PauseDialog>();
+            builder.RegisterComponentInHierarchy<GameOverScreen>();
+        }
+    }
+}

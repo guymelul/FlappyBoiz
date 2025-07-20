@@ -4,14 +4,11 @@ namespace FlappyBoiz.Scripts.Gameplay.Obstacle
 {
     public class Collectable : MonoBehaviour
     {
-        // [SerializeField]
-        // private IntVariable score;
+        [field: SerializeField, Range(1, 100)] public int Amount { get; private set; }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.CompareTag("Player")) return;
-
-            // score.Value++;
 
             gameObject.SetActive(false);
         }

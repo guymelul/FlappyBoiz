@@ -7,7 +7,6 @@ TagManager:
   - Obstacle
   - Collectable
   - Recycler
-  - Ground
   - FocusFirst
   layers:
   - Default
@@ -19,7 +18,7 @@ TagManager:
   - Obstacle
   - Collectable
   - Spawner
-  - 
+  - Recycler
   - 
   - 
   - 
@@ -46,17 +45,20 @@ TagManager:
   - name: Background
     uniqueID: 1474729421
     locked: 0
-  - name: Default
-    uniqueID: 0
+  - name: Obstacles
+    uniqueID: 80310545
+    locked: 0
+  - name: Decoration
+    uniqueID: 914719677
     locked: 0
   - name: Actors
     uniqueID: 2606639841
     locked: 0
-  - name: Obstacles
-    uniqueID: 80310545
-    locked: 0
   - name: Foreground
     uniqueID: 4135108295
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   m_RenderingLayers:
   - Default

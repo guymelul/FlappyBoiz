@@ -1,5 +1,7 @@
+using System.Collections;
 using FlappyBoiz.Scripts.Events;
-using FlappyBoiz.Scripts.ScriptableObjects;
+using FlappyBoiz.Scripts.Gameplay.Obstacle;
+using FlappyBoiz.Scripts.Gameplay.ScriptableObjects;
 using MessagePipe;
 using UnityEngine;
 using VContainer;
@@ -15,6 +17,7 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
 
         [Inject] private FlapperSettings FlapperSettings { get; set; }
         [Inject] private IPublisher<FlapperCollisionEvent> FlapperCollisionEventPub { get; set; }
+        [Inject] private IPublisher<FlapperCollectableEvent> FlapperCollectableEventPub { get; set; }
 
         private Rigidbody2D m_rigidbody;
         private Animator m_animator;
@@ -78,11 +81,43 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
             );
         }
 
+        public void OnDead()
+        {
+            StartCoroutine(DeathSequence());
+        }
+
+        private IEnumerator DeathSequence()
+        {
+            Time.timeScale = 0;
+
+            yield return new WaitForSecondsRealtime(0.5f);
+
+            Time.timeScale = 1;
+            
+            m_rigidbody.bodyType = RigidbodyType2D.Dynamic;
+            m_rigidbody.AddForce(Vector2.down, ForceMode2D.Impulse);
+
+            Destroy(this, 5.0f);
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!(other.CompareTag("Ground") || other.CompareTag("Obstacle"))) return;
+            if (other.CompareTag("Obstacle"))
+            {
+                FlapperCollisionEventPub.Publish(FlapperCollisionEvent.Empty);
 
-            FlapperCollisionEventPub.Publish(FlapperCollisionEvent.Empty);
+                return;
+            }
+
+            if (other.CompareTag("Collectable"))
+            {
+                var collectable = other.GetComponent<Collectable>();
+                FlapperCollectableEventPub.Publish(new FlapperCollectableEvent(collectable.Amount));
+
+                return;
+            }
+
+            Debug.Log($"Flapper collides with unknown object {other.name}(Tag={other.tag})");
         }
     }
 }

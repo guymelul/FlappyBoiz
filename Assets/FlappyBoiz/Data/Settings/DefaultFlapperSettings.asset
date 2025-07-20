@@ -15,7 +15,7 @@ MonoBehaviour:
   <MaxFallSpeed>k__BackingField: 10
   <FallAcceleration>k__BackingField: 5
   <FlapPower>k__BackingField: 2.4
-  <FlapCooldown>k__BackingField: 0.25
+  <FlapCooldown>k__BackingField: 0.15
   <JumpRotation>k__BackingField: 35
   <AirborneTargetRotation>k__BackingField: 5
   <FallMaxRotation>k__BackingField: -45

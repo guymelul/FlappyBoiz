@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ee9dffcbe244e9b53614dbee5e6095, type: 3}
   m_Name: ObstacleSpawnerSettings
   m_EditorClassIdentifier: 
-  <SpawnInterval>k__BackingField: 2.5
-  <ObstacleVelocity>k__BackingField: 1
+  <SpawnInterval>k__BackingField: 1.5
+  <ObstacleVelocity>k__BackingField: 1.9
   <DifficultyCurve>k__BackingField:
     serializedVersion: 2
     m_Curve:
