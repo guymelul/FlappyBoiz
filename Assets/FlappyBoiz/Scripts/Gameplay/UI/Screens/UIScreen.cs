@@ -14,7 +14,7 @@ namespace FlappyBoiz.Scripts.Gameplay.UI.Screens
         [SerializeField, Range(0.0f, 10.0f)]
         private float showDuration = 0.2f;
 
-        [SerializeField, Range(0.0f, 1.0f)]
+        [SerializeField, Range(0.0f, 10.0f)]
         private float hideDuration = 0.1f;
         
         [SerializeField]
