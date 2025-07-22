@@ -97,7 +97,7 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
             m_rigidbody.bodyType = RigidbodyType2D.Dynamic;
             m_rigidbody.AddForce(Vector2.down, ForceMode2D.Impulse);
 
-            Destroy(this, 5.0f);
+            Destroy(gameObject, 3.0f);
         }
 
         private void OnTriggerEnter2D(Collider2D other)

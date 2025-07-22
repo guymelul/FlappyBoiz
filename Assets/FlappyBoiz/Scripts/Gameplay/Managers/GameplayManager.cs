@@ -29,8 +29,7 @@ namespace FlappyBoiz.Scripts.Gameplay.Managers
         {
             InitStateMachine();
 
-            GameSession.IsDead
-                .Subscribe(_ => m_fsm.Trigger("GameOver"));
+            GameSession.IsDead.Subscribe(_ => m_fsm.Trigger("GameOver"));
         }
 
         public void FixedTick()
@@ -88,7 +87,7 @@ namespace FlappyBoiz.Scripts.Gameplay.Managers
                     Time.timeScale = 1;
                 }
             );
-            
+
             m_fsm.AddState(name: GameStates.GameOver);
 
             m_fsm.AddTriggerTransition("PlayerReady", new Transition(GameStates.Ready, GameStates.Playing,

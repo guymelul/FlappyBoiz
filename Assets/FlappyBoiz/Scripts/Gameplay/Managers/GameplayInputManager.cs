@@ -55,7 +55,6 @@ namespace FlappyBoiz.Scripts.Gameplay.Managers
 
             if (m_currentEventSystem.IsPointerOverGameObject())
             {
-                Debug.Log("Primary action denied due to UI");
                 return;
             }
 

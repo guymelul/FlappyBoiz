@@ -9,16 +9,30 @@ namespace FlappyBoiz.Scripts.Gameplay.UI.Controllers
     {
         [Inject] protected T Screen { get; set; }
 
-        internal void Show() => Screen.Show();
+        internal void Show()
+        {
+            OnScreenInit();
+            Screen.Show();
+            OnScreenShow();
+        }
 
         internal void Hide() => Screen.Hide();
-        
-        internal void Disable() => Screen.Disable();
-        internal void Enable() => Screen.Enable();
+
+        internal void Disable() => Screen.DisableInteraction();
+
+        internal void Enable() => Screen.EnableInteraction();
 
         public void PostInitialize()
         {
             Hide();
+        }
+        
+        protected virtual void OnScreenInit()
+        {
+        }
+
+        protected virtual void OnScreenShow()
+        {
         }
     }
 }

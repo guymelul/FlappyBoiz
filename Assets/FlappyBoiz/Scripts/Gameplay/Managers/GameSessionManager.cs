@@ -2,6 +2,7 @@
 using FlappyBoiz.Scripts.Events;
 using MessagePipe;
 using R3;
+using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 using DisposableBag = MessagePipe.DisposableBag;
@@ -13,31 +14,34 @@ namespace FlappyBoiz.Scripts.Gameplay.Managers
         [Inject] private ISubscriber<FlapperCollisionEvent> OnFlapperCollisionEvent { get; set; }
         [Inject] private ISubscriber<FlapperCollectableEvent> OnFlapperCollectableEvent { get; set; }
 
-        private readonly ReactiveProperty<int> m_score = new(0);
-        public Observable<int> Score => m_score;
+        public ReactiveProperty<int> Score { get; } = new(0);
 
-        private readonly ReactiveProperty<bool> m_isDead = new(false);
-        public Observable<bool> IsDead => m_isDead;
+        public ReactiveProperty<bool> IsDead { get; } = new(false);
 
-        private IDisposable subscriptions;
+        public int Coins { get; set; } = 0;
+
+        private IDisposable m_subscriptions;
 
         public void Start()
         {
             var bag = DisposableBag.CreateBuilder();
-            OnFlapperCollectableEvent.Subscribe(ev => m_score.Value += ev.Amount).AddTo(bag);
+            OnFlapperCollectableEvent.Subscribe(ev => Score.Value += ev.Amount).AddTo(bag);
             OnFlapperCollisionEvent.Subscribe(OnFlapperHit).AddTo(bag);
 
-            subscriptions = bag.Build();
+            m_subscriptions = bag.Build();
         }
 
         private void OnFlapperHit(FlapperCollisionEvent ev)
         {
-            m_isDead.Value = true;
+            IsDead.Value = true;
 
-            if (subscriptions == null) return;
+            // TODO: calculate amount of coins
+            Coins = Mathf.FloorToInt(Score.CurrentValue * 0.75f);
 
-            subscriptions.Dispose();
-            subscriptions = null;
+            if (m_subscriptions == null) return;
+
+            m_subscriptions.Dispose();
+            m_subscriptions = null;
         }
     }
 }

@@ -16,9 +16,7 @@ namespace FlappyBoiz.Scripts.Gameplay.UI.Controllers
 
         public void Start()
         {
-            GameSessionManager.Score.Subscribe(score =>
-                Screen.SetScore(score)
-            );
+            GameSessionManager.Score.Subscribe(score => Screen.SetScore(score));
 
             Screen.OnPauseButtonClick = OnPause;
         }
