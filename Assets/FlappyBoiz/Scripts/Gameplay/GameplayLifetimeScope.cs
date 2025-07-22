@@ -4,8 +4,8 @@ using FlappyBoiz.Scripts.Gameplay.Obstacle;
 using FlappyBoiz.Scripts.Gameplay.ScriptableObjects;
 using FlappyBoiz.Scripts.Gameplay.UI.Controllers;
 using FlappyBoiz.Scripts.Gameplay.UI.Screens;
+using MessagePipe;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using VContainer;
 using VContainer.Unity;
 
@@ -50,6 +50,10 @@ namespace FlappyBoiz.Scripts.Gameplay
             builder.RegisterComponentInHierarchy<HUDScreen>();
             builder.RegisterComponentInHierarchy<PauseDialog>();
             builder.RegisterComponentInHierarchy<GameOverScreen>();
+
+#if UNITY_EDITOR
+            builder.RegisterBuildCallback(c => GlobalMessagePipe.SetProvider(c.AsServiceProvider()));
+#endif
         }
     }
 }
