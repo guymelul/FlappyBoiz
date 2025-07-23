@@ -93,7 +93,7 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
             yield return new WaitForSecondsRealtime(0.5f);
 
             Time.timeScale = 1;
-            
+
             m_rigidbody.bodyType = RigidbodyType2D.Dynamic;
             m_rigidbody.AddForce(Vector2.down, ForceMode2D.Impulse);
 

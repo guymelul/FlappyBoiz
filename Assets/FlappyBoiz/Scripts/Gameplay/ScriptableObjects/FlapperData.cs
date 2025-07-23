@@ -6,7 +6,7 @@ namespace FlappyBoiz.Scripts.Gameplay.ScriptableObjects
     public class FlapperData : ScriptableObject
     {
         [field: SerializeField] public int Price { get; set; }
-        
+
         [field: SerializeField] public Sprite Preview { get; set; }
 
         [field: SerializeField] public AnimatorOverrideController AnimatorOverride { get; set; }

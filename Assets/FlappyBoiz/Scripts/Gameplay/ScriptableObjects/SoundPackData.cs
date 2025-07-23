@@ -12,10 +12,10 @@ namespace FlappyBoiz.Scripts.Gameplay.ScriptableObjects
         [field: SerializeField] public AudioClip Point { get; set; }
 
         [field: SerializeField] public AudioClip WingFlap { get; set; }
-        
+
         [field: SerializeField] public AudioClip BgmPlaying { get; set; }
         [field: SerializeField] public AudioClip BgmMenu { get; set; }
-        
+
         [field: SerializeField] public AudioClip UISelect { get; set; }
         [field: SerializeField] public AudioClip UIUnavailable { get; set; }
     }

@@ -1,7 +1,6 @@
 ﻿namespace FlappyBoiz.Scripts.Gameplay.UI.Screens
 {
-    public class PauseDialog: UIScreen
+    public class PauseDialog : UIScreen
     {
-        
     }
 }

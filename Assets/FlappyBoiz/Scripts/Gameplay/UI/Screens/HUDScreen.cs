@@ -8,11 +8,9 @@ namespace FlappyBoiz.Scripts.Gameplay.UI.Screens
 {
     public class HUDScreen : UIScreen
     {
-        [SerializeField]
-        private TMP_Text scoreText;
+        [SerializeField] private TMP_Text scoreText;
 
-        [SerializeField]
-        private Button pauseButton;
+        [SerializeField] private Button pauseButton;
 
         public Action OnPauseButtonClick;
 

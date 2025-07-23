@@ -803,6 +803,10 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3623697386087112258, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
+      propertyPath: m_enableVertexGradient
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3679471742683033689, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -897,6 +901,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3679471742683033689, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
   m_PrefabInstance: {fileID: 633804285}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &633804287 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3623697386087112258, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
+  m_PrefabInstance: {fileID: 633804285}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &732001440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1172,6 +1187,11 @@ RectTransform:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7225475606358283254, guid: 4e422a50c1cec3048983f34c2cc58788, type: 3}
   m_PrefabInstance: {fileID: 2281359282619504307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1149731577 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8443470139579499263, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
+  m_PrefabInstance: {fileID: 2687476376676512887}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1262092849
 PrefabInstance:
@@ -1567,7 +1587,7 @@ GameObject:
   - component: {fileID: 1453420792}
   - component: {fileID: 1453420791}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Tap To Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2213,7 +2233,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1688338000534453336, guid: 4224ecae9a15e3c499429657590416ac, type: 3}
       propertyPath: m_Alpha
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1688338000534453336, guid: 4224ecae9a15e3c499429657590416ac, type: 3}
       propertyPath: m_Enabled
@@ -2466,14 +2486,58 @@ MonoBehaviour:
   - rid: 7326408228966236236
   - rid: 7326408228966236242
   - rid: 7326408228966236240
-  - rid: 7326408228966236248
-  - rid: 7326408228966236241
+  - rid: 6989998367015960648
   - rid: 7326408228966236237
   - rid: 7326408228966236228
   - rid: 7326408228966236243
   references:
     version: 2
     RefIds:
+    - rid: 6989998367015960648
+      type: {class: TransformScaleAnimation, ns: LitMotion.Animation.Components, asm: LitMotion.Animation}
+      data:
+        displayName: Score Text Scale
+        enabled: 1
+        target: {fileID: 470958451}
+        settings:
+          startValue: {x: 1, y: 1, z: 1}
+          endValue: {x: 1.6, y: 1.6, z: 1}
+          duration: 1.25
+          ease: 3
+          customEaseCurve:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          delay: 1.25
+          delayType: 0
+          loops: 2
+          loopType: 3
+          cancelOnError: 0
+          skipValuesDuringDelay: 0
+          immediateBind: 0
+          schedulerType: 0
+          additionalSettings: 1
+        relative: 0
     - rid: 7326408228966236228
       type: {class: TransformPositionAnimation, ns: LitMotion.Animation.Components, asm: LitMotion.Animation}
       data:
@@ -2657,51 +2721,6 @@ MonoBehaviour:
           schedulerType: 0
           additionalSettings: 1
         relative: 1
-    - rid: 7326408228966236241
-      type: {class: TMPTextFontSizeAnimation, ns: LitMotion.Animation.Components, asm: LitMotion.Animation}
-      data:
-        displayName: Font Size - Shrink
-        enabled: 1
-        target: {fileID: 8945460384710940118}
-        settings:
-          startValue: 40
-          endValue: 28
-          duration: 0.5
-          ease: 3
-          customEaseCurve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 1
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          delay: 3
-          delayType: 0
-          loops: 1
-          loopType: 0
-          cancelOnError: 0
-          skipValuesDuringDelay: 0
-          immediateBind: 0
-          schedulerType: 0
-          additionalSettings: 1
-        relative: 0
     - rid: 7326408228966236242
       type: {class: UnityEventAnimationComponent, ns: FlappyBoiz.Scripts.LitMotion, asm: FlappyBoiz.Scripts}
       data:
@@ -2746,51 +2765,6 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
-    - rid: 7326408228966236248
-      type: {class: TMPTextFontSizeAnimation, ns: LitMotion.Animation.Components, asm: LitMotion.Animation}
-      data:
-        displayName: Font Size - Grow
-        enabled: 1
-        target: {fileID: 8945460384710940118}
-        settings:
-          startValue: 18
-          endValue: 40
-          duration: 1.6
-          ease: 3
-          customEaseCurve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 1
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          delay: 1
-          delayType: 0
-          loops: 1
-          loopType: 0
-          cancelOnError: 0
-          skipValuesDuringDelay: 0
-          immediateBind: 0
-          schedulerType: 0
-          additionalSettings: 1
-        relative: 0
 --- !u!224 &1518010906007194571 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2720033516118398453, guid: d0261886a9e0cd34f9a3b9cc9ddeba76, type: 3}
@@ -2945,6 +2919,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4008373768772175089, guid: 4224ecae9a15e3c499429657590416ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1677564896525928805}
+    - targetCorrespondingSourceObject: {fileID: 4008373768772175089, guid: 4224ecae9a15e3c499429657590416ac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1677564896525928810}
   m_SourcePrefab: {fileID: 100100000, guid: 4224ecae9a15e3c499429657590416ac, type: 3}
 --- !u!224 &1677564896525928802 stripped
 RectTransform:
@@ -2977,6 +2954,116 @@ MonoBehaviour:
   showDelay: 0
   hideDuration: 0.1
   ease: 19
+--- !u!114 &1677564896525928810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677564896525928804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc6819e64e4c44beb63ea2ef45e1a6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnAwake: 0
+  animationMode: 0
+  components:
+  - rid: 6989998367015960654
+  - rid: 6989998367015960655
+  references:
+    version: 2
+    RefIds:
+    - rid: 6989998367015960654
+      type: {class: TMPTextColorAnimation, ns: LitMotion.Animation.Components, asm: LitMotion.Animation}
+      data:
+        displayName: Text Color Blink
+        enabled: 1
+        target: {fileID: 633804287}
+        settings:
+          startValue: {r: 1, g: 1, b: 1, a: 1}
+          endValue: {r: 0.3, g: 0.3, b: 0.3, a: 1}
+          duration: 1
+          ease: 3
+          customEaseCurve:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          delay: 0.6
+          delayType: 0
+          loops: 99
+          loopType: 3
+          cancelOnError: 0
+          skipValuesDuringDelay: 0
+          immediateBind: 0
+          schedulerType: 0
+          additionalSettings: 1
+        relative: 0
+    - rid: 6989998367015960655
+      type: {class: TransformScaleAnimation, ns: LitMotion.Animation.Components, asm: LitMotion.Animation}
+      data:
+        displayName: Scale
+        enabled: 1
+        target: {fileID: 1453420790}
+        settings:
+          startValue: {x: 0, y: 0, z: 0}
+          endValue: {x: 1, y: 1, z: 1}
+          duration: 1
+          ease: 15
+          customEaseCurve:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          delay: 0.5
+          delayType: 0
+          loops: 1
+          loopType: 0
+          cancelOnError: 0
+          skipValuesDuringDelay: 0
+          immediateBind: 0
+          schedulerType: 0
+          additionalSettings: 0
+        relative: 0
 --- !u!1001 &2281348092826781277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3195,9 +3282,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7286791575914561005, guid: 4e422a50c1cec3048983f34c2cc58788, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7286791575914561005, guid: 4e422a50c1cec3048983f34c2cc58788, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7286791575914561005, guid: 4e422a50c1cec3048983f34c2cc58788, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7286791575914561005, guid: 4e422a50c1cec3048983f34c2cc58788, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 8574268879846171171, guid: 88b93c53ab8e0e04596958f78379266b, type: 2}
+    - target: {fileID: 7286791575914561005, guid: 4e422a50c1cec3048983f34c2cc58788, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4291611852
+      objectReference: {fileID: 0}
     - target: {fileID: 7286791575914561005, guid: 4e422a50c1cec3048983f34c2cc58788, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -3216,12 +3319,32 @@ PrefabInstance:
     m_TransformParent: {fileID: 6893614888274258668}
     m_Modifications:
     - target: {fileID: 3623697386087112258, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
+      propertyPath: m_Maskable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623697386087112258, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
       propertyPath: m_fontSize
       value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 3623697386087112258, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
       propertyPath: m_fontStyle
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623697386087112258, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
+      propertyPath: m_isRichText
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623697386087112258, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623697386087112258, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623697386087112258, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 3623697386087112258, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
       propertyPath: m_fontSizeBase
@@ -3231,6 +3354,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 8574268879846171171, guid: 88b93c53ab8e0e04596958f78379266b, type: 2}
+    - target: {fileID: 3623697386087112258, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4293322470
+      objectReference: {fileID: 0}
     - target: {fileID: 3623697386087112258, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
       propertyPath: m_VerticalAlignment
       value: 1024
@@ -3270,6 +3397,14 @@ PrefabInstance:
     - target: {fileID: 3679471742683033689, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
       propertyPath: m_SizeDelta.y
       value: 41
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679471742683033689, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679471742683033689, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3679471742683033689, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3326,7 +3461,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8443470139579499263, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2687476376676512891}
   m_SourcePrefab: {fileID: 100100000, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
 --- !u!224 &2687476376676512888 stripped
 RectTransform:
@@ -3338,12 +3476,122 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3623697386087112258, guid: acafd5791aa20b74eb432b715c6e1ba0, type: 3}
   m_PrefabInstance: {fileID: 2687476376676512887}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1149731577}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2687476376676512891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149731577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc6819e64e4c44beb63ea2ef45e1a6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnAwake: 0
+  animationMode: 1
+  components:
+  - rid: 6989998367015960656
+  - rid: 6989998367015960657
+  references:
+    version: 2
+    RefIds:
+    - rid: 6989998367015960656
+      type: {class: TransformScaleAnimation, ns: LitMotion.Animation.Components, asm: LitMotion.Animation}
+      data:
+        displayName: Grow
+        enabled: 1
+        target: {fileID: 2687476376676512888}
+        settings:
+          startValue: {x: 1, y: 1, z: 1}
+          endValue: {x: 1.15, y: 1.15, z: 1}
+          duration: 0.4
+          ease: 5
+          customEaseCurve:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          delay: 0
+          delayType: 0
+          loops: 1
+          loopType: 0
+          cancelOnError: 0
+          skipValuesDuringDelay: 0
+          immediateBind: 1
+          schedulerType: 0
+          additionalSettings: 0
+        relative: 0
+    - rid: 6989998367015960657
+      type: {class: TransformScaleAnimation, ns: LitMotion.Animation.Components, asm: LitMotion.Animation}
+      data:
+        displayName: Shrink
+        enabled: 1
+        target: {fileID: 2687476376676512888}
+        settings:
+          startValue: {x: 1.15, y: 1.15, z: 1}
+          endValue: {x: 1, y: 1, z: 1}
+          duration: 0.3
+          ease: 14
+          customEaseCurve:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          delay: 0
+          delayType: 0
+          loops: 1
+          loopType: 0
+          cancelOnError: 0
+          skipValuesDuringDelay: 0
+          immediateBind: 0
+          schedulerType: 0
+          additionalSettings: 0
+        relative: 0
 --- !u!1001 &3437573116526603834
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4083,6 +4331,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4008373768772175089, guid: 4224ecae9a15e3c499429657590416ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6893614888274258670}
+    - targetCorrespondingSourceObject: {fileID: 4008373768772175089, guid: 4224ecae9a15e3c499429657590416ac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6893614888274258675}
   m_SourcePrefab: {fileID: 100100000, guid: 4224ecae9a15e3c499429657590416ac, type: 3}
 --- !u!224 &6893614888274258667 stripped
 RectTransform:
@@ -4111,12 +4362,124 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6a29fdf2534846aba8be2b44ecf488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showDuration: 0.5
+  showDuration: 0.2
   showDelay: 0
   hideDuration: 1.5
   ease: 19
   scoreText: {fileID: 2687476376676512889}
   pauseButton: {fileID: 6788699002574027043}
+--- !u!114 &6893614888274258675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6893614888274258669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc6819e64e4c44beb63ea2ef45e1a6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnAwake: 0
+  animationMode: 0
+  components:
+  - rid: 6989998367015960649
+  - rid: 6989998367015960650
+  references:
+    version: 2
+    RefIds:
+    - rid: 6989998367015960649
+      type: {class: TransformPositionAnimation, ns: LitMotion.Animation.Components, asm: LitMotion.Animation}
+      data:
+        displayName: Score Move In
+        enabled: 1
+        target: {fileID: 2687476376676512888}
+        settings:
+          startValue: {x: 0, y: 100, z: 0}
+          endValue: {x: 0, y: 0, z: 0}
+          duration: 1
+          ease: 9
+          customEaseCurve:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          delay: 0
+          delayType: 0
+          loops: 1
+          loopType: 0
+          cancelOnError: 0
+          skipValuesDuringDelay: 0
+          immediateBind: 1
+          schedulerType: 0
+          additionalSettings: 1
+        relative: 1
+        useWorldSpace: 0
+    - rid: 6989998367015960650
+      type: {class: TransformPositionAnimation, ns: LitMotion.Animation.Components, asm: LitMotion.Animation}
+      data:
+        displayName: Pasue Move In
+        enabled: 1
+        target: {fileID: 6788699002574027042}
+        settings:
+          startValue: {x: 50, y: 100, z: 0}
+          endValue: {x: 0, y: 0, z: 0}
+          duration: 1
+          ease: 9
+          customEaseCurve:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          delay: 0
+          delayType: 0
+          loops: 1
+          loopType: 0
+          cancelOnError: 0
+          skipValuesDuringDelay: 0
+          immediateBind: 1
+          schedulerType: 0
+          additionalSettings: 1
+        relative: 1
+        useWorldSpace: 0
 --- !u!1001 &8618383291479251001
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4245,11 +4608,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2482618303594799984, guid: 794c11513c4bb1c41b16d265e4463c3f, type: 3}
       propertyPath: m_fontSizeMax
-      value: 48
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2482618303594799984, guid: 794c11513c4bb1c41b16d265e4463c3f, type: 3}
       propertyPath: m_fontSizeMin
-      value: 36
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 2482618303594799984, guid: 794c11513c4bb1c41b16d265e4463c3f, type: 3}
       propertyPath: m_fontSizeBase
@@ -4305,11 +4668,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2534930300474543467, guid: 794c11513c4bb1c41b16d265e4463c3f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -24.000008
+      value: -24
       objectReference: {fileID: 0}
     - target: {fileID: 2534930300474543467, guid: 794c11513c4bb1c41b16d265e4463c3f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -33.4
+      value: -52.000004
       objectReference: {fileID: 0}
     - target: {fileID: 2534930300474543467, guid: 794c11513c4bb1c41b16d265e4463c3f, type: 3}
       propertyPath: m_LocalScale.x
@@ -4357,7 +4720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2534930300474543467, guid: 794c11513c4bb1c41b16d265e4463c3f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 16.699997
+      value: 13.999999
       objectReference: {fileID: 0}
     - target: {fileID: 2534930300474543467, guid: 794c11513c4bb1c41b16d265e4463c3f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

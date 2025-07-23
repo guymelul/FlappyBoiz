@@ -15,7 +15,7 @@
     public class GamePauseCommand : BaseEmptyEvent<GamePauseCommand>
     {
     }
-    
+
     public class GameEndedEvent : BaseEmptyEvent<GameEndedEvent>
     {
     }

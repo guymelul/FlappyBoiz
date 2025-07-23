@@ -8,8 +8,7 @@ namespace FlappyBoiz.Scripts.Gameplay.Obstacle
 {
     public class ObstacleSpawnerView : MonoBehaviour
     {
-        [SerializeField]
-        private Vector2 movementDirection;
+        [SerializeField] private Vector2 movementDirection;
 
         [Inject] private ObstacleSpawnerSettings ObstacleSpawnerSettings { get; set; }
 
@@ -51,7 +50,7 @@ namespace FlappyBoiz.Scripts.Gameplay.Obstacle
             // Init and reset position
             var motion = obstacleGameObject.GetComponent<ObstacleMotion>();
             obstacleGameObject.transform.localPosition = Vector3.zero;
-            
+
             motion.Init(
                 poolID: objectPoolIdx,
                 speed: ObstacleSpawnerSettings.ObstacleVelocity,

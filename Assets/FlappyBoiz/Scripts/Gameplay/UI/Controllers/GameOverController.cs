@@ -1,6 +1,5 @@
 ﻿using FlappyBoiz.Scripts.Gameplay.Managers;
 using FlappyBoiz.Scripts.Gameplay.UI.Screens;
-using UnityEngine;
 using VContainer;
 
 namespace FlappyBoiz.Scripts.Gameplay.UI.Controllers

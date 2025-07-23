@@ -14,24 +14,20 @@ namespace FlappyBoiz.Scripts.Gameplay.UI.Screens
         private LitMotionAnimation m_screenAnimation;
         protected IEnumerator WaitForScreenAnimation { get; private set; }
 
-        [SerializeField, Range(0.0f, 10.0f)]
-        private float showDuration = 0.2f;
+        [SerializeField, Range(0.0f, 10.0f)] private float showDuration = 0.2f;
 
-        [SerializeField, Range(0.0f, 10.0f)]
-        private float showDelay = 0.0f;
+        [SerializeField, Range(0.0f, 10.0f)] private float showDelay = 0.0f;
 
-        [SerializeField, Range(0.0f, 10.0f)]
-        private float hideDuration = 0.1f;
+        [SerializeField, Range(0.0f, 10.0f)] private float hideDuration = 0.1f;
 
-        [SerializeField]
-        private Ease ease = Ease.InCirc;
+        [SerializeField] private Ease ease = Ease.InCirc;
 
         private void Setup()
         {
             m_canvas = GetComponent<Canvas>();
             m_canvasGroup = GetComponent<CanvasGroup>();
             m_screenAnimation = GetComponent<LitMotionAnimation>();
-            
+
             WaitForScreenAnimation = m_screenAnimation ? new WaitWhile(() => m_screenAnimation.IsPlaying) : null;
         }
 
@@ -101,7 +97,7 @@ namespace FlappyBoiz.Scripts.Gameplay.UI.Screens
                 yield return AnimateCanvasGroupAlpha(0f, 1f, showDuration, showDelay);
 
             m_canvasGroup.alpha = 1;
-            
+
             OnPostShown();
 
             if (!m_screenAnimation) yield break;

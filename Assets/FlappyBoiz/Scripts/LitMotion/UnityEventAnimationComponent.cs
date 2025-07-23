@@ -6,15 +6,9 @@ using UnityEngine.Events;
 
 namespace FlappyBoiz.Scripts.LitMotion
 {
-    [Serializable]
-    [LitMotionAnimationComponentMenu("Events/Unity Event")]
-    public class UnityEventAnimationComponent : LitMotionAnimationComponent
+    public abstract class ActionLitMotionAnimationComponent : LitMotionAnimationComponent
     {
-        [SerializeField]
-        private int delay;
-
-        [SerializeField]
-        private UnityEvent action;
+        [SerializeField] private int delay;
 
         private readonly IntegerOptions m_activationOptions = new()
         {
@@ -26,8 +20,49 @@ namespace FlappyBoiz.Scripts.LitMotion
             return LMotion.Create(0, 1, 0.001f)
                 .WithOptions(m_activationOptions)
                 .WithDelay(delay)
-                .WithOnComplete(() => action?.Invoke())
+                .WithOnComplete(Invoke)
                 .RunWithoutBinding();
+        }
+
+        protected abstract void Invoke();
+    }
+
+    [Serializable]
+    [LitMotionAnimationComponentMenu("Events/Unity Event")]
+    public class UnityEventAnimationComponent : ActionLitMotionAnimationComponent
+    {
+        [SerializeField] private UnityEvent action;
+
+        protected override void Invoke()
+        {
+            action?.Invoke();
+        }
+    }
+
+    [Serializable]
+    [LitMotionAnimationComponentMenu("Particle System/Particle System - Play")]
+    public class ParticleSystemAnimationComponent : ActionLitMotionAnimationComponent
+    {
+        [SerializeField] private Transform transform;
+
+        [SerializeField] private ParticleSystem particleSystem;
+
+        protected override void Invoke()
+        {
+            particleSystem.transform.position = transform.position;
+            particleSystem.Play();
+        }
+    }
+    
+    [Serializable]
+    [LitMotionAnimationComponentMenu("Particle System/Particle System - Stop")]
+    public class ParticleSystemStopperAnimationComponent : ActionLitMotionAnimationComponent
+    {
+        [SerializeField] private ParticleSystem particleSystem;
+
+        protected override void Invoke()
+        {
+            particleSystem.Stop();
         }
     }
 }

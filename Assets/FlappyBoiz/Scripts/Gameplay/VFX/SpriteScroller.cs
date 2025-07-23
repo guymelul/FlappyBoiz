@@ -8,10 +8,8 @@ namespace FlappyBoiz.Scripts.Gameplay.VFX
     {
         private static readonly int SpeedProperty = Shader.PropertyToID("_Speed");
         private SpriteRenderer m_spriteRenderer;
-        
-        [SerializeField]
-        [Range(0.0f, 0.25f)]
-        private float baseSpeed = 0.12f;
+
+        [SerializeField, Range(0.0f, 0.25f)] private float baseSpeed = 0.12f;
 
         private void Awake()
         {

@@ -13,11 +13,9 @@ namespace FlappyBoiz.Scripts.Gameplay
 {
     public class GameplayLifetimeScope : LifetimeScope
     {
-        [SerializeField]
-        private FlapperSettings flapperSettings;
+        [SerializeField] private FlapperSettings flapperSettings;
 
-        [SerializeField]
-        private ObstacleSpawnerSettings obstacleSpawnerSettings;
+        [SerializeField] private ObstacleSpawnerSettings obstacleSpawnerSettings;
 
         protected override void Configure(IContainerBuilder builder)
         {

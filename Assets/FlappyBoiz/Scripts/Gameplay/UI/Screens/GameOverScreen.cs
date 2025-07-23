@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using FlappyBoiz.Scripts.Gameplay.UI.Animations;
 using LitMotion;
-using LitMotion.Extensions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

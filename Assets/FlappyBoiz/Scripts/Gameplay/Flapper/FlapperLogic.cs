@@ -45,11 +45,11 @@ namespace FlappyBoiz.Scripts.Gameplay.Flapper
             m_subscriptions.Dispose();
             m_subscriptions = null;
         }
-        
+
         protected override void OnGameEnded(GameEndedEvent ev)
         {
             Start();
-            
+
             FlapperView.OnDead();
         }
 

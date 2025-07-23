@@ -26,7 +26,7 @@ namespace FlappyBoiz.Scripts.Gameplay.UI.Controllers
         {
             Hide();
         }
-        
+
         protected virtual void OnScreenInit()
         {
         }

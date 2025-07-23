@@ -10,7 +10,7 @@ namespace FlappyBoiz.Scripts.Gameplay.UI.Controllers
         [Inject] private PauseDialogController PauseDialogController { get; set; }
         [Inject] private GameOverController GameOverController { get; set; }
         [Inject] private HUDController HUDController { get; set; }
-        
+
         // TODO: use stack for management
 
         public void Start()
@@ -23,7 +23,7 @@ namespace FlappyBoiz.Scripts.Gameplay.UI.Controllers
             ReadyController.Hide();
             HUDController.Show();
         }
-        
+
         protected override void OnGamePaused(GamePausedEvent ev)
         {
             HUDController.Disable();
