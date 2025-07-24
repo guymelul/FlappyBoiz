@@ -8,7 +8,8 @@ namespace FlappyBoiz.Scripts.LitMotion
 {
     public abstract class ActionLitMotionAnimationComponent : LitMotionAnimationComponent
     {
-        [SerializeField] private int delay;
+        [SerializeField]
+        private float delay;
 
         private readonly IntegerOptions m_activationOptions = new()
         {
@@ -31,7 +32,8 @@ namespace FlappyBoiz.Scripts.LitMotion
     [LitMotionAnimationComponentMenu("Events/Unity Event")]
     public class UnityEventAnimationComponent : ActionLitMotionAnimationComponent
     {
-        [SerializeField] private UnityEvent action;
+        [SerializeField]
+        private UnityEvent action;
 
         protected override void Invoke()
         {
@@ -43,25 +45,44 @@ namespace FlappyBoiz.Scripts.LitMotion
     [LitMotionAnimationComponentMenu("Particle System/Particle System - Play")]
     public class ParticleSystemAnimationComponent : ActionLitMotionAnimationComponent
     {
-        [SerializeField] private Transform transform;
+        [SerializeField]
+        private Transform transform;
 
-        [SerializeField] private ParticleSystem particleSystem;
+        [SerializeField]
+        private ParticleSystem particleSystem;
 
         protected override void Invoke()
         {
-            particleSystem.transform.position = transform.position;
+            if (transform)
+                particleSystem.transform.position = transform.position;
+
+            if (!particleSystem)
+            {
+                Debug.LogError("Particle system is null in lit motion animation component");
+
+                return;
+            }
+
             particleSystem.Play();
         }
     }
-    
+
     [Serializable]
     [LitMotionAnimationComponentMenu("Particle System/Particle System - Stop")]
     public class ParticleSystemStopperAnimationComponent : ActionLitMotionAnimationComponent
     {
-        [SerializeField] private ParticleSystem particleSystem;
+        [SerializeField]
+        private ParticleSystem particleSystem;
 
         protected override void Invoke()
         {
+            if (!particleSystem)
+            {
+                Debug.LogError("Particle system is null in lit motion animation component");
+
+                return;
+            }
+
             particleSystem.Stop();
         }
     }

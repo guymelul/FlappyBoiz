@@ -1,4 +1,6 @@
-﻿using MessagePipe;
+﻿using FlappyBoiz.Scripts.Cloud;
+using MessagePipe;
+using Unity.Services.LevelPlay;
 using VContainer;
 using VContainer.Unity;
 
@@ -10,8 +12,13 @@ namespace FlappyBoiz.Scripts.Core
         {
             builder.RegisterMessagePipe();
 
+            builder.RegisterEntryPoint<UnityServicesManager>().AsSelf();
+
 #if UNITY_EDITOR
             builder.RegisterBuildCallback(c => GlobalMessagePipe.SetProvider(c.AsServiceProvider()));
+
+            LevelPlay.SetMetaData("is_test_suite", "enable");
+            LevelPlay.LaunchTestSuite();
 #endif
         }
     }

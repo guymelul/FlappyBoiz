@@ -369,15 +369,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1567479825}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36dd21221cf24bbdbf02ee1551797811, type: 3}
+  m_Script: {fileID: 11500000, guid: a6fa6e066af44019a67f1a8cc73d405d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
-    TypeName: 
+    TypeName: FlappyBoiz.Scripts.Core.RootLifetimeScope
   autoRun: 1
   autoInjectGameObjects: []
-  flapperSettings: {fileID: 11400000, guid: 9389ee35a63084e46b651f5782c70eda, type: 2}
-  obstacleSpawnerSettings: {fileID: 11400000, guid: 79d55b31cbb14ce4386e7ebae159c7f8, type: 2}
 --- !u!1001 &2116639209
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -392,7 +390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1274439227285219384, guid: 639e9835888554e489e4f276f4c02fb2, type: 3}
       propertyPath: baseSpeed
-      value: 0.01
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 7445778979508274489, guid: 639e9835888554e489e4f276f4c02fb2, type: 3}
       propertyPath: m_LocalPosition.x
