@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1799734195455846509}
   - component: {fileID: 1268848189513173113}
   m_Layer: 7
-  m_Name: Collectable
+  m_Name: Coin
   m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,3 +147,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86e684550da0ed0439c50467e76acaf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Amount>k__BackingField: 1
