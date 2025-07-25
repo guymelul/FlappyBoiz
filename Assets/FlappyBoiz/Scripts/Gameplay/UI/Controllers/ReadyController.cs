@@ -1,4 +1,5 @@
-﻿using FlappyBoiz.Scripts.Gameplay.UI.Screens;
+﻿using FlappyBoiz.Scripts.Core.UI;
+using FlappyBoiz.Scripts.Gameplay.UI.Screens;
 
 namespace FlappyBoiz.Scripts.Gameplay.UI.Controllers
 {

@@ -1,4 +1,5 @@
-﻿using FlappyBoiz.Scripts.Gameplay.Managers;
+﻿using FlappyBoiz.Scripts.Core.UI;
+using FlappyBoiz.Scripts.Gameplay.Managers;
 using FlappyBoiz.Scripts.Gameplay.UI.Screens;
 using VContainer;
 

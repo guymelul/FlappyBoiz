@@ -1,4 +1,4 @@
-﻿using FlappyBoiz.Scripts.Cloud;
+﻿using FlappyBoiz.Scripts.Core.Cloud;
 using MessagePipe;
 using Unity.Services.LevelPlay;
 using VContainer;
@@ -12,7 +12,7 @@ namespace FlappyBoiz.Scripts.Core
         {
             builder.RegisterMessagePipe();
 
-            builder.RegisterEntryPoint<UnityServicesManager>().AsSelf();
+            builder.Register<UnityServicesManager>(Lifetime.Singleton);
 
 #if UNITY_EDITOR
             builder.RegisterBuildCallback(c => GlobalMessagePipe.SetProvider(c.AsServiceProvider()));

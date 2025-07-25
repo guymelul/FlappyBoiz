@@ -176,7 +176,7 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 14
-  AndroidMinSdkVersion: 24
+  AndroidMinSdkVersion: 26
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 0
   aotOptions: 
@@ -258,14 +258,14 @@ PlayerSettings:
   clonedFromGUID: c19f32bac17ee4170b3bf8a6a0333fb9
   templatePackageId: com.unity.template.universal-2d@5.1.0
   templateDefaultScene: Assets/Scenes/SampleScene.unity
-  useCustomMainManifest: 1
+  useCustomMainManifest: 0
   useCustomLauncherManifest: 0
   useCustomMainGradleTemplate: 1
   useCustomLauncherGradleManifest: 0
   useCustomBaseGradleTemplate: 0
   useCustomGradlePropertiesTemplate: 1
   useCustomGradleSettingsTemplate: 1
-  useCustomProguardFile: 1
+  useCustomProguardFile: 0
   AndroidTargetArchitectures: 2
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
@@ -274,7 +274,7 @@ PlayerSettings:
   AndroidEnableArmv9SecurityFeatures: 0
   AndroidEnableArm64MTE: 0
   AndroidBuildApkPerCpuArchitecture: 0
-  AndroidTVCompatibility: 1
+  AndroidTVCompatibility: 0
   AndroidIsGame: 1
   AndroidEnableTango: 0
   androidEnableBanner: 0
@@ -393,34 +393,34 @@ PlayerSettings:
   - m_BuildTarget: Android
     m_Icons:
     - m_Textures: []
-      m_Width: 432
-      m_Height: 432
-      m_Kind: 2
+      m_Width: 192
+      m_Height: 192
+      m_Kind: 0
       m_SubKind: 
     - m_Textures: []
-      m_Width: 324
-      m_Height: 324
-      m_Kind: 2
+      m_Width: 144
+      m_Height: 144
+      m_Kind: 0
       m_SubKind: 
     - m_Textures: []
-      m_Width: 216
-      m_Height: 216
-      m_Kind: 2
+      m_Width: 96
+      m_Height: 96
+      m_Kind: 0
       m_SubKind: 
     - m_Textures: []
-      m_Width: 162
-      m_Height: 162
-      m_Kind: 2
+      m_Width: 72
+      m_Height: 72
+      m_Kind: 0
       m_SubKind: 
     - m_Textures: []
-      m_Width: 108
-      m_Height: 108
-      m_Kind: 2
+      m_Width: 48
+      m_Height: 48
+      m_Kind: 0
       m_SubKind: 
     - m_Textures: []
-      m_Width: 81
-      m_Height: 81
-      m_Kind: 2
+      m_Width: 36
+      m_Height: 36
+      m_Kind: 0
       m_SubKind: 
     - m_Textures:
       - {fileID: 2800000, guid: b93c76f591e8a2c4ca054f9c28987f47, type: 3}
@@ -453,35 +453,37 @@ PlayerSettings:
       m_Height: 36
       m_Kind: 1
       m_SubKind: 
-    - m_Textures: []
-      m_Width: 192
-      m_Height: 192
-      m_Kind: 0
+    - m_Textures:
+      - {fileID: 2800000, guid: ac0a3dd621a9d463aa705447ea77c36d, type: 3}
+      - {fileID: 2800000, guid: b8121a41b21d3534085f37b3427f6f99, type: 3}
+      m_Width: 432
+      m_Height: 432
+      m_Kind: 2
       m_SubKind: 
     - m_Textures: []
-      m_Width: 144
-      m_Height: 144
-      m_Kind: 0
+      m_Width: 324
+      m_Height: 324
+      m_Kind: 2
       m_SubKind: 
     - m_Textures: []
-      m_Width: 96
-      m_Height: 96
-      m_Kind: 0
+      m_Width: 216
+      m_Height: 216
+      m_Kind: 2
       m_SubKind: 
     - m_Textures: []
-      m_Width: 72
-      m_Height: 72
-      m_Kind: 0
+      m_Width: 162
+      m_Height: 162
+      m_Kind: 2
       m_SubKind: 
     - m_Textures: []
-      m_Width: 48
-      m_Height: 48
-      m_Kind: 0
+      m_Width: 108
+      m_Height: 108
+      m_Kind: 2
       m_SubKind: 
     - m_Textures: []
-      m_Width: 36
-      m_Height: 36
-      m_Kind: 0
+      m_Width: 81
+      m_Height: 81
+      m_Kind: 2
       m_SubKind: 
   m_BuildTargetBatching: []
   m_BuildTargetShaderSettings: []

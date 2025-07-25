@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using FlappyBoiz.Scripts.Core.UI;
 using FlappyBoiz.Scripts.Gameplay.UI.Animations;
 using LitMotion;
 using TMPro;

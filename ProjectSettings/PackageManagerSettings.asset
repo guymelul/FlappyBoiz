@@ -40,6 +40,7 @@ MonoBehaviour:
     - com.inspiaaa.unityhfsm
     - com.unity-atoms
     - com.github-glitchenzo.nugetforunity
+    - com.google.external-dependency-manager
     m_IsDefault: 0
     m_Capabilities: 0
     m_ConfigSource: 4
@@ -51,6 +52,6 @@ MonoBehaviour:
   m_RegistryInfoDraft:
     m_Modified: 0
     m_ErrorMessage: 
-    m_UserModificationsInstanceId: -868
-    m_OriginalInstanceId: -870
+    m_UserModificationsInstanceId: -870
+    m_OriginalInstanceId: -874
   m_LoadAssets: 0

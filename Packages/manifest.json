@@ -8,6 +8,7 @@
     "com.cysharp.r3": "1.3.0",
     "com.cysharp.unitask": "2.5.10",
     "com.github-glitchenzo.nugetforunity": "4.5.0",
+    "com.google.external-dependency-manager": "1.2.186",
     "com.inspiaaa.unityhfsm": "2.2.0",
     "com.unity.2d.animation": "10.2.1",
     "com.unity.2d.aseprite": "1.1.9",
@@ -52,7 +53,8 @@
         "com.annulusgames.lit-motion",
         "com.inspiaaa.unityhfsm",
         "com.unity-atoms",
-        "com.github-glitchenzo.nugetforunity"
+        "com.github-glitchenzo.nugetforunity",
+        "com.google.external-dependency-manager"
       ]
     }
   ]

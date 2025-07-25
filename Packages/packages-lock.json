@@ -64,6 +64,13 @@
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
+    "com.google.external-dependency-manager": {
+      "version": "1.2.186",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.inspiaaa.unityhfsm": {
       "version": "2.2.0",
       "depth": 0,

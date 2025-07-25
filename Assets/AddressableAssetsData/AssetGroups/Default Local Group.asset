@@ -15,8 +15,13 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 560afb467ca334dc98c044a20b17b46c
   m_SerializeEntries:
+  - m_GUID: 968490fcbec4ff743a4b1ef454fc40b0
+    m_Address: GameplayScene
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ca23551a654af41df8e45a011c248e6f
-    m_Address: Assets/FlappyBoiz/Scenes/MainMenu.unity
+    m_Address: MainMenuScene
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/FlappyBoiz/Scenes/MainMenu.unity
     guid: ca23551a654af41df8e45a011c248e6f
-  - enabled: 1
+  - enabled: 0
     path: Assets/FlappyBoiz/Scenes/Gameplay.unity
     guid: 968490fcbec4ff743a4b1ef454fc40b0
   m_configObjects:
