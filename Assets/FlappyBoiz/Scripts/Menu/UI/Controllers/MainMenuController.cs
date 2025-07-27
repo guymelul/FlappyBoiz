@@ -1,22 +1,23 @@
-﻿using FlappyBoiz.Scripts.Core.UI;
+﻿using System.Threading;
+using Cysharp.Threading.Tasks;
+using FlappyBoiz.Scripts.Core.UI;
 using FlappyBoiz.Scripts.Menu.UI.Screens;
 using UnityEngine.AddressableAssets;
-using UnityEngine.UI;
-using VContainer;
+using VContainer.Unity;
 
 namespace FlappyBoiz.Scripts.Menu.UI.Controllers
 {
-    public class MainMenuController : BaseController<MainMenuScreen>
+    public class MainMenuController : BaseController<MainMenuScreen>, IAsyncStartable
     {
-        
-        protected override void OnScreenShow()
+        public async UniTask StartAsync(CancellationToken cancellation = new())
         {
-            Screen.StartButton.onClick.AddListener(OnStartGame);
-        }
-        
-        protected override void OnScreenHide()
-        {
-            Screen.StartButton.onClick.RemoveAllListeners();
+            using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(cancellation);
+
+            var button = await ButtonSelector(linkedCts.Token, Screen.StartButton);
+
+            linkedCts.Cancel();
+
+            if (button == Screen.StartButton) OnStartGame();
         }
 
         private void OnStartGame()

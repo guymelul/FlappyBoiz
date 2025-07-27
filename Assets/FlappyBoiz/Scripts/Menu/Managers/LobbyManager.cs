@@ -17,6 +17,7 @@ namespace FlappyBoiz.Scripts.Menu.Managers
         {
             Debug.Log("Loading Unity Services");
             LobbyMenuController.ShowLoading();
+            
             await UniTask.Delay(200, cancellationToken: cancellation);
             
             await UnityServicesManager.Init(cancellation);
