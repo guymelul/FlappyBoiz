@@ -50,7 +50,7 @@ namespace FlappyBoiz.Scripts.Core.UI
             {
                 throw new Exception("No buttons passed to ButtonSelector");
             }
-            
+
             var clickTasks = buttons.Select(button => button.OnClickAsync(cancellationToken)).ToArray();
 
             // UniTask.WhenAny awaits all tasks in the array and returns the index of the first one to complete.

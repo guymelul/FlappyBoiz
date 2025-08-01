@@ -7,7 +7,7 @@ namespace FlappyBoiz.Scripts.Core.UI
     {
         public void LoadMainScene()
         {
-            Addressables.LoadSceneAsync("MainMenuScene").WaitForCompletion();
+            Addressables.LoadSceneAsync("GameplayScene").WaitForCompletion();
         }
     }
 }

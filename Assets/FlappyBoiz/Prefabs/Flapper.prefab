@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3713662908233812730}
   - component: {fileID: 8967572845665532155}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cosmetic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1688327455
-  m_SortingLayer: 1
+  m_SortingLayer: -2
   m_SortingOrder: 1
   m_Sprite: {fileID: -6526459911517511188, guid: c78971b29728e6d48ae2ebf95d9f78d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 1830760804701118027}
   - component: {fileID: 5605923321080205713}
   - component: {fileID: 5150511692847979770}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Flapper
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8171987003822708111}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -166,7 +166,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1688327455
-  m_SortingLayer: 1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: -4598324145191619580, guid: 37608e759269d874a8a3c44105135eb7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

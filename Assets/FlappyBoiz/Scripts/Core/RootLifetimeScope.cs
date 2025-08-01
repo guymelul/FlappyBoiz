@@ -14,6 +14,8 @@ namespace FlappyBoiz.Scripts.Core
 
             builder.Register<UnityServicesManager>(Lifetime.Singleton);
 
+            builder.RegisterEntryPoint<GameRootController>();
+
 #if UNITY_EDITOR
             builder.RegisterBuildCallback(c => GlobalMessagePipe.SetProvider(c.AsServiceProvider()));
 

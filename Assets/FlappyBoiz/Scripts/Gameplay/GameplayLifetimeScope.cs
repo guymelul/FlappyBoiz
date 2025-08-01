@@ -4,6 +4,9 @@ using FlappyBoiz.Scripts.Gameplay.Obstacle;
 using FlappyBoiz.Scripts.Gameplay.ScriptableObjects;
 using FlappyBoiz.Scripts.Gameplay.UI.Controllers;
 using FlappyBoiz.Scripts.Gameplay.UI.Screens;
+using FlappyBoiz.Scripts.Menu.Managers;
+using FlappyBoiz.Scripts.Menu.UI.Controllers;
+using FlappyBoiz.Scripts.Menu.UI.Screens;
 using MessagePipe;
 using UnityEngine;
 using VContainer;
@@ -48,6 +51,14 @@ namespace FlappyBoiz.Scripts.Gameplay
             builder.RegisterComponentInHierarchy<HUDScreen>();
             builder.RegisterComponentInHierarchy<PauseDialog>();
             builder.RegisterComponentInHierarchy<GameOverScreen>();
+
+            builder.RegisterEntryPoint<LobbyMenuController>(Lifetime.Scoped).AsSelf();
+            builder.RegisterEntryPoint<MainMenuController>(Lifetime.Scoped).AsSelf();
+
+            builder.RegisterComponentInHierarchy<MainMenuScreen>();
+            builder.RegisterComponentInHierarchy<MenuLoadingScreen>();
+
+            builder.RegisterEntryPoint<LobbyManager>(Lifetime.Scoped).AsSelf();
 
 #if UNITY_EDITOR
             builder.RegisterBuildCallback(c => GlobalMessagePipe.SetProvider(c.AsServiceProvider()));
