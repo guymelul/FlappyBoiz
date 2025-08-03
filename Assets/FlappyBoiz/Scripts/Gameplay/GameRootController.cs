@@ -1,9 +1,11 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using FlappyBoiz.Scripts.Core.Controllers;
+using FlappyBoiz.Scripts.Gameplay.Controllers;
+using UnityEngine;
 using VContainer;
 
-namespace FlappyBoiz.Scripts.Core
+namespace FlappyBoiz.Scripts.Gameplay
 {
     public class GameRootController : RootController
     {
@@ -11,9 +13,10 @@ namespace FlappyBoiz.Scripts.Core
         {
         }
 
-        protected override UniTask OnStartAsync(CancellationToken ct)
+        protected override async UniTask OnStartAsync(CancellationToken ct)
         {
-            return UniTask.CompletedTask;
+            Debug.Log("Starting game");
+            await StartChildAsync<StartupSequenceController>(ct);
         }
 
         protected override UniTask OnStopAsync(CancellationToken ct)

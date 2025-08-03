@@ -1,18 +1,15 @@
 ﻿using FlappyBoiz.Scripts.Gameplay.Flapper;
 using FlappyBoiz.Scripts.Gameplay.Managers;
 using FlappyBoiz.Scripts.Gameplay.Obstacle;
+using FlappyBoiz.Scripts.Gameplay.Presenters;
 using FlappyBoiz.Scripts.Gameplay.ScriptableObjects;
-using FlappyBoiz.Scripts.Gameplay.UI.Controllers;
 using FlappyBoiz.Scripts.Gameplay.UI.Screens;
-using FlappyBoiz.Scripts.Menu.Managers;
-using FlappyBoiz.Scripts.Menu.UI.Controllers;
-using FlappyBoiz.Scripts.Menu.UI.Screens;
 using MessagePipe;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace FlappyBoiz.Scripts.Gameplay
+namespace FlappyBoiz.Scripts.Gameplay.Scopes
 {
     public class GameplayLifetimeScope : LifetimeScope
     {
@@ -37,10 +34,10 @@ namespace FlappyBoiz.Scripts.Gameplay
 
             // UI Controllers
             builder.RegisterEntryPoint<GameplayUIController>(Lifetime.Scoped).AsSelf();
-            builder.RegisterEntryPoint<ReadyController>(Lifetime.Scoped).AsSelf();
-            builder.RegisterEntryPoint<PauseDialogController>(Lifetime.Scoped).AsSelf();
-            builder.RegisterEntryPoint<GameOverController>(Lifetime.Scoped).AsSelf();
-            builder.RegisterEntryPoint<HUDController>(Lifetime.Scoped).AsSelf();
+            builder.RegisterEntryPoint<ReadyPresenter>(Lifetime.Scoped).AsSelf();
+            builder.RegisterEntryPoint<PauseDialogPresenter>(Lifetime.Scoped).AsSelf();
+            builder.RegisterEntryPoint<GameOverPresenter>(Lifetime.Scoped).AsSelf();
+            builder.RegisterEntryPoint<HUDPresenter>(Lifetime.Scoped).AsSelf();
 
             // View
             builder.RegisterComponentInHierarchy<FlapperView>();
@@ -53,7 +50,7 @@ namespace FlappyBoiz.Scripts.Gameplay
             builder.RegisterComponentInHierarchy<GameOverScreen>();
 
             builder.RegisterEntryPoint<LobbyMenuController>(Lifetime.Scoped).AsSelf();
-            builder.RegisterEntryPoint<MainMenuController>(Lifetime.Scoped).AsSelf();
+            builder.RegisterEntryPoint<MainMenuPresenter>(Lifetime.Scoped).AsSelf();
 
             builder.RegisterComponentInHierarchy<MainMenuScreen>();
             builder.RegisterComponentInHierarchy<MenuLoadingScreen>();

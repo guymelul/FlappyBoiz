@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace FlappyBoiz.Scripts.Menu.UI.Screens
+namespace FlappyBoiz.Scripts.Gameplay.UI.Screens
 {
     public class MainMenuScreen : UIScreen
     {

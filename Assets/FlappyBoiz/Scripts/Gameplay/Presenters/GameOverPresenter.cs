@@ -3,9 +3,9 @@ using FlappyBoiz.Scripts.Gameplay.Managers;
 using FlappyBoiz.Scripts.Gameplay.UI.Screens;
 using VContainer;
 
-namespace FlappyBoiz.Scripts.Gameplay.UI.Controllers
+namespace FlappyBoiz.Scripts.Gameplay.Presenters
 {
-    public class GameOverController : BaseController<GameOverScreen>
+    public class GameOverPresenter : BasePresenter<GameOverScreen>
     {
         [Inject] private GameSessionManager GameSession { get; set; }
 

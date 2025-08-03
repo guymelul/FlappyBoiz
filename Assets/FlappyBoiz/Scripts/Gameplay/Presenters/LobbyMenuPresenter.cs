@@ -1,23 +1,23 @@
-﻿using FlappyBoiz.Scripts.Menu.UI.Screens;
+﻿using FlappyBoiz.Scripts.Gameplay.UI.Screens;
 using VContainer;
 
-namespace FlappyBoiz.Scripts.Menu.UI.Controllers
+namespace FlappyBoiz.Scripts.Gameplay.Presenters
 {
     public class LobbyMenuController
     {
-        [Inject] public MainMenuController MainMenuController { get; set; }
+        [Inject] public MainMenuPresenter MainMenuPresenter { get; set; }
         [Inject] public MenuLoadingScreen MenuLoadingScreen { get; set; }
 
         public void ShowLoading()
         {
-            MainMenuController.Disable();
+            MainMenuPresenter.Disable();
             MenuLoadingScreen.Show();
         }
 
         public void ShowMainMenu()
         {
             MenuLoadingScreen.Hide();
-            MainMenuController.Show();
+            MainMenuPresenter.Show();
         }
     }
 }

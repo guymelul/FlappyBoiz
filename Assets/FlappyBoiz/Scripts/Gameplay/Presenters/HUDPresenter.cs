@@ -9,9 +9,9 @@ using R3;
 using VContainer;
 using VContainer.Unity;
 
-namespace FlappyBoiz.Scripts.Gameplay.UI.Controllers
+namespace FlappyBoiz.Scripts.Gameplay.Presenters
 {
-    public class HUDController : BaseController<HUDScreen>, IAsyncStartable
+    public class HUDPresenter : BasePresenter<HUDScreen>, IAsyncStartable
     {
         [Inject] private IPublisher<GamePauseCommand> GamePauseCommandPub { get; set; }
 

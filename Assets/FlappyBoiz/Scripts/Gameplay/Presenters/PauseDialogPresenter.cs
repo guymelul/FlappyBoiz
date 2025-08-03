@@ -8,9 +8,9 @@ using UnityEngine.AddressableAssets;
 using VContainer;
 using VContainer.Unity;
 
-namespace FlappyBoiz.Scripts.Gameplay.UI.Controllers
+namespace FlappyBoiz.Scripts.Gameplay.Presenters
 {
-    public class PauseDialogController : BaseController<PauseDialog>, IAsyncStartable
+    public class PauseDialogPresenter : BasePresenter<PauseDialog>, IAsyncStartable
     {
         [Inject] private IPublisher<GamePauseCommand> OnGamePauseCommand { get; set; }
 

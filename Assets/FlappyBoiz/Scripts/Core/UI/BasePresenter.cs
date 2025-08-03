@@ -8,7 +8,7 @@ using VContainer.Unity;
 
 namespace FlappyBoiz.Scripts.Core.UI
 {
-    public class BaseController<T> : IPostInitializable
+    public class BasePresenter<T> : IPostInitializable
         where T : UIScreen
     {
         [Inject] protected T Screen { get; set; }

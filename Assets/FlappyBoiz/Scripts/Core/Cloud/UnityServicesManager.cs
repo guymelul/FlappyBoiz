@@ -3,6 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
+using Unity.Services.LevelPlay;
 using UnityEngine;
 #if UNITY_ANDROID
 using GooglePlayGames;
@@ -17,6 +18,11 @@ namespace FlappyBoiz.Scripts.Core.Cloud
         {
             if (UnityServices.State == ServicesInitializationState.Initialized)
                 return;
+
+#if UNITY_EDITOR
+            LevelPlay.SetMetaData("is_test_suite", "enable");
+            LevelPlay.LaunchTestSuite();
+#endif
 
             await UnityServices.InitializeAsync();
             Debug.Log("Unity Services Initialized");

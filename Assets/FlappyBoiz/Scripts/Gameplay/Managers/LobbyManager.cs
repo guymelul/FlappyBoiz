@@ -1,12 +1,12 @@
 ﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using FlappyBoiz.Scripts.Core.Cloud;
-using FlappyBoiz.Scripts.Menu.UI.Controllers;
+using FlappyBoiz.Scripts.Gameplay.Presenters;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace FlappyBoiz.Scripts.Menu.Managers
+namespace FlappyBoiz.Scripts.Gameplay.Managers
 {
     public class LobbyManager : IAsyncStartable
     {

@@ -1,13 +1,13 @@
 ﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using FlappyBoiz.Scripts.Core.UI;
-using FlappyBoiz.Scripts.Menu.UI.Screens;
+using FlappyBoiz.Scripts.Gameplay.UI.Screens;
 using UnityEngine.AddressableAssets;
 using VContainer.Unity;
 
-namespace FlappyBoiz.Scripts.Menu.UI.Controllers
+namespace FlappyBoiz.Scripts.Gameplay.Presenters
 {
-    public class MainMenuController : BaseController<MainMenuScreen>, IAsyncStartable
+    public class MainMenuPresenter : BasePresenter<MainMenuScreen>, IAsyncStartable
     {
         public async UniTask StartAsync(CancellationToken cancellation = new())
         {
