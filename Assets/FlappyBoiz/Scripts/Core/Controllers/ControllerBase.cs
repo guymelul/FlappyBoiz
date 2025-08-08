@@ -21,10 +21,12 @@ namespace FlappyBoiz.Scripts.Core.Controllers
         /// <summary>
         /// Spawns, initializes, and starts a child controller.
         /// </summary>
-        protected async UniTask<T> StartChildAsync<T>(CancellationToken ct) where T : IController
+        protected virtual async UniTask<T> StartChildAsync<T>(CancellationToken ct, IObjectResolver container = null)
+            where T : IController
         {
             // Use VContainer to instantiate the child and inject its dependencies
-            var child = Container.Resolve<T>();
+            var factory = container ?? Container;
+            var child = factory.Resolve<T>();
             m_children.Add(child);
 
             await child.InitAsync(ct);
@@ -34,13 +36,11 @@ namespace FlappyBoiz.Scripts.Core.Controllers
         }
 
         // To be overridden by concrete controllers
-        UniTask IController.InitAsync(CancellationToken ct) => UniTask.CompletedTask;
+        async UniTask IController.InitAsync(CancellationToken ct) => await OnInitAsync(ct);
 
-        async UniTask IController.StartAsync(CancellationToken ct)
-        {
-            await OnStartAsync(ct);
-        }
+        protected virtual UniTask OnInitAsync(CancellationToken ct) => UniTask.CompletedTask;
 
+        async UniTask IController.StartAsync(CancellationToken ct) => await OnStartAsync(ct);
         protected abstract UniTask OnStartAsync(CancellationToken ct);
 
         /// <summary>
@@ -55,9 +55,10 @@ namespace FlappyBoiz.Scripts.Core.Controllers
             }
 
             await OnStopAsync(ct);
+            Dispose();
         }
 
-        protected abstract UniTask OnStopAsync(CancellationToken ct);
+        protected virtual UniTask OnStopAsync(CancellationToken ct) => UniTask.CompletedTask;
 
         public void Dispose()
         {
