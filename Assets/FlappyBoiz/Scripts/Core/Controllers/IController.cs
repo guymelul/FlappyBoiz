@@ -27,6 +27,6 @@ namespace FlappyBoiz.Scripts.Core.Controllers
         /// <summary>
         /// Gracefully stops the controller's logic and the logic of all its children.
         /// </summary>
-        internal UniTask StopAsync(CancellationToken ct);
+        UniTask StopAsync(CancellationToken ct);
     }
 }

@@ -1,8 +1,9 @@
 ﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using FlappyBoiz.Scripts.Core.Controllers;
-using FlappyBoiz.Scripts.Core.Services;
+using FlappyBoiz.Scripts.Features.Gameplay;
 using FlappyBoiz.Scripts.Features.Splash;
+using FlappyBoiz.Scripts.Features.VFX;
 using UnityEngine;
 using VContainer;
 
@@ -10,13 +11,13 @@ namespace FlappyBoiz.Scripts.Features.Startup
 {
     public class StartupSequenceController : ControllerBase
     {
-        private readonly ISceneLoaderService m_sceneLoader;
+        private readonly IScreenFaderService m_screenFader;
 
         public StartupSequenceController(
             IObjectResolver container,
-            ISceneLoaderService sceneLoader) : base(container)
+            IScreenFaderService screenFader) : base(container)
         {
-            m_sceneLoader = sceneLoader;
+            m_screenFader = screenFader;
         }
 
         protected override async UniTask OnStartAsync(CancellationToken ct)
@@ -24,21 +25,20 @@ namespace FlappyBoiz.Scripts.Features.Startup
             // Show Splash Screen
             Debug.Log("Startup sequence");
 
-            Debug.Log("Starting splash scene controller");
             var splash = await StartChildAsync<SplashSceneController>(ct);
-            
+
             // Start Fader
-            
-            splash.Dispose();
+            await m_screenFader.FadeIn(ct);
+
+            await splash.StopAsync(ct);
 
             // Switch to gameplay scene
-            Debug.Log("Gameplay scene");
-        }
+            var gameplay = StartChildAsync<GameplaySceneController>(ct);
 
-        protected override UniTask OnStopAsync(CancellationToken ct) => UniTask.CompletedTask;
+            await m_screenFader.FadeOut(ct);
 
-        protected override void OnDispose()
-        {
+            Debug.Log("Gameplay Starting");
+            await gameplay;
         }
     }
 }

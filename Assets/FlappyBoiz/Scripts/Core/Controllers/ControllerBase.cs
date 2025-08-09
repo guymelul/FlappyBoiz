@@ -7,15 +7,14 @@ namespace FlappyBoiz.Scripts.Core.Controllers
 {
     public abstract class ControllerBase : IController
     {
-        private readonly IObjectResolver m_container;
-        protected IObjectResolver Container => m_container;
+        private IObjectResolver Container { get; }
 
         private readonly List<IController> m_children = new();
         IReadOnlyList<IController> IController.Children => m_children;
 
         protected ControllerBase(IObjectResolver container)
         {
-            m_container = container;
+            Container = container;
         }
 
         /// <summary>
@@ -29,8 +28,19 @@ namespace FlappyBoiz.Scripts.Core.Controllers
             var child = factory.Resolve<T>();
             m_children.Add(child);
 
-            await child.InitAsync(ct);
-            await child.StartAsync(ct);
+            try
+            {
+                await child.InitAsync(ct);
+                await child.StartAsync(ct);
+            }
+            catch
+            {
+                // If something goes wrong, stop the child immediately
+                await child.StopAsync(ct);
+                m_children.Remove(child);
+
+                throw;
+            }
 
             return child;
         }
@@ -41,12 +51,11 @@ namespace FlappyBoiz.Scripts.Core.Controllers
         protected virtual UniTask OnInitAsync(CancellationToken ct) => UniTask.CompletedTask;
 
         async UniTask IController.StartAsync(CancellationToken ct) => await OnStartAsync(ct);
-        protected abstract UniTask OnStartAsync(CancellationToken ct);
 
         /// <summary>
         /// Stops all children in reverse order of creation before stopping itself.
         /// </summary>
-        async UniTask IController.StopAsync(CancellationToken ct)
+        public async UniTask StopAsync(CancellationToken ct)
         {
             // Stop children in reverse order
             for (int i = m_children.Count - 1; i >= 0; i--)
@@ -57,6 +66,8 @@ namespace FlappyBoiz.Scripts.Core.Controllers
             await OnStopAsync(ct);
             Dispose();
         }
+
+        protected abstract UniTask OnStartAsync(CancellationToken ct);
 
         protected virtual UniTask OnStopAsync(CancellationToken ct) => UniTask.CompletedTask;
 
@@ -70,6 +81,8 @@ namespace FlappyBoiz.Scripts.Core.Controllers
             OnDispose();
         }
 
-        protected abstract void OnDispose();
+        protected virtual void OnDispose()
+        {
+        }
     }
 }

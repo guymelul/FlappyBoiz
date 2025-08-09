@@ -19,7 +19,8 @@ namespace FlappyBoiz.Scripts.Features.Gameplay
 
         protected override void Configure(IContainerBuilder builder)
         {
-            Debug.Log("GameplayLifetimeScope Configure");
+            builder.RegisterMessagePipe();
+            
             // Instances
             builder.RegisterInstance(flapperSettings);
             builder.RegisterInstance(obstacleSpawnerSettings);

@@ -1,5 +1,7 @@
 ﻿using FlappyBoiz.Scripts.Core.Cloud;
+using FlappyBoiz.Scripts.Core.Controllers;
 using FlappyBoiz.Scripts.Core.Services;
+using FlappyBoiz.Scripts.Features.Gameplay;
 using FlappyBoiz.Scripts.Features.Splash;
 using FlappyBoiz.Scripts.Features.Startup;
 using FlappyBoiz.Scripts.Features.VFX;
@@ -16,19 +18,19 @@ namespace FlappyBoiz.Scripts.Features
             // Register All Services 
             builder.Register<UnityServicesManager>(Lifetime.Singleton);
             builder.Register<ISceneLoaderService, SceneLoaderService>(Lifetime.Singleton);
+            builder.Register<IScreenFaderService, ScreenFaderService>(Lifetime.Singleton);
 
             // Entry point
             builder.RegisterEntryPoint<GameRootController>();
 
-            // Controllers
-            builder.Register<StartupSequenceController>(Lifetime.Transient);
-            builder.Register<SplashSceneController>(Lifetime.Transient);
-            builder.Register<ScreenFaderController>(Lifetime.Transient);
+            // Global Controllers
+            builder.RegisterController<ScreenFaderController>();
+            builder.RegisterController<StartupSequenceController>();
+            builder.RegisterController<SplashSceneController>();
+            builder.RegisterController<GameplaySceneController>();
 
-            // Views
-            // builder.RegisterComponentOnNewGameObject<ScreenFaderView>(Lifetime.Singleton,
-            //     newGameObjectName: "ScreenFader");
-
+            // Global Views
+            builder.RegisterComponentInHierarchy<ScreenFaderView>();
 
             builder.RegisterMessagePipe();
 #if UNITY_EDITOR

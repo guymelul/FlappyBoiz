@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/FlappyBoiz/Scenes/Boot.unity
+    path: Assets/FlappyBoiz/Scenes/Bootstrap.unity
     guid: 3e95804902f320b4f916cadde7d4a33c
   - enabled: 0
     path: Assets/FlappyBoiz/Scenes/Splash.unity
