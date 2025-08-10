@@ -24,7 +24,6 @@ namespace FlappyBoiz.Scripts.Features
             builder.RegisterEntryPoint<GameRootController>();
 
             // Global Controllers
-            builder.RegisterController<ScreenFaderController>();
             builder.RegisterController<StartupSequenceController>();
             builder.RegisterController<SplashSceneController>();
             builder.RegisterController<GameplaySceneController>();

@@ -23,13 +23,12 @@ namespace FlappyBoiz.Scripts.Features.Startup
         protected override async UniTask OnStartAsync(CancellationToken ct)
         {
             // Show Splash Screen
-            Debug.Log("Startup sequence");
-
             var splash = await StartChildAsync<SplashSceneController>(ct);
 
             // Start Fader
             await m_screenFader.FadeIn(ct);
 
+            // Unload Splash
             await splash.StopAsync(ct);
 
             // Switch to gameplay scene

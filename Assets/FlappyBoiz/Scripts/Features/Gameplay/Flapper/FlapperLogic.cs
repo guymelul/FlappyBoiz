@@ -10,7 +10,7 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Flapper
 {
     public class FlapperLogic : GameplayStateAware, IStartable, ITickable, IFixedTickable
     {
-        [Inject] private FlapperView FlapperView { get; set; }
+        [Inject] private FlapperPresenter FlapperPresenter { get; set; }
         [Inject] private FlapperSettings FlapperSettings { get; set; }
         [Inject] private ISubscriber<FlapperPrimaryActionRequest> FlapperPrimaryActionRequestSub { get; set; }
 
@@ -50,7 +50,7 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Flapper
         {
             Start();
 
-            FlapperView.OnDead();
+            FlapperPresenter.OnDead();
         }
 
         public void Tick()
@@ -64,7 +64,7 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Flapper
         {
             if (!IsGameRunning) return;
 
-            FlapperView.FixedTick();
+            FlapperPresenter.FixedTick();
             ApplyFlap();
         }
 
@@ -80,7 +80,7 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Flapper
             FlapTimer = FlapCooldown;
             FlapsBuffered--;
 
-            FlapperView.Flap();
+            FlapperPresenter.Flap();
         }
     }
 }

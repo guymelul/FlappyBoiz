@@ -7,8 +7,9 @@ namespace FlappyBoiz.Scripts.Features.Splash
 {
     public class SplashSceneController : SceneControllerBase<SplashLifetimeScope>
     {
-        public SplashSceneController(IObjectResolver container) : base(container,
-            sceneName: "SplashScene")
+        protected override string SceneName => "SplashScene";
+
+        public SplashSceneController(IObjectResolver container) : base(container)
         {
         }
 

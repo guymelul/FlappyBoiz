@@ -7,14 +7,18 @@ namespace FlappyBoiz.Scripts.Features.Gameplay
 {
     public class GameplaySceneController : SceneControllerBase<GameplayLifetimeScope>
     {
-        public GameplaySceneController(IObjectResolver container) : base(container,
-            sceneName: "GameplayScene")
+        protected override string SceneName => "GameplayScene";
+
+        public GameplaySceneController(IObjectResolver container) : base(container)
         {
         }
 
         protected override async UniTask OnStartAsync(CancellationToken ct)
         {
-            // TODO: start gameplay controller
+            // TODO: Start auth controller (wont stop until user is authenticated)
+
+            // TODO: If auth is success
+            //  Start saved game loader controller
         }
     }
 }

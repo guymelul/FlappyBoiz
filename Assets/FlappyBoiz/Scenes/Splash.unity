@@ -290,19 +290,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2048827178350920887, guid: 8aa7a8dd5cf303041b34096f3bf9ec8c, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.00085470086
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2048827178350920887, guid: 8aa7a8dd5cf303041b34096f3bf9ec8c, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.0007898894
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2048827178350920887, guid: 8aa7a8dd5cf303041b34096f3bf9ec8c, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.9982906
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2048827178350920887, guid: 8aa7a8dd5cf303041b34096f3bf9ec8c, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.99842024
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4579106111916256320, guid: 8aa7a8dd5cf303041b34096f3bf9ec8c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -374,6 +374,10 @@ PrefabInstance:
     - target: {fileID: 1521470319177998801, guid: 5af64f9f6d4323442b26fcd683f81636, type: 3}
       propertyPath: m_Name
       value: SplashScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867948058850371945, guid: 5af64f9f6d4323442b26fcd683f81636, type: 3}
+      propertyPath: components.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7447568218513764016, guid: 5af64f9f6d4323442b26fcd683f81636, type: 3}
       propertyPath: m_Pivot.x

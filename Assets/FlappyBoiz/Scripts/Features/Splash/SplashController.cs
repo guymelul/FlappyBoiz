@@ -1,8 +1,6 @@
 ﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using FlappyBoiz.Scripts.Core.Controllers;
-using FlappyBoiz.Scripts.Core.UI;
-using R3;
 using VContainer;
 
 namespace FlappyBoiz.Scripts.Features.Splash
@@ -18,8 +16,7 @@ namespace FlappyBoiz.Scripts.Features.Splash
 
         protected override async UniTask OnStartAsync(CancellationToken ct)
         {
-            m_splashView.StartSplashAnimation();
-            await m_splashView.OnSplashAnimationEnded.FirstAsync(ct).AsUniTask();
+            await m_splashView.StartSplashAnimation(ct);
         }
 
         protected override UniTask OnStopAsync(CancellationToken ct) => UniTask.CompletedTask;

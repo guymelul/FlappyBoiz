@@ -11,7 +11,7 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Flapper
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Animator))]
-    public class FlapperView : MonoBehaviour
+    public class FlapperPresenter : MonoBehaviour
     {
         private static readonly int AnimKeyFlapWings = Animator.StringToHash("FlapWings");
 

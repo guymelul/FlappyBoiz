@@ -176,26 +176,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2048827178350920887, guid: 8aa7a8dd5cf303041b34096f3bf9ec8c, type: 3}
-      propertyPath: orthographic size
-      value: 2.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 2048827178350920887, guid: 8aa7a8dd5cf303041b34096f3bf9ec8c, type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2048827178350920887, guid: 8aa7a8dd5cf303041b34096f3bf9ec8c, type: 3}
-      propertyPath: m_NormalizedViewPortRect.y
-      value: 0.08925751
-      objectReference: {fileID: 0}
-    - target: {fileID: 2048827178350920887, guid: 8aa7a8dd5cf303041b34096f3bf9ec8c, type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2048827178350920887, guid: 8aa7a8dd5cf303041b34096f3bf9ec8c, type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 0.821485
-      objectReference: {fileID: 0}
     - target: {fileID: 4579106111916256320, guid: 8aa7a8dd5cf303041b34096f3bf9ec8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -239,34 +219,6 @@ PrefabInstance:
     - target: {fileID: 4838911917842743010, guid: 8aa7a8dd5cf303041b34096f3bf9ec8c, type: 3}
       propertyPath: m_Name
       value: Main Camera
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081085846125155885, guid: 8aa7a8dd5cf303041b34096f3bf9ec8c, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081085846125155885, guid: 8aa7a8dd5cf303041b34096f3bf9ec8c, type: 3}
-      propertyPath: m_CropFrame
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081085846125155885, guid: 8aa7a8dd5cf303041b34096f3bf9ec8c, type: 3}
-      propertyPath: m_FilterMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081085846125155885, guid: 8aa7a8dd5cf303041b34096f3bf9ec8c, type: 3}
-      propertyPath: m_GridSnapping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081085846125155885, guid: 8aa7a8dd5cf303041b34096f3bf9ec8c, type: 3}
-      propertyPath: m_RefResolutionX
-      value: 288
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081085846125155885, guid: 8aa7a8dd5cf303041b34096f3bf9ec8c, type: 3}
-      propertyPath: m_RefResolutionY
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 8543857120493549302, guid: 8aa7a8dd5cf303041b34096f3bf9ec8c, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
