@@ -5,7 +5,7 @@ using VContainer;
 
 namespace FlappyBoiz.Scripts.Features.Splash
 {
-    public class SplashSceneController : SceneControllerBase<SplashLifetimeScope>
+    public sealed class SplashSceneController : SceneControllerBase<SplashLifetimeScope>
     {
         protected override string SceneName => "SplashScene";
 

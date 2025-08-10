@@ -141,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7941320304311310736, guid: 128e6aed0a70f07449e0bbb9f5fa0954, type: 3}
       propertyPath: managedReferences[7326408290073575651].settings.delay
-      value: 0.8
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 7941320304311310736, guid: 128e6aed0a70f07449e0bbb9f5fa0954, type: 3}
       propertyPath: managedReferences[7326408290073575652].settings.delay
@@ -249,6 +249,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bullet
       objectReference: {fileID: 0}
+    - target: {fileID: 7941320304311310736, guid: 128e6aed0a70f07449e0bbb9f5fa0954, type: 3}
+      propertyPath: managedReferences[7326408290073575651].settings.delay
+      value: 0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -353,7 +357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7941320304311310736, guid: 128e6aed0a70f07449e0bbb9f5fa0954, type: 3}
       propertyPath: managedReferences[7326408290073575651].settings.delay
-      value: 0.4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7941320304311310736, guid: 128e6aed0a70f07449e0bbb9f5fa0954, type: 3}
       propertyPath: managedReferences[7326408290073575652].settings.delay
@@ -379,7 +383,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1688338000534453336, guid: 4224ecae9a15e3c499429657590416ac, type: 3}
       propertyPath: m_Alpha
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1688338000534453336, guid: 4224ecae9a15e3c499429657590416ac, type: 3}
       propertyPath: m_Enabled
@@ -387,7 +391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008373768772175089, guid: 4224ecae9a15e3c499429657590416ac, type: 3}
       propertyPath: m_Name
-      value: Loading Variant
+      value: LoadingScreen
       objectReference: {fileID: 0}
     - target: {fileID: 4008373768772175089, guid: 4224ecae9a15e3c499429657590416ac, type: 3}
       propertyPath: m_IsActive
@@ -505,7 +509,7 @@ PrefabInstance:
       addedObject: {fileID: 1465043515143672585}
     - targetCorrespondingSourceObject: {fileID: 4008373768772175089, guid: 4224ecae9a15e3c499429657590416ac, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 643636783465101422}
+      addedObject: {fileID: 3054138010977268067}
     - targetCorrespondingSourceObject: {fileID: 9034099484151705962, guid: 4224ecae9a15e3c499429657590416ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8554290470602307294}
@@ -573,7 +577,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
---- !u!114 &643636783465101422
+--- !u!114 &3054138010977268067
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -585,7 +589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d6db58635f24dc1aba705790c1ad3bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showDuration: 0.1
+  showDuration: 0.2
   showDelay: 0
-  hideDuration: 0.3
+  hideDuration: 0.1
   ease: 19

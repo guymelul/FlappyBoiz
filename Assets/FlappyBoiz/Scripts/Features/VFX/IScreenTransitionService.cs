@@ -3,7 +3,7 @@ using Cysharp.Threading.Tasks;
 
 namespace FlappyBoiz.Scripts.Features.VFX
 {
-    public interface IScreenFaderService
+    public interface IScreenTransitionService
     {
         /// <summary>
         /// Fades the entire screen to solid color

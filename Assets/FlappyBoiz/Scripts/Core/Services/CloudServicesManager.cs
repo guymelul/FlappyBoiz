@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.LevelPlay;
 using UnityEngine;
-#if UNITY_ANDROID
-using GooglePlayGames;
-using GooglePlayGames.BasicApi;
-#endif
 
-namespace FlappyBoiz.Scripts.Core.Cloud
+namespace FlappyBoiz.Scripts.Core.Services
 {
-    public class UnityServicesManager
+    public class CloudServicesManager : ICloudServicesManager
     {
         public async UniTask Init(CancellationToken cancellation = new())
         {
@@ -30,6 +28,11 @@ namespace FlappyBoiz.Scripts.Core.Cloud
 
         public async UniTask<bool> Authenticate(CancellationToken cancellation = new())
         {
+            if (UnityServices.State != ServicesInitializationState.Initialized)
+            {
+                throw new UnityException("Unity services were not initialized");
+            }
+
             // Check if a cached player already exists by checking if the session token exists
             // if (!AuthenticationService.Instance.SessionTokenExists)
             // {

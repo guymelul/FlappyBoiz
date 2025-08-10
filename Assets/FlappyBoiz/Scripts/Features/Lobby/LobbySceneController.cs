@@ -5,7 +5,7 @@ using VContainer;
 
 namespace FlappyBoiz.Scripts.Features.Lobby
 {
-    public class LobbySceneController : SceneControllerBase<LobbyLifetimeScope>
+    public sealed class LobbySceneController : SceneControllerBase<LobbyLifetimeScope>
     {
         protected override string SceneName => "LobbyScene";
 
@@ -15,10 +15,7 @@ namespace FlappyBoiz.Scripts.Features.Lobby
 
         protected override async UniTask OnStartAsync(CancellationToken ct)
         {
-            // TODO: Start auth controller (wont stop until user is authenticated)
-
-            // TODO: If auth is success
-            //  Start saved game loader controller
+            await StartChildAsync<LobbyController>(ct);
         }
     }
 }

@@ -1,23 +1,23 @@
 ﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using FlappyBoiz.Scripts.Core.Controllers;
-using FlappyBoiz.Scripts.Features.Gameplay;
+using FlappyBoiz.Scripts.Features.Lobby;
+using FlappyBoiz.Scripts.Features.Menu;
 using FlappyBoiz.Scripts.Features.Splash;
 using FlappyBoiz.Scripts.Features.VFX;
-using UnityEngine;
 using VContainer;
 
 namespace FlappyBoiz.Scripts.Features.Startup
 {
     public class StartupSequenceController : ControllerBase
     {
-        private readonly IScreenFaderService m_screenFader;
+        private readonly IScreenTransitionService m_screenTransition;
 
         public StartupSequenceController(
             IObjectResolver container,
-            IScreenFaderService screenFader) : base(container)
+            IScreenTransitionService screenTransition) : base(container)
         {
-            m_screenFader = screenFader;
+            m_screenTransition = screenTransition;
         }
 
         protected override async UniTask OnStartAsync(CancellationToken ct)
@@ -26,18 +26,30 @@ namespace FlappyBoiz.Scripts.Features.Startup
             var splash = await StartChildAsync<SplashSceneController>(ct);
 
             // Start Fader
-            await m_screenFader.FadeIn(ct);
+            await m_screenTransition.FadeIn(ct);
 
             // Unload Splash
             await splash.StopAsync(ct);
 
-            // Switch to gameplay scene
-            var gameplay = StartChildAsync<GameplaySceneController>(ct);
+            // Start loading lobby scene
+            var lobbyTask = StartChildAsync<LobbySceneController>(ct);
+            await m_screenTransition.FadeOut(ct);
 
-            await m_screenFader.FadeOut(ct);
+            // Wait for lobby to finish
+            var lobby = await lobbyTask;
 
-            Debug.Log("Gameplay Starting");
-            await gameplay;
+            // Unload lobby
+            await m_screenTransition.FadeIn(ct);
+            await lobby.StopAsync(ct);
+
+            while (!ct.IsCancellationRequested)
+            {
+                // Load menu scene
+                var menuScene = StartChildAsync<MenuSceneController>(ct);
+                await m_screenTransition.FadeOut(ct);
+
+                await menuScene;
+            }
         }
     }
 }

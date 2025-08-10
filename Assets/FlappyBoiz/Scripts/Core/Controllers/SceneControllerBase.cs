@@ -2,6 +2,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using FlappyBoiz.Scripts.Core.Services;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using VContainer;
 using VContainer.Unity;
@@ -24,17 +25,21 @@ namespace FlappyBoiz.Scripts.Core.Controllers
 
         protected abstract string SceneName { get; }
 
-        protected override async UniTask OnInitAsync(CancellationToken ct)
+        protected sealed override async UniTask OnInitAsync(CancellationToken ct)
         {
             Debug.Log("Loading scene: " + SceneName);
 
             // Load scene and activate
-            m_sceneInstance = await m_sceneLoader.LoadSceneAsync(ct, SceneName);
-            await m_sceneInstance.Value.ActivateAsync().ToUniTask(cancellationToken: ct);
+            using (LifetimeScope.EnqueueParent(m_scope))
+            {
+                m_sceneInstance = await m_sceneLoader.LoadSceneAsync(ct, SceneName);
+                await m_sceneInstance.Value.ActivateAsync().ToUniTask(cancellationToken: ct);
+            }
 
             // Create scope and set as child to this scope
             m_childScope = Object.FindFirstObjectByType<TLifetimeScope>();
-            m_childScope.parentReference.Object = m_scope;
+
+            Assert.IsTrue(m_childScope.Parent == m_scope, "Lifetime scope parent not set");
         }
 
         protected override async UniTask<T> StartChildAsync<T>(CancellationToken ct, IObjectResolver container = null)
@@ -47,7 +52,7 @@ namespace FlappyBoiz.Scripts.Core.Controllers
             if (!m_sceneInstance.HasValue) return;
 
             Debug.Log("Unloading scene: " + SceneName);
-            await m_sceneLoader.UnloadSceneAsync(ct, m_sceneInstance.Value);
+            await m_sceneLoader.UnloadSceneAsync(CancellationToken.None, m_sceneInstance.Value);
             m_sceneInstance = null;
         }
 

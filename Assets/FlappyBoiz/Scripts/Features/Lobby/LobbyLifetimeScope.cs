@@ -1,3 +1,4 @@
+using FlappyBoiz.Scripts.Core.Controllers;
 using VContainer;
 using VContainer.Unity;
 
@@ -7,7 +8,8 @@ namespace FlappyBoiz.Scripts.Features.Lobby
     {
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.RegisterComponentInHierarchy<LobbyView>();
+            builder.RegisterController<LobbyController>();
+            builder.RegisterComponentInHierarchy<LobbyLoadingScreen>();
         }
     }
 }

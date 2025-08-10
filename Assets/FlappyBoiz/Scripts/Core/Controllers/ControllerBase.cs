@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 using VContainer;
 
 namespace FlappyBoiz.Scripts.Core.Controllers
@@ -33,11 +35,12 @@ namespace FlappyBoiz.Scripts.Core.Controllers
                 await child.InitAsync(ct);
                 await child.StartAsync(ct);
             }
-            catch
+            catch (Exception ex)
             {
                 // If something goes wrong, stop the child immediately
-                await child.StopAsync(ct);
+                Debug.LogError("Stopping controller due to exception");
                 m_children.Remove(child);
+                await child.StopAsync(ct);
 
                 throw;
             }

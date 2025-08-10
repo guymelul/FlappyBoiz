@@ -3,11 +3,11 @@ using Cysharp.Threading.Tasks;
 
 namespace FlappyBoiz.Scripts.Features.VFX
 {
-    public class ScreenFaderService : IScreenFaderService
+    public class ScreenTransitionService : IScreenTransitionService
     {
         private readonly ScreenFaderView m_screenFaderView;
 
-        public ScreenFaderService(ScreenFaderView screenFaderView)
+        public ScreenTransitionService(ScreenFaderView screenFaderView)
         {
             m_screenFaderView = screenFaderView;
         }
