@@ -9,7 +9,8 @@ using VContainer.Unity;
 
 namespace FlappyBoiz.Scripts.Core.Controllers
 {
-    public abstract class SceneControllerBase<TLifetimeScope> : ControllerBase where TLifetimeScope : LifetimeScope
+    public abstract class SceneControllerBase<TLifetimeScope, TResult> : ControllerBase<TResult>
+        where TLifetimeScope : LifetimeScope
     {
         private readonly LifetimeScope m_scope;
         private readonly ISceneLoaderService m_sceneLoader;
@@ -60,6 +61,15 @@ namespace FlappyBoiz.Scripts.Core.Controllers
         {
             m_childScope?.Dispose();
             m_childScope = null;
+        }
+    }
+
+    public abstract class
+        SceneControllerBase<TLifetimeScope> : SceneControllerBase<TLifetimeScope, EmptyControllerResult>
+        where TLifetimeScope : LifetimeScope
+    {
+        protected SceneControllerBase(IObjectResolver container) : base(container)
+        {
         }
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
@@ -7,8 +6,10 @@ using VContainer;
 
 namespace FlappyBoiz.Scripts.Core.Controllers
 {
-    public abstract class ControllerBase : IController
+    public abstract class ControllerBase<TResult> : IControllerWithResult<TResult>
     {
+        public TResult Result { get; protected set; }
+
         private IObjectResolver Container { get; }
 
         private readonly List<IController> m_children = new();
@@ -35,7 +36,7 @@ namespace FlappyBoiz.Scripts.Core.Controllers
                 await child.InitAsync(ct);
                 await child.StartAsync(ct);
             }
-            catch (Exception ex)
+            catch
             {
                 // If something goes wrong, stop the child immediately
                 Debug.LogError("Stopping controller due to exception");
@@ -85,6 +86,13 @@ namespace FlappyBoiz.Scripts.Core.Controllers
         }
 
         protected virtual void OnDispose()
+        {
+        }
+    }
+
+    public abstract class ControllerBase : ControllerBase<EmptyControllerResult>
+    {
+        protected ControllerBase(IObjectResolver container) : base(container)
         {
         }
     }
