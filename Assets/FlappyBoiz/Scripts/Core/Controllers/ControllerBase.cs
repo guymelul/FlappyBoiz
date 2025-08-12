@@ -54,7 +54,10 @@ namespace FlappyBoiz.Scripts.Core.Controllers
 
         protected virtual UniTask OnInitAsync(CancellationToken ct) => UniTask.CompletedTask;
 
-        async UniTask IController.StartAsync(CancellationToken ct) => await OnStartAsync(ct);
+        async UniTask IController.StartAsync(CancellationToken ct)
+        {
+            Result = await OnStartWithResultAsync(ct);
+        }
 
         /// <summary>
         /// Stops all children in reverse order of creation before stopping itself.
@@ -71,7 +74,7 @@ namespace FlappyBoiz.Scripts.Core.Controllers
             Dispose();
         }
 
-        protected abstract UniTask OnStartAsync(CancellationToken ct);
+        protected abstract UniTask<TResult> OnStartWithResultAsync(CancellationToken ct);
 
         protected virtual UniTask OnStopAsync(CancellationToken ct) => UniTask.CompletedTask;
 
@@ -94,6 +97,14 @@ namespace FlappyBoiz.Scripts.Core.Controllers
     {
         protected ControllerBase(IObjectResolver container) : base(container)
         {
+        }
+
+        protected abstract UniTask OnStartAsync(CancellationToken ct);
+
+        protected override async UniTask<EmptyControllerResult> OnStartWithResultAsync(CancellationToken ct)
+        {
+            await OnStartAsync(ct);
+            return new EmptyControllerResult();
         }
     }
 }

@@ -1,12 +1,11 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using FlappyBoiz.Scripts.Core.Controllers;
-using FlappyBoiz.Scripts.Features.Lobby;
 using VContainer;
 
 namespace FlappyBoiz.Scripts.Features.Menu
 {
-    public sealed class MenuSceneController : SceneControllerBase<LobbyLifetimeScope>
+    public sealed class MenuSceneController : SceneControllerBase<MenuLifetimeScope, MainMenuChoiceResult>
     {
         protected override string SceneName => "MenuScene";
 
@@ -14,9 +13,10 @@ namespace FlappyBoiz.Scripts.Features.Menu
         {
         }
 
-        protected override async UniTask OnStartAsync(CancellationToken ct)
+        protected override async UniTask<MainMenuChoiceResult> OnStartWithResultAsync(CancellationToken ct)
         {
-            await StartChildAsync<MainMenuController>(ct);
+            var menuController = await StartChildAsync<MainMenuController>(ct);
+            return menuController.Result;
         }
     }
 }

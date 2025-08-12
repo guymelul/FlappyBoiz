@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using FlappyBoiz.Scripts.Core.Controllers;
+using FlappyBoiz.Scripts.Features.Gameplay;
 using FlappyBoiz.Scripts.Features.Lobby;
 using FlappyBoiz.Scripts.Features.Menu;
 using FlappyBoiz.Scripts.Features.Splash;
@@ -45,10 +46,23 @@ namespace FlappyBoiz.Scripts.Features.Startup
             while (!ct.IsCancellationRequested)
             {
                 // Load menu scene
-                var menuScene = StartChildAsync<MenuSceneController>(ct);
+                var menuSceneTask = StartChildAsync<MenuSceneController>(ct);
                 await m_screenTransition.FadeOut(ct);
 
-                await menuScene;
+                // Listen
+                var menuScene = await menuSceneTask;
+
+                await m_screenTransition.FadeIn(ct);
+                await menuScene.StopAsync(ct);
+
+                if (menuScene.Result != MainMenuChoiceResult.Play) continue;
+
+                var gameSceneTask = StartChildAsync<GameplaySceneController>(ct);
+                await m_screenTransition.FadeOut(ct);
+
+                var gameScene = await gameSceneTask;
+
+                await gameScene.StopAsync(ct);
             }
         }
     }

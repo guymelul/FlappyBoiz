@@ -40,6 +40,7 @@ namespace FlappyBoiz.Scripts.Core.Controllers
             // Create scope and set as child to this scope
             m_childScope = Object.FindFirstObjectByType<TLifetimeScope>();
 
+            Assert.IsNotNull(m_childScope, $"Scene [{SceneName}] does not container a LifetimeScope");
             Assert.IsTrue(m_childScope.Parent == m_scope, "Lifetime scope parent not set");
         }
 
@@ -64,12 +65,20 @@ namespace FlappyBoiz.Scripts.Core.Controllers
         }
     }
 
-    public abstract class
-        SceneControllerBase<TLifetimeScope> : SceneControllerBase<TLifetimeScope, EmptyControllerResult>
+    public abstract class SceneControllerBase<TLifetimeScope> :
+        SceneControllerBase<TLifetimeScope, EmptyControllerResult>
         where TLifetimeScope : LifetimeScope
     {
         protected SceneControllerBase(IObjectResolver container) : base(container)
         {
+        }
+
+        protected abstract UniTask OnStartAsync(CancellationToken ct);
+
+        protected override async UniTask<EmptyControllerResult> OnStartWithResultAsync(CancellationToken ct)
+        {
+            await OnStartAsync(ct);
+            return new EmptyControllerResult();
         }
     }
 }

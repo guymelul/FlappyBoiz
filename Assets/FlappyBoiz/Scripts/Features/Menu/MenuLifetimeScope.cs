@@ -1,5 +1,5 @@
 using FlappyBoiz.Scripts.Core.Controllers;
-using FlappyBoiz.Scripts.Features.Lobby;
+using FlappyBoiz.Scripts.Features.Gameplay.UI.Screens;
 using VContainer;
 using VContainer.Unity;
 
@@ -9,8 +9,8 @@ namespace FlappyBoiz.Scripts.Features.Menu
     {
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.RegisterController<LobbyController>();
-            builder.RegisterComponentInHierarchy<LobbyLoadingScreen>();
+            builder.RegisterController<MainMenuController>();
+            builder.RegisterComponentInHierarchy<MainMenuScreen>();
         }
     }
 }

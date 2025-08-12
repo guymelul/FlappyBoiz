@@ -2,6 +2,7 @@
 using FlappyBoiz.Scripts.Core.Services;
 using FlappyBoiz.Scripts.Features.Gameplay;
 using FlappyBoiz.Scripts.Features.Lobby;
+using FlappyBoiz.Scripts.Features.Menu;
 using FlappyBoiz.Scripts.Features.Splash;
 using FlappyBoiz.Scripts.Features.Startup;
 using FlappyBoiz.Scripts.Features.VFX;
@@ -17,7 +18,7 @@ namespace FlappyBoiz.Scripts.Features
         {
             // Entry point
             builder.RegisterEntryPoint<GameRootController>();
-            
+
             // Register All Services 
             builder.Register<ICloudServicesManager, CloudServicesManager>(Lifetime.Singleton);
             builder.Register<ISceneLoaderService, SceneLoaderService>(Lifetime.Singleton);
@@ -30,6 +31,7 @@ namespace FlappyBoiz.Scripts.Features
             builder.RegisterController<SplashSceneController>();
             builder.RegisterController<GameplaySceneController>();
             builder.RegisterController<LobbySceneController>();
+            builder.RegisterController<MenuSceneController>();
 
             // Global Views
             builder.RegisterComponentInHierarchy<ScreenFaderView>();

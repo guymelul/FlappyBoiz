@@ -58,7 +58,7 @@ namespace FlappyBoiz.Scripts.Core.Services
 
 
             // This can happen if the user cancels, or if there's a configuration error.
-            Debug.LogWarning("Google Play Games sign-in failed or was cancelled. Falling back to anonymous sign-in.");
+            Debug.LogWarning("Google Play Games sign-in failed or cancelled. Falling back to anonymous sign-in.");
 #endif
             return await SignInAnonymouslyAsync();
         }
@@ -119,6 +119,10 @@ namespace FlappyBoiz.Scripts.Core.Services
                             Debug.Log("Manual Google Play Games sign-in successful. Requesting server auth code.");
                             PlayGamesPlatform.Instance.RequestServerSideAccess(true, code => tcs.TrySetResult(code));
                         }
+                        else if (status == SignInStatus.Canceled)
+                        {
+                            tcs.TrySetCanceled();
+                        }
                         else
                         {
                             tcs.TrySetException(
@@ -133,6 +137,8 @@ namespace FlappyBoiz.Scripts.Core.Services
                 // Wait for the authentication and server code retrieval to complete.
                 string authCode = await tcs.Task;
 
+                // TODO: check cancellation
+
                 if (string.IsNullOrEmpty(authCode))
                     throw new Exception("Google Play Games returned invalid server side access code");
 
@@ -143,9 +149,13 @@ namespace FlappyBoiz.Scripts.Core.Services
 
                 return true;
             }
+            catch (OperationCanceledException e)
+            {
+                return false;
+            }
             catch (RequestFailedException e)
             {
-                Debug.LogError($"Unity Authentication failed ({e.ErrorCode}): {e.Message}");
+                Debug.LogError($"Unity authentication failed ({e.ErrorCode}): {e.Message}");
 
                 return false;
             }
