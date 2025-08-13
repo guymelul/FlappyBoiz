@@ -6,10 +6,10 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Presenters
 {
     public class GameplayUIController : GameplayStateAware, IStartable
     {
-        [Inject] private ReadyPresenter ReadyPresenter { get; set; }
-        [Inject] private PauseDialogPresenter PauseDialogPresenter { get; set; }
-        [Inject] private GameOverPresenter GameOverPresenter { get; set; }
-        [Inject] private HUDPresenter HUDPresenter { get; set; }
+        [Inject] public ReadyPresenter ReadyPresenter { get; set; }
+        [Inject] public PauseDialogPresenter PauseDialogPresenter { get; set; }
+        [Inject] public GameOverPresenter GameOverPresenter { get; set; }
+        [Inject] public HUDPresenter HUDPresenter { get; set; }
 
         // TODO: use stack for management
 

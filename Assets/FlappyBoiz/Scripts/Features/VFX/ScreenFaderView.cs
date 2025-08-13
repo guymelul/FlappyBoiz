@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using FlappyBoiz.Scripts.LitMotion;
 using LitMotion;
 using LitMotion.Animation;
 using UnityEngine;
@@ -28,18 +29,14 @@ namespace FlappyBoiz.Scripts.Features.VFX
         {
             fadeOutAnimation.Stop();
             fadeInAnimation.Restart();
-            await fadeInAnimation.Components[0].TrackedHandle.ToUniTask(cancellationToken: ct,
-                cancelBehavior: CancelBehavior.Complete,
-                cancelAwaitOnMotionCanceled: true);
+            await fadeInAnimation.WaitCompletedLoop(ct);
         }
 
         public async UniTask FadeOut(CancellationToken ct)
         {
             fadeInAnimation.Stop();
             fadeOutAnimation.Restart();
-            await fadeOutAnimation.Components[0].TrackedHandle
-                .ToUniTask(cancellationToken: ct,
-                    cancelBehavior: CancelBehavior.Complete, cancelAwaitOnMotionCanceled: true);
+            await fadeOutAnimation.WaitCompletedLoop(ct);
         }
     }
 }

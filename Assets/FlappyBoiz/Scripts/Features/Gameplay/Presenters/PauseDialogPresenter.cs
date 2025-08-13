@@ -12,7 +12,7 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Presenters
 {
     public class PauseDialogPresenter : BasePresenter<PauseDialog>, IAsyncStartable
     {
-        [Inject] private IPublisher<GamePauseCommand> OnGamePauseCommand { get; set; }
+        [Inject] public IPublisher<GamePauseCommand> OnGamePauseCommand { get; set; }
 
         public async UniTask StartAsync(CancellationToken cancellation = new CancellationToken())
         {

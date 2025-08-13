@@ -10,7 +10,7 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Obstacle
     {
         [SerializeField] private Vector2 movementDirection;
 
-        [Inject] private ObstacleSpawnerSettings ObstacleSpawnerSettings { get; set; }
+        [Inject] public ObstacleSpawnerSettings ObstacleSpawnerSettings { get; set; }
 
         public bool LastSpawnOutOfArea { get; private set; }
 

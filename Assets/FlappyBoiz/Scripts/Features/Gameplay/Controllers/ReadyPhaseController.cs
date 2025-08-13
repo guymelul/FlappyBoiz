@@ -17,8 +17,8 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Controllers
 
     public class ReadyPhaseController : ControllerBase<ReadyCommandResult>
     {
-        [Inject] private ReadyScreen Screen { get; set; }
-        [Inject] private ISubscriber<FlapperPrimaryActionRequest> OnPrimaryAction { get; set; }
+        [Inject] public ReadyScreen Screen { get; set; }
+        [Inject] public ISubscriber<FlapperPrimaryActionRequest> OnPrimaryAction { get; set; }
 
         private IDisposable m_disposables;
 
@@ -30,25 +30,25 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Controllers
         {
             try
             {
-                await Screen.Show(ct);
-
                 var tcs = new UniTaskCompletionSource<ReadyCommandResult>();
                 var builder = DisposableBag.CreateBuilder();
-
                 OnPrimaryAction.Subscribe(_ => tcs.TrySetResult(ReadyCommandResult.Play)).AddTo(builder);
                 // TODO: wait back button
-
                 m_disposables = builder.Build();
 
-                await tcs.Task;
+                Screen.Show(ct).Forget();
+
+                return await tcs.Task;
+            }
+            catch (OperationCanceledException)
+            {
+                return ReadyCommandResult.Quit;
             }
             finally
             {
                 m_disposables?.Dispose();
                 await Screen.Hide(CancellationToken.None);
             }
-
-            return ReadyCommandResult.Quit;
         }
     }
 }

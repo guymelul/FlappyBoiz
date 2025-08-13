@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUDScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 6807906268746727757, guid: a6f116e7f0ef545feac41c2101afded0, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6908478491615053048, guid: a6f116e7f0ef545feac41c2101afded0, type: 3}
       propertyPath: hideDuration
       value: 0.5
@@ -285,6 +289,34 @@ PrefabInstance:
     - target: {fileID: 2885249935364285190, guid: bed9e5e837a0543ef957aa21fb9070d7, type: 3}
       propertyPath: m_Name
       value: ReadyScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200824749196309946, guid: bed9e5e837a0543ef957aa21fb9070d7, type: 3}
+      propertyPath: components.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200824749196309946, guid: bed9e5e837a0543ef957aa21fb9070d7, type: 3}
+      propertyPath: 'components.Array.data[0]'
+      value: 6989998367015960655
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200824749196309946, guid: bed9e5e837a0543ef957aa21fb9070d7, type: 3}
+      propertyPath: managedReferences[6989998367015960654].settings.loops
+      value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200824749196309946, guid: bed9e5e837a0543ef957aa21fb9070d7, type: 3}
+      propertyPath: managedReferences[6989998367015960654].settings.immediateBind
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5591986233973798139, guid: bed9e5e837a0543ef957aa21fb9070d7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5591986233973798139, guid: bed9e5e837a0543ef957aa21fb9070d7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5591986233973798139, guid: bed9e5e837a0543ef957aa21fb9070d7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6506643060317531239, guid: bed9e5e837a0543ef957aa21fb9070d7, type: 3}
       propertyPath: m_Pivot.x

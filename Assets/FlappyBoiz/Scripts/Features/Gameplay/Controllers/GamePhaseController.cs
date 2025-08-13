@@ -20,11 +20,11 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Controllers
 
     public class GamePhaseController : ControllerBase<GameCommandResult>
     {
-        [Inject] private HUDScreen Screen { get; set; }
-        [Inject] private IPublisher<GamePausedEvent> GamePausedPub { get; set; }
-        [Inject] private IPublisher<GameResumedEvent> GameResumedPub { get; set; }
-        [Inject] private GameSessionManager GameSession { get; set; }
-        [Inject] private ISubscriber<GamePauseCommand> OnGamePauseCommand { get; set; }
+        [Inject] public HUDScreen Screen { get; set; }
+        [Inject] public IPublisher<GamePausedEvent> GamePausedPub { get; set; }
+        [Inject] public IPublisher<GameResumedEvent> GameResumedPub { get; set; }
+        [Inject] public GameSessionManager GameSession { get; set; }
+        [Inject] public ISubscriber<GamePauseCommand> OnGamePauseCommand { get; set; }
 
         private IDisposable m_disposables;
 
@@ -36,12 +36,20 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Controllers
         {
             try
             {
-                Screen.Show(ct).Forget();
+                await Screen.Show(ct);
 
                 var tcs = new UniTaskCompletionSource<GameCommandResult>();
                 var builder = DisposableBag.CreateBuilder();
 
-                GameSession.IsDead.Subscribe(_ => tcs.TrySetResult(GameCommandResult.GameOver)).AddTo(builder);
+                GameSession.IsDead
+                    .Where(b => b)
+                    .Subscribe(_ => tcs.TrySetResult(GameCommandResult.GameOver))
+                    .AddTo(builder);
+
+                GameSession.Score
+                    .Subscribe(score => Screen.ScoreText.text = score.ToString())
+                    .AddTo(builder);
+
                 // TODO: wait back button
 
                 m_disposables = builder.Build();

@@ -10,8 +10,8 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Managers
 {
     public class GameSessionManager : IStartable, IDisposable
     {
-        [Inject] private ISubscriber<FlapperCollisionEvent> OnFlapperCollisionEvent { get; set; }
-        [Inject] private ISubscriber<FlapperCollectableEvent> OnFlapperCollectableEvent { get; set; }
+        [Inject] public ISubscriber<FlapperCollisionEvent> OnFlapperCollisionEvent { get; set; }
+        [Inject] public ISubscriber<FlapperCollectableEvent> OnFlapperCollectableEvent { get; set; }
 
         public ReactiveProperty<int> Score { get; } = new(0);
 

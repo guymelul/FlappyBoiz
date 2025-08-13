@@ -7,7 +7,7 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Presenters
 {
     public class GameOverPresenter : BasePresenter<GameOverScreen>
     {
-        [Inject] private GameSessionManager GameSession { get; set; }
+        [Inject] public GameSessionManager GameSession { get; set; }
 
         protected override void OnScreenInit()
         {

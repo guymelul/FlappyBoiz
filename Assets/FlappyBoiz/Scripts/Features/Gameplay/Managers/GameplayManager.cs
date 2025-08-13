@@ -11,15 +11,15 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Managers
 {
     public class GameplayManager : IPostStartable, IFixedTickable, ITickable
     {
-        [Inject] private ISubscriber<FlapperPrimaryActionRequest> OnPrimaryAction { get; set; }
-        [Inject] private ISubscriber<GamePauseCommand> OnGamePauseCommand { get; set; }
+        [Inject] public ISubscriber<FlapperPrimaryActionRequest> OnPrimaryAction { get; set; }
+        [Inject] public ISubscriber<GamePauseCommand> OnGamePauseCommand { get; set; }
 
-        [Inject] private IPublisher<GamePausedEvent> GamePausedPub { get; set; }
-        [Inject] private IPublisher<GameResumedEvent> GameResumedPub { get; set; }
-        [Inject] private IPublisher<GameStartedEvent> GameStartedPub { get; set; }
-        [Inject] private IPublisher<GameEndedEvent> GameEndedPub { get; set; }
+        [Inject] public IPublisher<GamePausedEvent> GamePausedPub { get; set; }
+        [Inject] public IPublisher<GameResumedEvent> GameResumedPub { get; set; }
+        [Inject] public IPublisher<GameStartedEvent> GameStartedPub { get; set; }
+        [Inject] public IPublisher<GameEndedEvent> GameEndedPub { get; set; }
 
-        [Inject] private GameSessionManager GameSession { get; set; }
+        [Inject] public GameSessionManager GameSession { get; set; }
 
         private StateMachine m_fsm;
         private IDisposable m_disposableSub;

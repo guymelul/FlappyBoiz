@@ -13,9 +13,9 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Presenters
 {
     public class HUDPresenter : BasePresenter<HUDScreen>, IAsyncStartable
     {
-        [Inject] private IPublisher<GamePauseCommand> GamePauseCommandPub { get; set; }
+        [Inject] public IPublisher<GamePauseCommand> GamePauseCommandPub { get; set; }
 
-        [Inject] private GameSessionManager GameSessionManager { get; set; }
+        [Inject] public GameSessionManager GameSessionManager { get; set; }
 
         public async UniTask StartAsync(CancellationToken cancellation = new())
         {

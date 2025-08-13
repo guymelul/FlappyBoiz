@@ -2,6 +2,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using FlappyBoiz.Scripts.Core.Controllers;
 using FlappyBoiz.Scripts.Features.Gameplay.Controllers;
+using UnityEngine;
 using VContainer;
 
 namespace FlappyBoiz.Scripts.Features.Gameplay
@@ -24,6 +25,8 @@ namespace FlappyBoiz.Scripts.Features.Gameplay
 
                 await ReloadScene(ct);
             } while (true);
+            
+            Debug.Log("Quiting game");
         }
     }
 }

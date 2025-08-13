@@ -10,9 +10,9 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Flapper
 {
     public class FlapperLogic : GameplayStateAware, IStartable, ITickable, IFixedTickable
     {
-        [Inject] private FlapperPresenter FlapperPresenter { get; set; }
-        [Inject] private FlapperSettings FlapperSettings { get; set; }
-        [Inject] private ISubscriber<FlapperPrimaryActionRequest> FlapperPrimaryActionRequestSub { get; set; }
+        [Inject] public FlapperPresenter FlapperPresenter { get; set; }
+        [Inject] public FlapperSettings FlapperSettings { get; set; }
+        [Inject] public ISubscriber<FlapperPrimaryActionRequest> FlapperPrimaryActionRequestSub { get; set; }
 
         private float FlapTimer { get; set; }
         private int FlapsBuffered { get; set; }
@@ -49,7 +49,6 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Flapper
         protected override void OnGameEnded(GameEndedEvent ev)
         {
             Start();
-
             FlapperPresenter.OnDead();
         }
 

@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Threading;
+﻿using System.Threading;
 using Cysharp.Threading.Tasks;
+using FlappyBoiz.Scripts.LitMotion;
 using LitMotion;
 using LitMotion.Animation;
 using UnityEngine;
@@ -14,26 +14,20 @@ namespace FlappyBoiz.Scripts.Core.UI
         private CanvasGroup m_canvasGroup;
         private Canvas m_canvas;
         private LitMotionAnimation m_screenAnimation;
-        private IEnumerator WaitForScreenAnimation { get; set; }
 
-        [SerializeField, Range(0.0f, 10.0f)]
-        private float showDuration = 0.2f;
+        [SerializeField, Range(0.0f, 10.0f)] private float showDuration = 0.2f;
 
-        [SerializeField, Range(0.0f, 10.0f)]
-        private float showDelay;
+        [SerializeField, Range(0.0f, 10.0f)] private float showDelay;
 
-        [SerializeField, Range(0.0f, 10.0f)]
-        private float hideDuration = 0.1f;
+        [SerializeField, Range(0.0f, 10.0f)] private float hideDuration = 0.1f;
 
-        [SerializeField]
-        private Ease ease = Ease.InCirc;
+        [SerializeField] private Ease ease = Ease.InCirc;
 
         private void Awake()
         {
             m_canvas = GetComponent<Canvas>();
             m_canvasGroup = GetComponent<CanvasGroup>();
             m_screenAnimation = GetComponent<LitMotionAnimation>();
-            WaitForScreenAnimation = m_screenAnimation ? new WaitWhile(() => m_screenAnimation.IsPlaying) : null;
 
             DisableInteraction();
         }
@@ -44,20 +38,6 @@ namespace FlappyBoiz.Scripts.Core.UI
 
         protected virtual void OnPostShown()
         {
-        }
-
-        public async UniTask Show(CancellationToken ct = default)
-        {
-            StopAllCoroutines();
-
-            await ShowCoroutine().ToUniTask(cancellationToken: ct);
-        }
-
-        public async UniTask Hide(CancellationToken ct = default)
-        {
-            StopAllCoroutines();
-
-            await HideCoroutine().ToUniTask(cancellationToken: ct);
         }
 
         public void EnableInteraction()
@@ -78,10 +58,9 @@ namespace FlappyBoiz.Scripts.Core.UI
             m_canvasGroup.alpha = 0;
         }
 
-        private IEnumerator ShowCoroutine()
+        public async UniTask Show(CancellationToken ct = default)
         {
             // Used to hide the screen
-
             OnPreShown();
 
             m_canvas.enabled = true;
@@ -97,38 +76,39 @@ namespace FlappyBoiz.Scripts.Core.UI
 
             if (showDuration > 0)
                 // Animate
-                yield return AnimateCanvasGroupAlpha(0f, 1f, showDuration, showDelay);
+                await AnimateCanvasGroupAlpha(ct, 0f, 1f, showDuration, showDelay);
 
             m_canvasGroup.alpha = 1;
 
             OnPostShown();
 
-            if (!m_screenAnimation) yield break;
+            if (!m_screenAnimation) return;
 
             m_screenAnimation.Restart();
-
-            yield return WaitForScreenAnimation;
+            await m_screenAnimation.WaitCompletedLoop(ct);
         }
 
-        private IEnumerator HideCoroutine()
+        public async UniTask Hide(CancellationToken ct = default)
         {
             DisableInteraction();
 
             if (hideDuration > 0)
-                yield return AnimateCanvasGroupAlpha(1f, 0f, hideDuration);
+                await AnimateCanvasGroupAlpha(ct, 1f, 0f, hideDuration);
 
             MakeInvisible();
         }
 
-        private IEnumerator AnimateCanvasGroupAlpha(float from, float to, float duration, float delay = 0)
+        private UniTask AnimateCanvasGroupAlpha(
+            CancellationToken ct,
+            float from, float to, float duration, float delay = 0)
         {
-            yield return LMotion.Create(from, to, duration)
+            return LMotion.Create(from, to, duration)
                 .WithScheduler(MotionScheduler.UpdateRealtime)
                 .WithEase(ease)
                 .WithDelay(delay, skipValuesDuringDelay: false)
                 .Bind(n => m_canvasGroup.alpha = n)
                 .AddTo(gameObject)
-                .ToYieldInstruction();
+                .ToUniTask(ct);
         }
     }
 }

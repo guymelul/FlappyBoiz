@@ -9,11 +9,9 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Managers
 {
     public class GameplayInputManager : MonoBehaviour
     {
-        [Inject]
-        private readonly IPublisher<FlapperPrimaryActionRequest> m_actionPublisher;
+        [Inject] public IPublisher<FlapperPrimaryActionRequest> PrimaryActionPub { get; set; }
 
-        [Inject]
-        private readonly IPublisher<GamePauseCommand> m_gamePauseCommand;
+        [Inject] public IPublisher<GamePauseCommand> GamePauseCommandPub { get; set; }
 
         private InputAction m_primaryAction;
         private InputAction m_pauseAction;
@@ -57,14 +55,14 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Managers
             }
 
             Debug.Log("Publishing primary action");
-            m_actionPublisher.Publish(FlapperPrimaryActionRequest.Empty);
+            PrimaryActionPub.Publish(FlapperPrimaryActionRequest.Empty);
         }
 
         public void OnPauseAction(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
 
-            m_gamePauseCommand.Publish(GamePauseCommand.Empty);
+            GamePauseCommandPub.Publish(GamePauseCommand.Empty);
         }
     }
 }

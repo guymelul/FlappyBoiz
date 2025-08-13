@@ -8,9 +8,9 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Obstacle
 {
     public class ObstacleSpawnerLogic : GameplayStateAware, IStartable, IFixedTickable
     {
-        [Inject] private ObstacleSpawnerSettings ObstacleSpawnerSettings { get; set; }
+        [Inject] public ObstacleSpawnerSettings ObstacleSpawnerSettings { get; set; }
 
-        [Inject] private ObstacleSpawnerPresenter ObstacleSpawnerPresenter { get; set; }
+        [Inject] public ObstacleSpawnerPresenter ObstacleSpawnerPresenter { get; set; }
 
         private float SpawnTimer { get; set; }
 

@@ -15,9 +15,9 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Flapper
     {
         private static readonly int AnimKeyFlapWings = Animator.StringToHash("FlapWings");
 
-        [Inject] private FlapperSettings FlapperSettings { get; set; }
-        [Inject] private IPublisher<FlapperCollisionEvent> FlapperCollisionEventPub { get; set; }
-        [Inject] private IPublisher<FlapperCollectableEvent> FlapperCollectableEventPub { get; set; }
+        [Inject] public FlapperSettings FlapperSettings { get; set; }
+        [Inject] public IPublisher<FlapperCollisionEvent> FlapperCollisionEventPub { get; set; }
+        [Inject] public IPublisher<FlapperCollectableEvent> FlapperCollectableEventPub { get; set; }
 
         private Rigidbody2D m_rigidbody;
         private Animator m_animator;
