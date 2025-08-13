@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4629951586415159557, guid: 732eecf90da7eed499738fed0dc88b9d, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1860566025}
     - target: {fileID: 2720033516118398453, guid: d0261886a9e0cd34f9a3b9cc9ddeba76, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -211,10 +215,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 4629951586415159557, guid: 732eecf90da7eed499738fed0dc88b9d, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1860566025}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -502,6 +502,14 @@ PrefabInstance:
     - target: {fileID: 5446374606614951197, guid: a899e6e6a2f1f410f8b479acb201c872, type: 3}
       propertyPath: m_Name
       value: MainMenuScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 6560459214672962756, guid: a899e6e6a2f1f410f8b479acb201c872, type: 3}
+      propertyPath: hideDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6560459214672962756, guid: a899e6e6a2f1f410f8b479acb201c872, type: 3}
+      propertyPath: showDuration
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

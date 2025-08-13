@@ -17,6 +17,7 @@ namespace FlappyBoiz.Scripts.Core.Controllers
 
         private TLifetimeScope m_childScope;
         private SceneInstance? m_sceneInstance;
+        protected abstract string SceneName { get; }
 
         protected SceneControllerBase(IObjectResolver container) : base(container)
         {
@@ -24,9 +25,16 @@ namespace FlappyBoiz.Scripts.Core.Controllers
             m_scope = container.Resolve<LifetimeScope>();
         }
 
-        protected abstract string SceneName { get; }
+        protected sealed override async UniTask OnInitAsync(CancellationToken ct) => await LoadScene(ct);
 
-        protected sealed override async UniTask OnInitAsync(CancellationToken ct)
+        protected override async UniTask<T> StartChildAsync<T>(CancellationToken ct, IObjectResolver container = null)
+        {
+            return await base.StartChildAsync<T>(ct, m_childScope.Container);
+        }
+
+        protected override async UniTask OnStopAsync(CancellationToken ct) => await UnloadScene();
+
+        private async UniTask LoadScene(CancellationToken ct)
         {
             Debug.Log("Loading scene: " + SceneName);
 
@@ -44,18 +52,19 @@ namespace FlappyBoiz.Scripts.Core.Controllers
             Assert.IsTrue(m_childScope.Parent == m_scope, "Lifetime scope parent not set");
         }
 
-        protected override async UniTask<T> StartChildAsync<T>(CancellationToken ct, IObjectResolver container = null)
-        {
-            return await base.StartChildAsync<T>(ct, m_childScope.Container);
-        }
-
-        protected override async UniTask OnStopAsync(CancellationToken ct)
+        private async UniTask UnloadScene()
         {
             if (!m_sceneInstance.HasValue) return;
 
             Debug.Log("Unloading scene: " + SceneName);
             await m_sceneLoader.UnloadSceneAsync(CancellationToken.None, m_sceneInstance.Value);
             m_sceneInstance = null;
+        }
+
+        protected async UniTask ReloadScene(CancellationToken ct)
+        {
+            await UnloadScene();
+            await LoadScene(ct);
         }
 
         protected override void OnDispose()
@@ -78,6 +87,7 @@ namespace FlappyBoiz.Scripts.Core.Controllers
         protected override async UniTask<EmptyControllerResult> OnStartWithResultAsync(CancellationToken ct)
         {
             await OnStartAsync(ct);
+
             return new EmptyControllerResult();
         }
     }

@@ -1,6 +1,7 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using FlappyBoiz.Scripts.Core.Controllers;
+using FlappyBoiz.Scripts.Features.Gameplay.Controllers;
 using VContainer;
 
 namespace FlappyBoiz.Scripts.Features.Gameplay
@@ -15,7 +16,14 @@ namespace FlappyBoiz.Scripts.Features.Gameplay
 
         protected override async UniTask OnStartAsync(CancellationToken ct)
         {
-            await UniTask.Never(ct);
+            do
+            {
+                var gameplay = await StartChildAsync<GameplayController>(ct);
+
+                if (gameplay.Result == GameOverCommandResult.MainMenu) break;
+
+                await ReloadScene(ct);
+            } while (true);
         }
     }
 }

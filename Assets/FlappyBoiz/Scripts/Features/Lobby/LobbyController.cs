@@ -23,20 +23,18 @@ namespace FlappyBoiz.Scripts.Features.Lobby
 
         protected override async UniTask OnStartAsync(CancellationToken ct)
         {
-            await UniTask.Delay(500, cancellationToken: ct);
-
-            m_lobbyLoadingScreen.Show();
+            await m_lobbyLoadingScreen.Show(ct);
 
             Debug.Log("Cloud Services Init");
-
             await m_cloudServicesManager.Init(ct);
 
             Debug.Log("Authenticating");
-
             bool isAuthenticated = await m_cloudServicesManager.Authenticate(ct);
 
             // TODO: If auth is success
             //  Load player data
+
+            await m_lobbyLoadingScreen.Hide(ct);
 
             await UniTask.Delay(1000, cancellationToken: ct);
         }

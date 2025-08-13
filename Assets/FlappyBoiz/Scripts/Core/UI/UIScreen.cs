@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using LitMotion;
 using LitMotion.Animation;
 using UnityEngine;
@@ -12,23 +14,28 @@ namespace FlappyBoiz.Scripts.Core.UI
         private CanvasGroup m_canvasGroup;
         private Canvas m_canvas;
         private LitMotionAnimation m_screenAnimation;
-        protected IEnumerator WaitForScreenAnimation { get; private set; }
+        private IEnumerator WaitForScreenAnimation { get; set; }
 
-        [SerializeField, Range(0.0f, 10.0f)] private float showDuration = 0.2f;
+        [SerializeField, Range(0.0f, 10.0f)]
+        private float showDuration = 0.2f;
 
-        [SerializeField, Range(0.0f, 10.0f)] private float showDelay = 0.0f;
+        [SerializeField, Range(0.0f, 10.0f)]
+        private float showDelay;
 
-        [SerializeField, Range(0.0f, 10.0f)] private float hideDuration = 0.1f;
+        [SerializeField, Range(0.0f, 10.0f)]
+        private float hideDuration = 0.1f;
 
-        [SerializeField] private Ease ease = Ease.InCirc;
+        [SerializeField]
+        private Ease ease = Ease.InCirc;
 
-        private void Setup()
+        private void Awake()
         {
             m_canvas = GetComponent<Canvas>();
             m_canvasGroup = GetComponent<CanvasGroup>();
             m_screenAnimation = GetComponent<LitMotionAnimation>();
-
             WaitForScreenAnimation = m_screenAnimation ? new WaitWhile(() => m_screenAnimation.IsPlaying) : null;
+
+            DisableInteraction();
         }
 
         protected virtual void OnPreShown()
@@ -39,27 +46,18 @@ namespace FlappyBoiz.Scripts.Core.UI
         {
         }
 
-        public void Show()
+        public async UniTask Show(CancellationToken ct = default)
         {
-            if (m_canvas == null)
-            {
-                Setup();
-            }
+            StopAllCoroutines();
 
-            StartCoroutine(ShowCoroutine());
+            await ShowCoroutine().ToUniTask(cancellationToken: ct);
         }
 
-        public void Hide()
+        public async UniTask Hide(CancellationToken ct = default)
         {
-            bool animate = true;
+            StopAllCoroutines();
 
-            if (m_canvas == null)
-            {
-                Setup();
-                animate = false;
-            }
-
-            StartCoroutine(HideCoroutine(animate));
+            await HideCoroutine().ToUniTask(cancellationToken: ct);
         }
 
         public void EnableInteraction()
@@ -74,13 +72,18 @@ namespace FlappyBoiz.Scripts.Core.UI
             m_canvasGroup.blocksRaycasts = false;
         }
 
+        private void MakeInvisible()
+        {
+            m_canvas.enabled = false;
+            m_canvasGroup.alpha = 0;
+        }
+
         private IEnumerator ShowCoroutine()
         {
-            DisableInteraction();
+            // Used to hide the screen
 
             OnPreShown();
 
-            m_canvasGroup.alpha = 0;
             m_canvas.enabled = true;
 
             // Trigger immediate bindings
@@ -107,15 +110,14 @@ namespace FlappyBoiz.Scripts.Core.UI
             yield return WaitForScreenAnimation;
         }
 
-        private IEnumerator HideCoroutine(bool animate)
+        private IEnumerator HideCoroutine()
         {
             DisableInteraction();
 
-            if (animate && hideDuration > 0)
+            if (hideDuration > 0)
                 yield return AnimateCanvasGroupAlpha(1f, 0f, hideDuration);
 
-            m_canvas.enabled = false;
-            m_canvasGroup.alpha = 0;
+            MakeInvisible();
         }
 
         private IEnumerator AnimateCanvasGroupAlpha(float from, float to, float duration, float delay = 0)

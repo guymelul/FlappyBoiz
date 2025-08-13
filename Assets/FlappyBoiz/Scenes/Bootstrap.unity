@@ -353,12 +353,12 @@ MonoBehaviour:
           delayType: 0
           loops: 1
           loopType: 0
-          cancelOnError: 0
+          cancelOnError: 1
           skipValuesDuringDelay: 0
           immediateBind: 1
           schedulerType: 13
-          additionalSettings: 0
-        relative: 0
+          additionalSettings: 1
+        relative: 1
 --- !u!114 &833761669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,12 +417,12 @@ MonoBehaviour:
           delayType: 0
           loops: 1
           loopType: 0
-          cancelOnError: 0
+          cancelOnError: 1
           skipValuesDuringDelay: 0
           immediateBind: 1
           schedulerType: 13
-          additionalSettings: 0
-        relative: 0
+          additionalSettings: 1
+        relative: 1
 --- !u!1 &976366551
 GameObject:
   m_ObjectHideFlags: 0

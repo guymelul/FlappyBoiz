@@ -430,6 +430,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3054138010977268067, guid: 17d51b09e0bde41d6962c19548fe14d7, type: 3}
+      propertyPath: hideDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054138010977268067, guid: 17d51b09e0bde41d6962c19548fe14d7, type: 3}
+      propertyPath: showDuration
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6495874260233092655, guid: 17d51b09e0bde41d6962c19548fe14d7, type: 3}
       propertyPath: m_Name
       value: LoadingScreen

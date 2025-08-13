@@ -8,10 +8,9 @@ namespace FlappyBoiz.Scripts.Core.Services
 {
     public class SceneLoaderService : ISceneLoaderService
     {
-        public async UniTask<SceneInstance> LoadSceneAsync(CancellationToken ct, string addressableName, bool additive = false)
+        public async UniTask<SceneInstance> LoadSceneAsync(CancellationToken ct,
+            string addressableName, bool additive = false)
         {
-            // TODO: unload all other scenes and leave on the Boot one?
-
             return await Addressables.LoadSceneAsync(addressableName,
                 loadMode: additive ? LoadSceneMode.Additive : LoadSceneMode.Single,
                 activateOnLoad: true).ToUniTask(cancellationToken: ct);

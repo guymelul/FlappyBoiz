@@ -12,7 +12,6 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Presenters
         protected override void OnScreenInit()
         {
             Screen.Score = GameSession.Score.CurrentValue;
-            Screen.EarnedCoins = GameSession.Coins;
             Screen.HighScore = 0;
         }
     }

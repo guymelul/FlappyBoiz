@@ -2,14 +2,13 @@
 using FlappyBoiz.Scripts.Events;
 using MessagePipe;
 using R3;
-using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 using DisposableBag = MessagePipe.DisposableBag;
 
 namespace FlappyBoiz.Scripts.Features.Gameplay.Managers
 {
-    public class GameSessionManager : IStartable
+    public class GameSessionManager : IStartable, IDisposable
     {
         [Inject] private ISubscriber<FlapperCollisionEvent> OnFlapperCollisionEvent { get; set; }
         [Inject] private ISubscriber<FlapperCollectableEvent> OnFlapperCollectableEvent { get; set; }
@@ -18,13 +17,12 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Managers
 
         public ReactiveProperty<bool> IsDead { get; } = new(false);
 
-        public int Coins { get; set; } = 0;
-
         private IDisposable m_subscriptions;
 
         public void Start()
         {
             var bag = DisposableBag.CreateBuilder();
+
             OnFlapperCollectableEvent.Subscribe(ev => Score.Value += ev.Amount).AddTo(bag);
             OnFlapperCollisionEvent.Subscribe(OnFlapperHit).AddTo(bag);
 
@@ -34,13 +32,12 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Managers
         private void OnFlapperHit(FlapperCollisionEvent ev)
         {
             IsDead.Value = true;
+            Dispose();
+        }
 
-            // TODO: calculate amount of coins
-            Coins = Mathf.FloorToInt(Score.CurrentValue * 0.75f);
-
-            if (m_subscriptions == null) return;
-
-            m_subscriptions.Dispose();
+        public void Dispose()
+        {
+            m_subscriptions?.Dispose();
             m_subscriptions = null;
         }
     }

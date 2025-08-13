@@ -23,12 +23,20 @@ namespace FlappyBoiz.Scripts.Features.Menu
             // TODO: add back button task, and other options
             try
             {
+                await m_screen.Show(ct);
+
                 Debug.Log("Started main menu");
-                await UniTask.WhenAny(m_screen.StartButton.OnClickAsync(ct));
+                await m_screen.StartButton.OnClickAsync(ct);
+                Debug.Log("Play clicked");
+
+                await m_screen.Hide(ct);
+
                 return MainMenuChoiceResult.Play;
             }
             catch (OperationCanceledException)
             {
+                Debug.Log("Canceled main menu");
+
                 return MainMenuChoiceResult.Quit;
             }
         }

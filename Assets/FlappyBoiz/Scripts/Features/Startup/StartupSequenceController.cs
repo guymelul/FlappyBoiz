@@ -40,19 +40,15 @@ namespace FlappyBoiz.Scripts.Features.Startup
             var lobby = await lobbyTask;
 
             // Unload lobby
-            await m_screenTransition.FadeIn(ct);
             await lobby.StopAsync(ct);
 
             while (!ct.IsCancellationRequested)
             {
                 // Load menu scene
-                var menuSceneTask = StartChildAsync<MenuSceneController>(ct);
-                await m_screenTransition.FadeOut(ct);
-
-                // Listen
-                var menuScene = await menuSceneTask;
+                var menuScene = await StartChildAsync<MenuSceneController>(ct);
 
                 await m_screenTransition.FadeIn(ct);
+                
                 await menuScene.StopAsync(ct);
 
                 if (menuScene.Result != MainMenuChoiceResult.Play) continue;

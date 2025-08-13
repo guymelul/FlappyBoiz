@@ -27,15 +27,19 @@ namespace FlappyBoiz.Scripts.Features.VFX
         public async UniTask FadeIn(CancellationToken ct)
         {
             fadeOutAnimation.Stop();
-            fadeInAnimation.Play();
-            await fadeInAnimation.Components[0].TrackedHandle.ToUniTask(cancellationToken: ct);
+            fadeInAnimation.Restart();
+            await fadeInAnimation.Components[0].TrackedHandle.ToUniTask(cancellationToken: ct,
+                cancelBehavior: CancelBehavior.Complete,
+                cancelAwaitOnMotionCanceled: true);
         }
 
         public async UniTask FadeOut(CancellationToken ct)
         {
             fadeInAnimation.Stop();
-            fadeOutAnimation.Play();
-            await fadeOutAnimation.Components[0].TrackedHandle.ToUniTask(cancellationToken: ct);
+            fadeOutAnimation.Restart();
+            await fadeOutAnimation.Components[0].TrackedHandle
+                .ToUniTask(cancellationToken: ct,
+                    cancelBehavior: CancelBehavior.Complete, cancelAwaitOnMotionCanceled: true);
         }
     }
 }
