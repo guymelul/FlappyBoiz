@@ -1,0 +1,28 @@
+﻿using System;
+using System.Linq;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using UnityEngine.UI;
+
+namespace FlappyBoiz.Scripts.Core.UI
+{
+    public static class UIControllerUtils
+    {
+        public static async UniTask<Button> ButtonSelector(CancellationToken cancellationToken, params Button[] buttons)
+        {
+            // Handle the edge case where no buttons are provided.
+            if (buttons == null || buttons.Length == 0)
+            {
+                throw new Exception("No buttons passed to ButtonSelector");
+            }
+
+            var clickTasks = buttons.Select(button => button.OnClickAsync(cancellationToken)).ToArray();
+
+            // UniTask.WhenAny awaits all tasks in the array and returns the index of the first one to complete.
+            int completedIndex = await UniTask.WhenAny(clickTasks);
+
+            // Return the button that corresponds to the completed task.
+            return buttons[completedIndex];
+        }
+    }
+}

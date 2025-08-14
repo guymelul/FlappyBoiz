@@ -47,14 +47,8 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Managers
         {
             if (!m_primaryAction.WasPerformedThisFrame()) return;
 
-            if (m_currentEventSystem.IsPointerOverGameObject())
-            {
-                Debug.Log("Pointer is over game object");
+            if (m_currentEventSystem.IsPointerOverGameObject()) return;
 
-                return;
-            }
-
-            Debug.Log("Publishing primary action");
             PrimaryActionPub.Publish(FlapperPrimaryActionRequest.Empty);
         }
 

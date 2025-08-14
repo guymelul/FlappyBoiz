@@ -1,27 +1,28 @@
 ﻿using FlappyBoiz.Scripts.Events;
+using FlappyBoiz.Scripts.Features.Gameplay.Managers;
 using FlappyBoiz.Scripts.Features.Gameplay.ScriptableObjects;
 using UnityEngine;
 using VContainer;
-using VContainer.Unity;
 
 namespace FlappyBoiz.Scripts.Features.Gameplay.Obstacle
 {
-    public class ObstacleSpawnerLogic : GameplayStateAware, IStartable, IFixedTickable
+    public class ObstacleSpawnerLogic : GameplayStateAware
     {
         [Inject] public ObstacleSpawnerSettings ObstacleSpawnerSettings { get; set; }
 
         [Inject] public ObstacleSpawnerPresenter ObstacleSpawnerPresenter { get; set; }
 
+        [Inject] public GameSessionManager GameSessionManager { get; set; }
+
         private float SpawnTimer { get; set; }
 
-        // TODO: Mathf.Clamp01(score.Value / (float)(maxScoreThreshold * 2));
-        // How wide is the gap
-        private float Difficulty => 0;
+        private int CurrentScore => GameSessionManager.Score.CurrentValue;
+        private float Progress => Mathf.Clamp01(CurrentScore / (float)ObstacleSpawnerSettings.MaxDifficultyScore);
 
-        // How far from the center
-        private float Variation => 0f;
+        private float Difficulty => ObstacleSpawnerSettings.DifficultyCurve.Evaluate(Progress);
+        private float Variation => ObstacleSpawnerSettings.VariationCurve.Evaluate(Progress);
 
-        public void Start()
+        protected override void OnGameStarted(GameStartedEvent ev)
         {
             SpawnTimer = 0;
         }
@@ -31,10 +32,8 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Obstacle
             ObstacleSpawnerPresenter.Clear();
         }
 
-        public void FixedTick()
+        protected override void OnGameFixedTick()
         {
-            if (!IsGameRunning) return;
-
             if (SpawnTimer > 0)
             {
                 SpawnTimer -= Time.fixedDeltaTime;
@@ -50,6 +49,7 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Obstacle
         private void Spawn()
         {
             // Ask spawner view to actually put obstacles in the game
+            Debug.Log($"Spawn [progress={Progress}, diff={Difficulty}, var={Variation}]");
             ObstacleSpawnerPresenter.SpawnObstacle(Variation, Difficulty);
 
             // Restart timer

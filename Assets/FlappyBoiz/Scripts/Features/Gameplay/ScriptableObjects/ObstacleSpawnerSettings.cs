@@ -14,6 +14,11 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.ScriptableObjects
         [field: SerializeField, Range(0.1f, 50.0f)]
         public float ObstacleVelocity { get; set; }
 
+        [field: SerializeField, Range(0f, 1000f)]
+        public int MaxDifficultyScore { get; set; }
+
+        [field: SerializeField] public AnimationCurve VariationCurve { get; set; }
+
         [field: SerializeField] public AnimationCurve DifficultyCurve { get; set; }
 
         [field: SerializeField] public List<BaseObstacle> Obstacles { get; set; }

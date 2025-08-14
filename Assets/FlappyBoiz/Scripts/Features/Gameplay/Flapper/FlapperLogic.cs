@@ -4,11 +4,10 @@ using FlappyBoiz.Scripts.Features.Gameplay.ScriptableObjects;
 using MessagePipe;
 using UnityEngine;
 using VContainer;
-using VContainer.Unity;
 
 namespace FlappyBoiz.Scripts.Features.Gameplay.Flapper
 {
-    public class FlapperLogic : GameplayStateAware, IStartable, ITickable, IFixedTickable
+    public class FlapperLogic : GameplayStateAware
     {
         [Inject] public FlapperPresenter FlapperPresenter { get; set; }
         [Inject] public FlapperSettings FlapperSettings { get; set; }
@@ -20,23 +19,16 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Flapper
 
         private IDisposable m_subscriptions;
 
-        public void Start()
+        #region Game Events
+
+        protected override void OnGameStarted(GameStartedEvent ev)
         {
             FlapTimer = 0;
-            FlapsBuffered = 0;
+            FlapsBuffered = 1;
+            SetupEventSubs();
         }
 
-        protected override void OnGameStarted(GameStartedEvent ev) => SetupEvents();
-
-        protected override void OnGameResumed(GameResumedEvent ev) => SetupEvents();
-
-        private void SetupEvents()
-        {
-            var bag = DisposableBag.CreateBuilder();
-            FlapperPrimaryActionRequestSub.Subscribe(HandlePrimaryAction).AddTo(bag);
-
-            m_subscriptions = bag.Build();
-        }
+        protected override void OnGameResumed(GameResumedEvent ev) => SetupEventSubs();
 
         protected override void OnGamePaused(GamePausedEvent ev)
         {
@@ -48,23 +40,18 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Flapper
 
         protected override void OnGameEnded(GameEndedEvent ev)
         {
-            Start();
+            FlapsBuffered = 0;
             FlapperPresenter.OnDead();
         }
 
-        public void Tick()
+        #endregion
+
+        private void SetupEventSubs()
         {
-            if (!IsGameRunning || FlapTimer <= 0) return;
+            var bag = DisposableBag.CreateBuilder();
+            FlapperPrimaryActionRequestSub.Subscribe(HandlePrimaryAction).AddTo(bag);
 
-            FlapTimer -= Time.deltaTime;
-        }
-
-        public void FixedTick()
-        {
-            if (!IsGameRunning) return;
-
-            FlapperPresenter.FixedTick();
-            ApplyFlap();
+            m_subscriptions = bag.Build();
         }
 
         private void HandlePrimaryAction(FlapperPrimaryActionRequest ev)
@@ -72,8 +59,17 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Flapper
             FlapsBuffered = Mathf.Clamp(FlapsBuffered + 1, 0, 2);
         }
 
-        private void ApplyFlap()
+        protected override void OnGameTick()
         {
+            if (FlapTimer <= 0) return;
+
+            FlapTimer -= Time.deltaTime;
+        }
+
+        protected override void OnGameFixedTick()
+        {
+            FlapperPresenter.FixedTick();
+
             if (FlapsBuffered <= 0 || !(FlapTimer <= 0)) return;
 
             FlapTimer = FlapCooldown;

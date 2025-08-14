@@ -47,7 +47,7 @@ namespace FlappyBoiz.Scripts.Features.Gameplay
             // UI Screens
             builder.RegisterComponentInHierarchy<ReadyScreen>();
             builder.RegisterComponentInHierarchy<HUDScreen>();
-            builder.RegisterComponentInHierarchy<PauseDialog>();
+            builder.RegisterComponentInHierarchy<PauseDialogScreen>();
             builder.RegisterComponentInHierarchy<GameOverScreen>();
         }
     }

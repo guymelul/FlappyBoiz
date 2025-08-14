@@ -37,11 +37,11 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Controllers
             Debug.Log("Game phase done");
 
             if (gamePhase.Result == GameCommandResult.Quit) return GameOverCommandResult.MainMenu;
-
-            // TODO: Start game ending sequence controller
+            
             Debug.Log("Game ending sequence");
             GameEndedEventPub.Publish(GameEndedEvent.Empty);
-            // Start child here
+            
+            // TODO: Start game ending sequence controller
 
             Debug.Log("Game over!");
             var gameOverPhase = await StartChildAsync<GameOverPhaseController>(ct);

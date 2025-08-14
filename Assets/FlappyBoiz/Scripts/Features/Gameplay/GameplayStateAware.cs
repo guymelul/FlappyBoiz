@@ -5,14 +5,14 @@ using VContainer.Unity;
 
 namespace FlappyBoiz.Scripts.Features.Gameplay
 {
-    public abstract class GameplayStateAware : IPostInitializable
+    public abstract class GameplayStateAware : IPostInitializable, ITickable, IFixedTickable
     {
-        [Inject] protected ISubscriber<GameStartedEvent> GameStarted { get; set; }
-        [Inject] protected ISubscriber<GameResumedEvent> GameResumed { get; set; }
-        [Inject] protected ISubscriber<GamePausedEvent> GamePaused { get; set; }
-        [Inject] protected ISubscriber<GameEndedEvent> GameEnded { get; set; }
+        [Inject] public ISubscriber<GameStartedEvent> GameStarted { get; set; }
+        [Inject] public ISubscriber<GameResumedEvent> GameResumed { get; set; }
+        [Inject] public ISubscriber<GamePausedEvent> GamePaused { get; set; }
+        [Inject] public ISubscriber<GameEndedEvent> GameEnded { get; set; }
 
-        protected bool IsGameRunning { get; private set; }
+        private bool IsGameRunning { get; set; }
 
         public void PostInitialize()
         {
@@ -32,6 +32,20 @@ namespace FlappyBoiz.Scripts.Features.Gameplay
                 OnGameEnded(ev);
             });
         }
+        
+        public void Tick()
+        {
+            if (!IsGameRunning) return;
+
+            OnGameTick();
+        }
+
+        public void FixedTick()
+        {
+            if (!IsGameRunning) return;
+
+            OnGameFixedTick();
+        }
 
         protected virtual void OnGameStarted(GameStartedEvent ev)
         {
@@ -46,6 +60,14 @@ namespace FlappyBoiz.Scripts.Features.Gameplay
         }
 
         protected virtual void OnGameEnded(GameEndedEvent ev)
+        {
+        }
+
+        protected virtual void OnGameTick()
+        {
+        }
+
+        protected virtual void OnGameFixedTick()
         {
         }
     }
