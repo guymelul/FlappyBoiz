@@ -63,6 +63,7 @@ namespace FlappyBoiz.Scripts.Core.Controllers
 
         protected async UniTask ReloadScene(CancellationToken ct)
         {
+            OnDispose();
             await UnloadScene();
             await LoadScene(ct);
         }

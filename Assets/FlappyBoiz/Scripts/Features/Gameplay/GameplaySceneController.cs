@@ -21,11 +21,14 @@ namespace FlappyBoiz.Scripts.Features.Gameplay
             {
                 var gameplay = await StartChildAsync<GameplayController>(ct);
 
+                await gameplay.StopAsync(ct);
+
                 if (gameplay.Result == GameOverCommandResult.MainMenu) break;
 
+                Debug.Log("Restarting game");
                 await ReloadScene(ct);
             } while (true);
-            
+
             Debug.Log("Quiting game");
         }
     }

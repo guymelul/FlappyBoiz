@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using FlappyBoiz.Scripts.Core.Controllers;
+using FlappyBoiz.Scripts.Core.UI;
 using FlappyBoiz.Scripts.Features.Gameplay.Managers;
 using FlappyBoiz.Scripts.Features.Gameplay.UI.Screens;
 using VContainer;
@@ -24,16 +25,23 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Controllers
 
         protected override async UniTask<GameOverCommandResult> OnStartWithResultAsync(CancellationToken ct)
         {
-            // TODO: wait for primary action or back button
             Screen.Score = GameSessionManager.Score.CurrentValue;
             Screen.HighScore = 0;
+            Screen.EarnedCoins = 5;
 
             await Screen.Show(ct);
 
+            using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(ct);
 
-            await UniTask.Never(ct);
+            var selectedButton = await UIControllerUtils.ButtonSelector(linkedCts.Token,
+                Screen.MainMenuButton, Screen.RestartButton
+            );
 
-            return GameOverCommandResult.MainMenu;
+            linkedCts.Cancel();
+
+            return selectedButton == Screen.RestartButton
+                ? GameOverCommandResult.Restart
+                : GameOverCommandResult.MainMenu;
         }
     }
 }

@@ -1,4 +1,5 @@
-using System.Collections;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using FlappyBoiz.Scripts.Events;
 using FlappyBoiz.Scripts.Features.Gameplay.Obstacle;
 using FlappyBoiz.Scripts.Features.Gameplay.ScriptableObjects;
@@ -81,23 +82,20 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Flapper
             );
         }
 
-        public void OnDead()
-        {
-            StartCoroutine(DeathSequence());
-        }
-
-        private IEnumerator DeathSequence()
+        public async UniTask OnDead(CancellationToken ct)
         {
             Time.timeScale = 0;
 
-            yield return new WaitForSecondsRealtime(0.5f);
+            await UniTask.Delay(millisecondsDelay: 500, DelayType.Realtime, cancellationToken: ct);
 
             Time.timeScale = 1;
 
             m_rigidbody.bodyType = RigidbodyType2D.Dynamic;
             m_rigidbody.AddForce(Vector2.down, ForceMode2D.Impulse);
 
-            Destroy(gameObject, 3.0f);
+            await UniTask.Delay(millisecondsDelay: 2000, DelayType.Realtime, cancellationToken: ct);
+
+            gameObject.SetActive(false);
         }
 
         private void OnTriggerEnter2D(Collider2D other)

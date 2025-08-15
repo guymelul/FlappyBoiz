@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
@@ -36,10 +37,18 @@ namespace FlappyBoiz.Scripts.Core.Controllers
                 await child.InitAsync(ct);
                 await child.StartAsync(ct);
             }
-            catch
+            catch (Exception e)
             {
-                // If something goes wrong, stop the child immediately
-                Debug.LogError("Stopping controller due to exception");
+                if (e is OperationCanceledException)
+                {
+                    Debug.Log("Stopping controller due to cancellation");
+                }
+                else
+                {
+                    // If something goes wrong, stop the child immediately
+                    Debug.LogError($"Stopping controller due to exception [{e.GetType().Name}]");
+                }
+
                 m_children.Remove(child);
                 await child.StopAsync(ct);
 

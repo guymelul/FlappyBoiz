@@ -2,6 +2,7 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using FlappyBoiz.Scripts.Core.Controllers;
+using FlappyBoiz.Scripts.Events;
 using FlappyBoiz.Scripts.Features.Gameplay.Managers;
 using FlappyBoiz.Scripts.Features.Gameplay.UI.Screens;
 using MessagePipe;
@@ -20,6 +21,9 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Controllers
 
     public class GamePhaseController : ControllerBase<GameCommandResult>
     {
+        [Inject] public IAsyncPublisher<GameEndedEvent> GameEndedEventPub { get; set; }
+        [Inject] public IAsyncPublisher<GameStartedEvent> GameStartedEventPub { get; set; }
+
         [Inject] public HUDScreen Screen { get; set; }
         [Inject] public GameSessionManager GameSession { get; set; }
 
@@ -33,6 +37,8 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Controllers
         {
             try
             {
+                await GameStartedEventPub.PublishAsync(GameStartedEvent.Empty, cancellationToken: ct);
+
                 await Screen.Show(ct);
 
                 var gameOverCompletionSource = new UniTaskCompletionSource();
@@ -73,34 +79,38 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Controllers
                     {
                         Debug.Log("Game paused");
 
-                        Time.timeScale = 0;
-                        var pauseController = await StartChildAsync<GamePauseController>(ct);
-                        Time.timeScale = 1;
+                        try
+                        {
+                            Screen.DisableInteraction();
+                            Time.timeScale = 0;
+                            var pauseController = await StartChildAsync<GamePauseController>(ct);
+                            if (pauseController.Result == PauseCommandResult.Continue)
+                                continue;
 
-                        if (pauseController.Result == PauseCommandResult.Continue)
-                            continue;
-
-                        if (pauseController.Result == PauseCommandResult.Quit)
-                            break;
+                            if (pauseController.Result == PauseCommandResult.Quit)
+                                break;
+                        }
+                        finally
+                        {
+                            Time.timeScale = 1;
+                            Screen.EnableInteraction();
+                        }
                     }
 
-                    if (completedTask == 1)
-                    {
-                        return GameCommandResult.GameOver;
-                    }
+                    if (completedTask != 1) continue;
+
+                    Debug.Log("Game ending event");
+                    await GameEndedEventPub.PublishAsync(GameEndedEvent.Empty, cancellationToken: ct);
+
+                    return GameCommandResult.GameOver;
                 } while (true);
-
-                // TODO: wait back button
-
-                // TODO: take care of pause
 
                 return GameCommandResult.Quit;
             }
             finally
             {
-                Time.timeScale = 1;
-                await Screen.Hide(ct);
                 m_disposables?.Dispose();
+                await Screen.Hide(ct);
             }
         }
     }

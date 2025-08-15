@@ -23,6 +23,8 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Controllers
 
         protected override async UniTask<PauseCommandResult> OnStartWithResultAsync(CancellationToken ct)
         {
+            await Screen.Show(ct);
+
             using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(ct);
 
             var linkedToken = linkedCts.Token;
@@ -33,7 +35,17 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Controllers
 
             linkedCts.Cancel();
 
-            return button == Screen.ResumeButton ? PauseCommandResult.Continue : PauseCommandResult.Quit;
+            var screenHide = Screen.Hide(ct);
+
+            if (button == Screen.ResumeButton)
+            {
+                await screenHide;
+                return PauseCommandResult.Continue;
+            }
+
+            screenHide.Forget();
+
+            return PauseCommandResult.Quit;
         }
     }
 }

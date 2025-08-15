@@ -1,4 +1,6 @@
-﻿using FlappyBoiz.Scripts.Events;
+﻿using System.Threading;
+using Cysharp.Threading.Tasks;
+using FlappyBoiz.Scripts.Events;
 using FlappyBoiz.Scripts.Features.Gameplay.Managers;
 using FlappyBoiz.Scripts.Features.Gameplay.ScriptableObjects;
 using UnityEngine;
@@ -22,14 +24,18 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Obstacle
         private float Difficulty => ObstacleSpawnerSettings.DifficultyCurve.Evaluate(Progress);
         private float Variation => ObstacleSpawnerSettings.VariationCurve.Evaluate(Progress);
 
-        protected override void OnGameStarted(GameStartedEvent ev)
+        protected override UniTask OnGameStarted(GameStartedEvent ev, CancellationToken ct)
         {
             SpawnTimer = 0;
+
+            return UniTask.CompletedTask;
         }
 
-        protected override void OnGameEnded(GameEndedEvent ev)
+        protected override UniTask OnGameEnded(GameEndedEvent ev, CancellationToken ct)
         {
             ObstacleSpawnerPresenter.Clear();
+
+            return UniTask.CompletedTask;
         }
 
         protected override void OnGameFixedTick()

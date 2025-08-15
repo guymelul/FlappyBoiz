@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using FlappyBoiz.Scripts.Events;
 using FlappyBoiz.Scripts.Features.Gameplay.ScriptableObjects;
 using MessagePipe;
@@ -21,27 +23,38 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Flapper
 
         #region Game Events
 
-        protected override void OnGameStarted(GameStartedEvent ev)
+        protected override UniTask OnGameStarted(GameStartedEvent ev, CancellationToken ct)
         {
             FlapTimer = 0;
             FlapsBuffered = 1;
             SetupEventSubs();
+
+            return UniTask.CompletedTask;
         }
 
-        protected override void OnGameResumed(GameResumedEvent ev) => SetupEventSubs();
-
-        protected override void OnGamePaused(GamePausedEvent ev)
+        protected override UniTask OnGameResumed(GameResumedEvent ev, CancellationToken ct)
         {
-            if (m_subscriptions == null) return;
+            SetupEventSubs();
 
-            m_subscriptions.Dispose();
-            m_subscriptions = null;
+            return UniTask.CompletedTask;
         }
 
-        protected override void OnGameEnded(GameEndedEvent ev)
+        protected override UniTask OnGamePaused(GamePausedEvent ev, CancellationToken ct)
+        {
+            if (m_subscriptions != null)
+            {
+                m_subscriptions.Dispose();
+                m_subscriptions = null;
+            }
+
+            return UniTask.CompletedTask;
+        }
+
+        protected override async UniTask OnGameEnded(GameEndedEvent ev, CancellationToken ct)
         {
             FlapsBuffered = 0;
-            FlapperPresenter.OnDead();
+
+            await FlapperPresenter.OnDead(ct);
         }
 
         #endregion

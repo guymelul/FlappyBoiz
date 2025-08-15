@@ -1,38 +1,39 @@
-﻿using FlappyBoiz.Scripts.Events;
+﻿using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using FlappyBoiz.Scripts.Events;
 using MessagePipe;
 using VContainer;
 using VContainer.Unity;
 
 namespace FlappyBoiz.Scripts.Features.Gameplay
 {
-    public abstract class GameplayStateAware : IPostInitializable, ITickable, IFixedTickable
+    public abstract class GameplayStateAware : IPostInitializable, ITickable, IFixedTickable, IDisposable
     {
-        [Inject] public ISubscriber<GameStartedEvent> GameStarted { get; set; }
-        [Inject] public ISubscriber<GameResumedEvent> GameResumed { get; set; }
-        [Inject] public ISubscriber<GamePausedEvent> GamePaused { get; set; }
-        [Inject] public ISubscriber<GameEndedEvent> GameEnded { get; set; }
+        [Inject] public IAsyncSubscriber<GameStartedEvent> GameStarted { get; set; }
+        [Inject] public IAsyncSubscriber<GameResumedEvent> GameResumed { get; set; }
+        [Inject] public IAsyncSubscriber<GamePausedEvent> GamePaused { get; set; }
+        [Inject] public IAsyncSubscriber<GameEndedEvent> GameEnded { get; set; }
 
         private bool IsGameRunning { get; set; }
 
+        private IDisposable m_disposables;
+
         public void PostInitialize()
         {
-            GameStarted.Subscribe(ev =>
-            {
-                IsGameRunning = true;
-                OnGameStarted(ev);
-            });
+            var disposeBag = DisposableBag.CreateBuilder();
 
-            GameResumed.Subscribe(OnGameResumed);
+            GameStarted.Subscribe(OnGameStartedInternal).AddTo(disposeBag);
 
-            GamePaused.Subscribe(OnGamePaused);
+            GameResumed.Subscribe(OnGameResumed).AddTo(disposeBag);
 
-            GameEnded.Subscribe(ev =>
-            {
-                IsGameRunning = false;
-                OnGameEnded(ev);
-            });
+            GamePaused.Subscribe(OnGamePaused).AddTo(disposeBag);
+
+            GameEnded.Subscribe(OnGameEndedInternal).AddTo(disposeBag);
+
+            m_disposables = disposeBag.Build();
         }
-        
+
         public void Tick()
         {
             if (!IsGameRunning) return;
@@ -47,21 +48,33 @@ namespace FlappyBoiz.Scripts.Features.Gameplay
             OnGameFixedTick();
         }
 
-        protected virtual void OnGameStarted(GameStartedEvent ev)
+        private async UniTask OnGameStartedInternal(GameStartedEvent ev, CancellationToken ct)
         {
+            IsGameRunning = true;
+            await OnGameStarted(ev, ct);
         }
 
-        protected virtual void OnGameResumed(GameResumedEvent ev)
+        private async UniTask OnGameEndedInternal(GameEndedEvent ev, CancellationToken ct)
         {
+            IsGameRunning = false;
+            await OnGameEnded(ev, ct);
         }
 
-        protected virtual void OnGamePaused(GamePausedEvent ev)
-        {
-        }
+        protected virtual async UniTask OnGameStarted(GameStartedEvent ev, CancellationToken ct) =>
+            await UniTask.CompletedTask;
 
-        protected virtual void OnGameEnded(GameEndedEvent ev)
-        {
-        }
+
+        protected virtual async UniTask OnGameResumed(GameResumedEvent ev, CancellationToken ct) =>
+            await UniTask.CompletedTask;
+
+
+        protected virtual async UniTask OnGamePaused(GamePausedEvent ev, CancellationToken ct) =>
+            await UniTask.CompletedTask;
+
+
+        protected virtual async UniTask OnGameEnded(GameEndedEvent ev, CancellationToken ct) =>
+            await UniTask.CompletedTask;
+
 
         protected virtual void OnGameTick()
         {
@@ -69,6 +82,11 @@ namespace FlappyBoiz.Scripts.Features.Gameplay
 
         protected virtual void OnGameFixedTick()
         {
+        }
+
+        public void Dispose()
+        {
+            m_disposables?.Dispose();
         }
     }
 }
