@@ -16,6 +16,9 @@ namespace FlappyBoiz.Scripts.Core.Controllers
         private readonly List<IController> m_children = new();
         IReadOnlyList<IController> IController.Children => m_children;
 
+        private CancellationTokenSource m_cancellationTokenSource;
+        protected CancellationToken CancellationToken => m_cancellationTokenSource.Token;
+
         protected ControllerBase(IObjectResolver container)
         {
             Container = container;
@@ -59,13 +62,17 @@ namespace FlappyBoiz.Scripts.Core.Controllers
         }
 
         // To be overridden by concrete controllers
-        async UniTask IController.InitAsync(CancellationToken ct) => await OnInitAsync(ct);
+        async UniTask IController.InitAsync(CancellationToken ct)
+        {
+            m_cancellationTokenSource = CancellationTokenSource.CreateLinkedTokenSource(ct);
+            await OnInitAsync(CancellationToken);
+        }
 
         protected virtual UniTask OnInitAsync(CancellationToken ct) => UniTask.CompletedTask;
 
         async UniTask IController.StartAsync(CancellationToken ct)
         {
-            Result = await OnStartWithResultAsync(ct);
+            Result = await OnStartWithResultAsync(CancellationToken);
         }
 
         /// <summary>
@@ -73,14 +80,28 @@ namespace FlappyBoiz.Scripts.Core.Controllers
         /// </summary>
         public async UniTask StopAsync(CancellationToken ct)
         {
-            // Stop children in reverse order
-            for (int i = m_children.Count - 1; i >= 0; i--)
+            if (m_cancellationTokenSource == null || m_cancellationTokenSource.IsCancellationRequested)
             {
-                await m_children[i].StopAsync(ct);
+                return;
             }
 
-            await OnStopAsync(ct);
-            Dispose();
+            // Immediately signal cancellation to all background tasks managed by this controller.
+            m_cancellationTokenSource.Cancel();
+
+            try
+            {
+                // Stop children in reverse order. This operation as a whole is cancellable by the external `ct` token.
+                for (int i = m_children.Count - 1; i >= 0; i--)
+                {
+                    await m_children[i].StopAsync(ct);
+                }
+            }
+            finally
+            {
+                // This controller's own cleanup is guaranteed to run and is not cancellable.
+                await OnStopAsync(CancellationToken.None);
+                Dispose();
+            }
         }
 
         protected abstract UniTask<TResult> OnStartWithResultAsync(CancellationToken ct);
@@ -93,6 +114,9 @@ namespace FlappyBoiz.Scripts.Core.Controllers
                 child.Dispose();
 
             m_children.Clear();
+
+            m_cancellationTokenSource?.Dispose();
+            m_cancellationTokenSource = null;
 
             OnDispose();
         }
@@ -113,6 +137,7 @@ namespace FlappyBoiz.Scripts.Core.Controllers
         protected override async UniTask<EmptyControllerResult> OnStartWithResultAsync(CancellationToken ct)
         {
             await OnStartAsync(ct);
+
             return new EmptyControllerResult();
         }
     }

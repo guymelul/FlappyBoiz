@@ -15,13 +15,17 @@ namespace FlappyBoiz.Scripts.Core.UI
         private Canvas m_canvas;
         private LitMotionAnimation m_screenAnimation;
 
-        [SerializeField, Range(0.0f, 10.0f)] private float showDuration = 0.2f;
+        [SerializeField, Range(0.0f, 10.0f)]
+        private float showDuration = 0.2f;
 
-        [SerializeField, Range(0.0f, 10.0f)] private float showDelay;
+        [SerializeField, Range(0.0f, 10.0f)]
+        private float showDelay;
 
-        [SerializeField, Range(0.0f, 10.0f)] private float hideDuration = 0.1f;
+        [SerializeField, Range(0.0f, 10.0f)]
+        private float hideDuration = 0.1f;
 
-        [SerializeField] private Ease ease = Ease.InCirc;
+        [SerializeField]
+        private Ease ease = Ease.InCirc;
 
         private void Awake()
         {
@@ -92,7 +96,8 @@ namespace FlappyBoiz.Scripts.Core.UI
         {
             DisableInteraction();
 
-            if (hideDuration > 0)
+
+            if (hideDuration > 0 && !ct.IsCancellationRequested)
                 await AnimateCanvasGroupAlpha(ct, 1f, 0f, hideDuration);
 
             MakeInvisible();
@@ -104,6 +109,7 @@ namespace FlappyBoiz.Scripts.Core.UI
         {
             return LMotion.Create(from, to, duration)
                 .WithScheduler(MotionScheduler.UpdateRealtime)
+                .WithCancelOnError()
                 .WithEase(ease)
                 .WithDelay(delay, skipValuesDuringDelay: false)
                 .Bind(n => m_canvasGroup.alpha = n)

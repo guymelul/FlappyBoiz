@@ -35,17 +35,16 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Controllers
 
             linkedCts.Cancel();
 
+            bool resuming = button == Screen.ResumeButton;
+
             var screenHide = Screen.Hide(ct);
 
-            if (button == Screen.ResumeButton)
-            {
-                await screenHide;
-                return PauseCommandResult.Continue;
-            }
+            if (!resuming) return PauseCommandResult.Quit;
 
-            screenHide.Forget();
+            await screenHide;
 
-            return PauseCommandResult.Quit;
+            return PauseCommandResult.Continue;
+
         }
     }
 }

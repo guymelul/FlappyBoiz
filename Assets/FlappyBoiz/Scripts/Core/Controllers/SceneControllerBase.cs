@@ -32,7 +32,7 @@ namespace FlappyBoiz.Scripts.Core.Controllers
             return await base.StartChildAsync<T>(ct, m_childScope.Container);
         }
 
-        protected override async UniTask OnStopAsync(CancellationToken ct) => await UnloadScene();
+        protected override async UniTask OnStopAsync(CancellationToken ct) => await UnloadScene(ct);
 
         private async UniTask LoadScene(CancellationToken ct)
         {
@@ -52,19 +52,19 @@ namespace FlappyBoiz.Scripts.Core.Controllers
             Assert.IsTrue(m_childScope.Parent == m_scope, "Lifetime scope parent not set");
         }
 
-        private async UniTask UnloadScene()
+        private async UniTask UnloadScene(CancellationToken ct)
         {
             if (!m_sceneInstance.HasValue) return;
 
             Debug.Log("Unloading scene: " + SceneName);
-            await m_sceneLoader.UnloadSceneAsync(CancellationToken.None, m_sceneInstance.Value);
+            await m_sceneLoader.UnloadSceneAsync(ct, m_sceneInstance.Value);
             m_sceneInstance = null;
         }
 
         protected async UniTask ReloadScene(CancellationToken ct)
         {
             OnDispose();
-            await UnloadScene();
+            await UnloadScene(ct);
             await LoadScene(ct);
         }
 

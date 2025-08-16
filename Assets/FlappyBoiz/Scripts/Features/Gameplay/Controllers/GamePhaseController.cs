@@ -84,6 +84,7 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Controllers
                             Screen.DisableInteraction();
                             Time.timeScale = 0;
                             var pauseController = await StartChildAsync<GamePauseController>(ct);
+
                             if (pauseController.Result == PauseCommandResult.Continue)
                                 continue;
 
@@ -110,7 +111,7 @@ namespace FlappyBoiz.Scripts.Features.Gameplay.Controllers
             finally
             {
                 m_disposables?.Dispose();
-                await Screen.Hide(ct);
+                Screen.Hide(ct).Forget();
             }
         }
     }
