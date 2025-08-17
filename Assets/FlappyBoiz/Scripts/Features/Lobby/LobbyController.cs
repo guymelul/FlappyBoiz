@@ -2,41 +2,48 @@
 using Cysharp.Threading.Tasks;
 using FlappyBoiz.Scripts.Core.Controllers;
 using FlappyBoiz.Scripts.Core.Services;
-using UnityEngine;
 using VContainer;
 
 namespace FlappyBoiz.Scripts.Features.Lobby
 {
-    public class LobbyController : ControllerBase
+    public enum LobbyStateResult
     {
-        private readonly ICloudServicesManager m_cloudServicesManager;
-        private readonly LobbyLoadingScreen m_lobbyLoadingScreen;
+        Success,
+        AuthenticationError,
+        SaveLoadingError
+    }
 
-        // ICloudServicesManager cloudServicesManager
-        public LobbyController(IObjectResolver container,
-            ICloudServicesManager cloudServicesManager,
-            LobbyLoadingScreen lobbyLoadingScreen) : base(container)
+    public class LobbyController : ControllerBase<LobbyStateResult>
+    {
+        [Inject] public ICloudServicesManager CloudServicesManager { get; set; }
+        [Inject] public LobbyView LobbyView { get; set; }
+
+        public LobbyController(IObjectResolver container) : base(container)
         {
-            m_cloudServicesManager = cloudServicesManager;
-            m_lobbyLoadingScreen = lobbyLoadingScreen;
         }
 
-        protected override async UniTask OnStartAsync(CancellationToken ct)
+        protected override async UniTask<LobbyStateResult> OnStartWithResultAsync(CancellationToken ct)
         {
-            await m_lobbyLoadingScreen.Show(ct);
+            try
+            {
+                await LobbyView.Show(ct);
 
-            Debug.Log("Cloud Services Init");
-            await m_cloudServicesManager.Init(ct);
+                await CloudServicesManager.Init(ct);
 
-            Debug.Log("Authenticating");
-            bool isAuthenticated = await m_cloudServicesManager.Authenticate(ct);
+                if (!await CloudServicesManager.Authenticate(ct))
+                {
+                    return LobbyStateResult.AuthenticationError;
+                }
 
-            // TODO: If auth is success
-            //  Load player data
+                //  Load player data
 
-            await m_lobbyLoadingScreen.Hide(ct);
-
-            await UniTask.Delay(1000, cancellationToken: ct);
+                return LobbyStateResult.Success;
+            }
+            finally
+            {
+                await LobbyView.Hide(ct);
+                await UniTask.Delay(1000, cancellationToken: ct);
+            }
         }
     }
 }

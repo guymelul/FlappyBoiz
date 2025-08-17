@@ -1,7 +1,7 @@
 using R3;
 using UnityEngine;
 
-namespace FlappyBoiz.Scripts.Features.Gameplay.VFX
+namespace FlappyBoiz.Scripts.Features.VFX
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(SpriteRenderer))]

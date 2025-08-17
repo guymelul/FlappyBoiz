@@ -9,7 +9,7 @@ namespace FlappyBoiz.Scripts.Features.Lobby
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterController<LobbyController>();
-            builder.RegisterComponentInHierarchy<LobbyLoadingScreen>();
+            builder.RegisterComponentInHierarchy<LobbyView>();
         }
     }
 }

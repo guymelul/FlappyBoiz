@@ -2,7 +2,7 @@
 
 namespace FlappyBoiz.Scripts.Features.Lobby
 {
-    public class LobbyLoadingScreen : UIScreen
+    public class LobbyView : UIScreen
     {
     }
 }

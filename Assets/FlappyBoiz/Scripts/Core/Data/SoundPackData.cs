@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace FlappyBoiz.Scripts.Features.Gameplay.ScriptableObjects
+namespace FlappyBoiz.Scripts.Features.Gameplay.Data
 {
     [CreateAssetMenu(fileName = "soundPack", menuName = "FlappyBoiz/SoundPack", order = 0)]
     public class SoundPackData : ScriptableObject

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using FlappyBoiz.Scripts.Features.Gameplay.Data;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using Unity.Services.Authentication;
@@ -12,7 +13,7 @@ namespace FlappyBoiz.Scripts.Core.Services
 {
     public class CloudServicesManager : ICloudServicesManager
     {
-        public async UniTask Init(CancellationToken cancellation = new())
+        public async UniTask Init(CancellationToken ct = default)
         {
             if (UnityServices.State == ServicesInitializationState.Initialized)
                 return;
@@ -26,7 +27,7 @@ namespace FlappyBoiz.Scripts.Core.Services
             Debug.Log("Unity Services Initialized");
         }
 
-        public async UniTask<bool> Authenticate(CancellationToken cancellation = new())
+        public async UniTask<bool> Authenticate(CancellationToken ct = default)
         {
             if (UnityServices.State != ServicesInitializationState.Initialized)
             {
@@ -61,6 +62,12 @@ namespace FlappyBoiz.Scripts.Core.Services
             Debug.LogWarning("Google Play Games sign-in failed or cancelled. Falling back to anonymous sign-in.");
 #endif
             return await SignInAnonymouslyAsync();
+        }
+
+        public async UniTask<GameSavedData> LoadSavedGame(CancellationToken ct = default)
+        {
+            
+            return new GameSavedData();
         }
 
         private static void LogSignedInPlayer(string message)

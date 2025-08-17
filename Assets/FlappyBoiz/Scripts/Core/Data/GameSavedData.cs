@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FlappyBoiz.Scripts.Features.Gameplay.ScriptableObjects
+namespace FlappyBoiz.Scripts.Features.Gameplay.Data
 {
     [Serializable]
     public class GameSavedData

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace FlappyBoiz.Scripts.Features.Gameplay.ScriptableObjects
+namespace FlappyBoiz.Scripts.Features.Gameplay.Data
 {
     [CreateAssetMenu(fileName = "FlapperSettings", menuName = "FlappyBoiz/Flapper Settings", order = 0)]
     public class FlapperSettings : ScriptableObject

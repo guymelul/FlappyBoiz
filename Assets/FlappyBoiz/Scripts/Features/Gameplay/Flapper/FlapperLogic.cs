@@ -2,7 +2,7 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using FlappyBoiz.Scripts.Events;
-using FlappyBoiz.Scripts.Features.Gameplay.ScriptableObjects;
+using FlappyBoiz.Scripts.Features.Gameplay.Data;
 using MessagePipe;
 using UnityEngine;
 using VContainer;

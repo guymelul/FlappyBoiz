@@ -1,9 +1,9 @@
 ﻿using FlappyBoiz.Scripts.Core.Controllers;
 using FlappyBoiz.Scripts.Features.Gameplay.Controllers;
+using FlappyBoiz.Scripts.Features.Gameplay.Data;
 using FlappyBoiz.Scripts.Features.Gameplay.Flapper;
 using FlappyBoiz.Scripts.Features.Gameplay.Managers;
 using FlappyBoiz.Scripts.Features.Gameplay.Obstacle;
-using FlappyBoiz.Scripts.Features.Gameplay.ScriptableObjects;
 using FlappyBoiz.Scripts.Features.Gameplay.UI.Screens;
 using UnityEngine;
 using VContainer;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace FlappyBoiz.Scripts.Features.Gameplay.ScriptableObjects
+namespace FlappyBoiz.Scripts.Features.Gameplay.Data
 {
     [CreateAssetMenu(fileName = "theme", menuName = "FlappyBoiz/Theme", order = 0)]
     public class ThemeData : ScriptableObject

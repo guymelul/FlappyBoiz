@@ -1,8 +1,8 @@
 ﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using FlappyBoiz.Scripts.Events;
+using FlappyBoiz.Scripts.Features.Gameplay.Data;
 using FlappyBoiz.Scripts.Features.Gameplay.Managers;
-using FlappyBoiz.Scripts.Features.Gameplay.ScriptableObjects;
 using UnityEngine;
 using VContainer;
 

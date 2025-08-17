@@ -2,7 +2,7 @@
 using FlappyBoiz.Scripts.Features.Gameplay.Obstacle;
 using UnityEngine;
 
-namespace FlappyBoiz.Scripts.Features.Gameplay.ScriptableObjects
+namespace FlappyBoiz.Scripts.Features.Gameplay.Data
 {
     [CreateAssetMenu(fileName = "ObstacleSpawnerSettings", menuName = "FlappyBoiz/Obstacle Spawner Settings",
         order = 0)]
