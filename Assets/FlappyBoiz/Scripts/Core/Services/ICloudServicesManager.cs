@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using Cysharp.Threading.Tasks;
-using FlappyBoiz.Scripts.Features.Gameplay.Data;
+using FlappyBoiz.Scripts.Core.Data;
 
 namespace FlappyBoiz.Scripts.Core.Services
 {

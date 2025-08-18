@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using FlappyBoiz.Scripts.Features.Gameplay.Data;
+using FlappyBoiz.Scripts.Core.Data;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using Unity.Services.Authentication;
