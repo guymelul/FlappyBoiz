@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using FlappyBoiz.Scripts.LitMotion;
 using LitMotion;
@@ -36,6 +37,11 @@ namespace FlappyBoiz.Scripts.Core.UI
             DisableInteraction();
         }
 
+        private void OnDestroy()
+        {
+            m_canvasGroup = null;
+        }
+
         protected virtual void OnPreShown()
         {
         }
@@ -52,6 +58,8 @@ namespace FlappyBoiz.Scripts.Core.UI
 
         public void DisableInteraction()
         {
+            if (!m_canvasGroup) return;
+            
             m_canvasGroup.interactable = false;
             m_canvasGroup.blocksRaycasts = false;
         }
@@ -94,8 +102,9 @@ namespace FlappyBoiz.Scripts.Core.UI
 
         public async UniTask Hide(CancellationToken ct = default)
         {
+            if (!m_canvasGroup) return;
+            
             DisableInteraction();
-
 
             if (hideDuration > 0 && !ct.IsCancellationRequested)
                 await AnimateCanvasGroupAlpha(ct, 1f, 0f, hideDuration);

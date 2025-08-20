@@ -1,5 +1,6 @@
-﻿using FlappyBoiz.Scripts.Core.Controllers;
+using FlappyBoiz.Scripts.Core.Controllers;
 using FlappyBoiz.Scripts.Core.Services;
+using FlappyBoiz.Scripts.Core.Services.SaveManager;
 using FlappyBoiz.Scripts.Features.Gameplay;
 using FlappyBoiz.Scripts.Features.Lobby;
 using FlappyBoiz.Scripts.Features.Menu;
@@ -19,8 +20,11 @@ namespace FlappyBoiz.Scripts.Features
             // Entry point
             builder.RegisterEntryPoint<GameRootController>();
 
-            // Register All Services 
-            builder.Register<ICloudServicesManager, CloudServicesManager>(Lifetime.Singleton);
+            // Register All Services
+            builder.Register<LocalDataService>(Lifetime.Singleton);
+            builder.Register<CloudDataService>(Lifetime.Singleton);
+            builder.Register<SaveManager>(Lifetime.Singleton);
+            builder.Register<CloudServicesManager>(Lifetime.Transient);
             builder.Register<ISceneLoaderService, SceneLoaderService>(Lifetime.Singleton);
             builder.Register<IScreenTransitionService, ScreenTransitionService>(Lifetime.Singleton);
 

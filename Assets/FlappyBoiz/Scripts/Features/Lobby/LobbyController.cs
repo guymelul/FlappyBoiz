@@ -1,7 +1,8 @@
-﻿using System.Threading;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using FlappyBoiz.Scripts.Core.Controllers;
 using FlappyBoiz.Scripts.Core.Services;
+using FlappyBoiz.Scripts.Core.Services.SaveManager;
 using VContainer;
 
 namespace FlappyBoiz.Scripts.Features.Lobby
@@ -15,7 +16,8 @@ namespace FlappyBoiz.Scripts.Features.Lobby
 
     public class LobbyController : ControllerBase<LobbyStateResult>
     {
-        [Inject] public ICloudServicesManager CloudServicesManager { get; set; }
+        [Inject] public CloudServicesManager CloudServicesManager { get; set; }
+        [Inject] public SaveManager SaveManager { get; set; }
         [Inject] public LobbyView LobbyView { get; set; }
 
         public LobbyController(IObjectResolver container) : base(container)
@@ -35,7 +37,14 @@ namespace FlappyBoiz.Scripts.Features.Lobby
                     return LobbyStateResult.AuthenticationError;
                 }
 
-                //  Load player data
+                try
+                {
+                    await SaveManager.LoadData(ct);
+                }
+                catch
+                {
+                    return LobbyStateResult.SaveLoadingError;
+                }
 
                 return LobbyStateResult.Success;
             }

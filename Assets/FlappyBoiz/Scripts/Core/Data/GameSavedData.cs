@@ -15,5 +15,6 @@ namespace FlappyBoiz.Scripts.Core.Data
         public List<int> flappersUnlocked = new(0);
         public List<int> themesUnlocked = new(0);
         public List<int> cosmeticsUnlocked = new(0);
+        public DateTime lastUpdated;
     }
 }
